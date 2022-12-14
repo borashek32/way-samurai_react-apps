@@ -1,7 +1,15 @@
+.app {
+    display: flex;
+    gap: 30px;
+}
+
 .counterWrapper {
     border: 2px solid #61dafb;
-    padding: 20px;
+    padding: 5px;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .buttonsWrapper {
@@ -9,6 +17,18 @@
     gap: 10px;
     justify-content: center;
     align-items: center;
+}
+
+.counterSubWrapper {
+    border: 2px solid #61dafb;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 auto;
+    gap: 20px;
+    min-height: 80px;
 }
 
 .button {
@@ -34,7 +54,33 @@
     opacity: .5;
 }
 
+.erroredInput {
+    background-color: #efa9a9;
+    border: 1px solid red;
+}
+
 .disabledCounter {
-    color: grey;
-    opacity: .5;
+    color: red
+}
+
+.label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #61dafb;
+    margin-right: 10px;
+}
+
+.inputWrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.input {
+    width: 60px;
+    height: 20px;
+}
+
+.buttonsWrapper {
+    margin: 20px;
 }

@@ -1,13 +1,14 @@
 type ButtonType = {
   name: string
   class: string
-  callback: () => void
+  callback: (value: number) => void
   disabled?: boolean
+  value: number
 }
 
 export const Button = (props: ButtonType) => {
   const onClickHandler = () => {
-    props.callback()
+    props.callback(props.value)
   }
 
   return (

@@ -1,40 +1,69 @@
-import React, {useState} from 'react'
+import React, {ChangeEvent, useState} from 'react'
 import './App.css'
 import {Counter} from "./components/Counter/Counter"
-import {Messages} from "./components/Messages/Messages"
-import {v1} from "uuid"
-import {m, messagesLimit} from './state/state'
 
 function App() {
-  const [messages, setMessages] = useState(m)
+  const [settings, setSettings] = useState<{maxValue: number; startValue: number}>({maxValue: 5, startValue: 0})
 
-  const sendMessage = (title: string) => {
-    if (messages.length < messagesLimit) {
-      let newMessage = {id: v1(), title: title};
-      let newMessages = [newMessage, ...messages];
-      setMessages(newMessages);
+  const [value, setValue] = useState<number>(0)
+  const [maxValue, setMaxValue] = useState<number>(5)
+  const [startValue, setStartValue] = useState<number>(0)
+
+  const [disabledButton, setDisabledButton] = useState<boolean>(true)
+  const [erroredMaxValueInput, setErroredMaxValueInput] = useState<boolean>(false)
+  const [erroredStartValueInput, setErroredStartValueInput] = useState<boolean>(false)
+
+  const incHandler = () => {
+    if (value < settings.maxValue) {
+      setValue(prevState => ++prevState);
     }
   }
-  const deleteOneMessage = (id: string) => {
-    let newMessages = messages.filter(m => m.id !== id)
-    setMessages(newMessages)
+  const resetHandler = () => {
+    setValue(settings.startValue);
   }
-  const deleteLastMessage = () => {
-    let lastMessage = messages[messages.length - 1]
-    let newMessagesArr = messages.filter(m => m.id !== lastMessage.id)
-    setMessages(newMessagesArr)
+
+  const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const newMaxValue = e.currentTarget.valueAsNumber
+    if (newMaxValue < 0) {
+      setDisabledButton(true)
+      setErroredMaxValueInput(true)
+    } else {
+      setMaxValue(newMaxValue)
+
+      setDisabledButton(false)
+    }
+  }
+  const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const newStart = e.currentTarget.valueAsNumber;
+
+    if (newStart < 0) {
+      setDisabledButton(true)
+      setErroredStartValueInput(true)
+    } else {
+      setStartValue(newStart)
+      setDisabledButton(false)
+    }
+  }
+  const setValuesHandler = (newValues: {maxValue: number, startValue: number}) => {
+    setSettings(newValues)
+    setValue(newValues.startValue)
   }
 
   return (
     <div className="App">
       <header className="App-header">
-        {/*<Counter counter={0} />*/}
-        <Messages
-          title={"Telegram"}
-          messages={messages}
-          callback={sendMessage}
-          deleteOneMessage={deleteOneMessage}
-          deleteLastMessage={deleteLastMessage}
+        <Counter
+          value={value}
+          startValue={startValue}
+          maxValue={maxValue}
+          incHandler={incHandler}
+          resetHandler={resetHandler}
+          setValuesHandler={setValuesHandler}
+          onChangeMaxValueHandler={onChangeMaxValueHandler}
+          onChangeStartValueHandler={onChangeStartValueHandler}
+          erroredMaxValueInput={erroredMaxValueInput}
+          erroredStartValueInput={erroredStartValueInput}
+          disabledButton={disabledButton}
         />
       </header>
     </div>

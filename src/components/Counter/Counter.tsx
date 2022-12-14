@@ -1,42 +1,58 @@
 import css from './Counter.module.css'
-import {useState} from "react";
-import {Button} from "../utils/Button";
-import {ChangeCounter} from "./ChangeCounter";
+import {ChangeCounter} from "./items/ChangeCounter";
+import {Settings} from "./items/Settings";
+import {ChangeEvent, useState} from "react";
 
-type CounterType = {
-  counter: number
+export type CounterType = {
+  value: number
+  maxValue: number
+  startValue: number
+  incHandler: () => void
+  resetHandler: (value: number) => void
+  onChangeMaxValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
+  onChangeStartValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
+  setValuesHandler: (newValue:{maxValue: number, startValue: number}) => void
+  erroredMaxValueInput: boolean
+  erroredStartValueInput: boolean
+  disabledButton: boolean
 }
 
 export const Counter = (props: CounterType) => {
-  let [counter, setCounter] = useState(0);
 
-  const incHandler = () => {
-    if (counter < 5) {
-      setCounter(++counter);
-      console.log(counter);
-    }
-  }
-  const resetHandler = () => {
-    setCounter(0);
-  }
-
-  const plusClassName = css.button
-    + ((counter === 5) ? ' ' + css.disabledButton : '')
-  const resetClassName = css.button
-    + ((counter === 0) ? ' ' + css.disabledButton : '')
   const counterClassName = css.counter
-    + ((counter === 5) ? ' ' + css.disabledCounter : '')
+    + ((props.value === props.maxValue) ? ' ' + css.disabledCounter : '')
+
+  const resetCallback = () => {
+    props.resetHandler(props.value)
+  }
+
+  // const onChangeMaxValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeMaxValueHandler(e)
+  // const onChangeStartValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeMaxValueHandler(e)
+  // const setValuesHandler = () => props.setValuesHandler()
 
   return (
-    <div>
+    <>
       <h1>Counter</h1>
-      <div className={css.counterWrapper}>
-        <ChangeCounter counter={counter} class={counterClassName}/>
-        <div className={css.buttonsWrapper}>
-          <Button name={"plus 1"} class={plusClassName} callback={incHandler} />
-          <Button name={"reset"} class={resetClassName} callback={resetHandler} />
-        </div>
+      <div className={css.app}>
+        <ChangeCounter
+          value={props.value}
+          maxValue={props.maxValue}
+          startValue={props.startValue}
+          class={counterClassName}
+          incCallback={props.incHandler}
+          resetCallback={resetCallback}
+        />
+        <Settings
+          maxValue={props.maxValue}
+          startValue={props.startValue}
+          setValuesHandler={props.setValuesHandler}
+          erroredMaxValueInput={props.erroredMaxValueInput}
+          erroredStartValueInput={props.erroredStartValueInput}
+          onChangeMaxValueHandler={props.onChangeMaxValueHandler}
+          onChangeStartValueHandler={props.onChangeStartValueHandler}
+          disabledButton={props.disabledButton}
+        />
       </div>
-    </div>
+    </>
   )
 }

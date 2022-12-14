@@ -1,25 +1,25 @@
-import {ChangeEvent, KeyboardEvent} from "react";
+import {ChangeEvent} from "react";
+import css from '../Counter/Counter.module.css';
 
 type InputType = {
-  title: string
+  value: number
+  type: string
   onChangeCallback: (e: ChangeEvent<HTMLInputElement>) => void
-  onKeyPressCallback: (e: KeyboardEvent<HTMLInputElement>) => void
+  erroredInput?: boolean
+  class: string
 }
 
 export const Input = (props: InputType) => {
-  const onChangeCallbackHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
     props.onChangeCallback(e)
-  }
-  const onKeyPressCallbackHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-    props.onKeyPressCallback(e)
   }
 
   return (
     <input
-      value={props.title}
-      onChange={onChangeCallbackHandler}
-      onKeyPress={onKeyPressCallbackHandler}
-      type="text"
+      className={props.class}
+      onChange={onChangeCallback}
+      value={props.value}
+      type={props.type}
     />
   )
 }
