@@ -11,10 +11,12 @@ export type CounterType = {
   resetHandler: (value: number) => void
   onChangeMaxValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
   onChangeStartValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
-  setValuesHandler: (newValue:{maxValue: number, startValue: number}) => void
+  setValuesHandler: (newValue: {maxValue: number, startValue: number}) => void
   erroredMaxValueInput: boolean
   erroredStartValueInput: boolean
   disabledButton: boolean
+  erroredMaxStart: boolean
+  message: boolean
 }
 
 export const Counter = (props: CounterType) => {
@@ -25,10 +27,6 @@ export const Counter = (props: CounterType) => {
   const resetCallback = () => {
     props.resetHandler(props.value)
   }
-
-  // const onChangeMaxValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeMaxValueHandler(e)
-  // const onChangeStartValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeMaxValueHandler(e)
-  // const setValuesHandler = () => props.setValuesHandler()
 
   return (
     <>
@@ -43,6 +41,9 @@ export const Counter = (props: CounterType) => {
           resetCallback={resetCallback}
           erroredMaxValueInput={props.erroredMaxValueInput}
           erroredStartValueInput={props.erroredStartValueInput}
+          erroredMaxStart={props.erroredMaxStart}
+          disabledButton={props.disabledButton}
+          message={props.message}
         />
         <Settings
           maxValue={props.maxValue}
@@ -53,6 +54,7 @@ export const Counter = (props: CounterType) => {
           onChangeMaxValueHandler={props.onChangeMaxValueHandler}
           onChangeStartValueHandler={props.onChangeStartValueHandler}
           disabledButton={props.disabledButton}
+          erroredMaxStart={props.erroredMaxStart}
         />
       </div>
     </>

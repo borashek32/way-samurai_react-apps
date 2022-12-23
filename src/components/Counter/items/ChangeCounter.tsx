@@ -3,14 +3,17 @@ import {Button} from "../../utils/Button";
 import React from "react";
 
 type ChangeCounterType = {
-  value: number
+  value?: number
   class: string
   maxValue?: number
   startValue?: number
   incCallback: () => void
-  resetCallback: (value: number) => void
+  resetCallback: (value?: number) => void
   erroredMaxValueInput?: boolean
   erroredStartValueInput?: boolean
+  erroredMaxStart: boolean
+  message?: boolean
+  disabledButton?: boolean
 }
 
 export const ChangeCounter = (props: ChangeCounterType) => {
@@ -20,14 +23,20 @@ export const ChangeCounter = (props: ChangeCounterType) => {
   const resetClassName = css.button
     + ((props.value === props.startValue) ? ' ' + css.disabledButton : '')
 
-  const displayedValue = props.erroredMaxValueInput
-  ? <p>max value should be positive</p>
-  : <h1 className={props.class}>{props.value}</h1>
+  const error = props.erroredMaxValueInput
+    ? <p className={css.error}>max value should be positive</p>
+    : props.erroredStartValueInput
+      ? <p className={css.error}>start value should be positive</p>
+      : props.erroredMaxStart
+        ? <p className={css.error}>max value should be greater than start value</p>
+        : props.message
+          ? <p className={css.message}>enter values and press set</p>
+          :<h1 className={props.class}>{props.value}</h1>
 
   return (
     <div className={css.counterWrapper}>
       <div className={css.counterSubWrapper}>
-        {displayedValue}
+        {error}
       </div>
       <div className={css.counterSubWrapper}>
         <div className={css.buttonsWrapper}>
@@ -36,8 +45,10 @@ export const ChangeCounter = (props: ChangeCounterType) => {
             class={plusClassName}
             callback={props.incCallback}
             value={props.value}
+            type={"button"}
           />
           <Button
+            type={"button"}
             name={"reset"}
             class={resetClassName}
             callback={(value) => {props.resetCallback(value)}}

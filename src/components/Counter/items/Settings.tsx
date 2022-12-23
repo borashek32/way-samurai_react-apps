@@ -1,8 +1,7 @@
 import css from '../Counter.module.css'
 import {Button} from "../../utils/Button";
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent} from "react";
 import {Input} from '../../utils/Input';
-import {SetButton} from "../../utils/SetButton";
 
 type PropsType = {
   maxValue: number
@@ -13,6 +12,7 @@ type PropsType = {
   erroredStartValueInput?: boolean
   erroredMaxValueInput?: boolean
   disabledButton: boolean
+  erroredMaxStart?: boolean
 }
 
 export const Settings = (props: PropsType) => {
@@ -21,9 +21,12 @@ export const Settings = (props: PropsType) => {
   const onChangeStartValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeStartValueHandler(e)
 
   const buttonClassName = css.button
-    + ((props.disabledButton) ? css.disabledButton : '')
+    + (props.disabledButton ? ' ' + css.disabledButton : '')
+
   const maxValueInputClassName = css.input
+    + ((props.erroredMaxValueInput || props.erroredMaxStart) ? ' ' + css.erroredInput : '')
   const startValueInputClassName = css.input
+    + ((props.erroredStartValueInput || props.erroredMaxStart) ? ' ' + css.erroredInput : '')
 
   return (
     <div className={css.counterWrapper}>
@@ -48,11 +51,10 @@ export const Settings = (props: PropsType) => {
         </div>
       </div>
       <div className={css.counterSubWrapper}>
-        {/*<button onClick={() => props.setValuesHandler({maxValue: props.maxValue, startValue: props.startValue})} className={buttonClassName}>set</button>*/}
-        <SetButton
+        <Button
           type={"submit"}
           name={'set'}
-          class={css.button}
+          class={buttonClassName}
           callback={() => props.setValuesHandler({maxValue: props.maxValue, startValue: props.startValue})}
         />
       </div>

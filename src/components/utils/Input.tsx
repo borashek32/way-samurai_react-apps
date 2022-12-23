@@ -1,5 +1,4 @@
 import {ChangeEvent} from "react";
-import css from '../Counter/Counter.module.css';
 
 type InputType = {
   value: number
