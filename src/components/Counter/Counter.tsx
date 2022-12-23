@@ -41,6 +41,8 @@ export const Counter = (props: CounterType) => {
           class={counterClassName}
           incCallback={props.incHandler}
           resetCallback={resetCallback}
+          erroredMaxValueInput={props.erroredMaxValueInput}
+          erroredStartValueInput={props.erroredStartValueInput}
         />
         <Settings
           maxValue={props.maxValue}

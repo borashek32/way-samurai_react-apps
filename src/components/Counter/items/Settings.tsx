@@ -1,7 +1,8 @@
 import css from '../Counter.module.css'
-import {SetButton} from "../../utils/SetButton";
+import {Button} from "../../utils/Button";
 import React, {ChangeEvent, useState} from "react";
 import {Input} from '../../utils/Input';
+import {SetButton} from "../../utils/SetButton";
 
 type PropsType = {
   maxValue: number
@@ -47,9 +48,13 @@ export const Settings = (props: PropsType) => {
         </div>
       </div>
       <div className={css.counterSubWrapper}>
-        {props.erroredMaxValueInput && <p>max value should be positive</p>}
-        {props.erroredStartValueInput && <p>start value should be positive</p>}
-        <button onClick={() => props.setValuesHandler({maxValue: props.maxValue, startValue: props.startValue})} className={buttonClassName}>set</button>
+        {/*<button onClick={() => props.setValuesHandler({maxValue: props.maxValue, startValue: props.startValue})} className={buttonClassName}>set</button>*/}
+        <SetButton
+          type={"submit"}
+          name={'set'}
+          class={css.button}
+          callback={() => props.setValuesHandler({maxValue: props.maxValue, startValue: props.startValue})}
+        />
       </div>
     </div>
   )

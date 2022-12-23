@@ -3,12 +3,12 @@ type ButtonType = {
   class: string
   callback: (value: number) => void
   disabled?: boolean
-  value: number
+  value?: number
 }
 
 export const Button = (props: ButtonType) => {
   const onClickHandler = () => {
-    props.callback(props.value)
+    props.value ? props.callback(props.value) : ''
   }
 
   return (

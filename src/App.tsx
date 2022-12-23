@@ -24,7 +24,7 @@ function App() {
 
   const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newMaxValue = e.currentTarget.valueAsNumber
-    if (newMaxValue < 0) {
+    if (newMaxValue <= 0) {
       setDisabledButton(true)
       setErroredMaxValueInput(true)
     } else {
