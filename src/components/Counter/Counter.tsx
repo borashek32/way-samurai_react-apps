@@ -2,12 +2,11 @@ import css from './Counter.module.css'
 import {ChangeCounter} from "./items/ChangeCounter";
 import {Settings} from "./items/Settings";
 import {ChangeEvent} from "react";
-import {DisabledType, ErrorType} from "../../App";
+import {DisabledType, ErrorType, SettingsType} from "../../App";
 
 export type CounterType = {
   value: number | string
-  maxValue: number
-  startValue: number
+  settings: SettingsType
   incHandler: () => void
   resetHandler: () => void
   onChangeMaxValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
@@ -19,25 +18,20 @@ export type CounterType = {
 
 export const Counter = (props: CounterType) => {
 
-  const counterClassName = css.counter
-    + ((props.value === props.maxValue) ? ' ' + css.disabledCounter : '')
-
   return (
     <>
       <h1>Counter</h1>
       <div className={css.app}>
         <ChangeCounter
           value={props.value}
-          maxValue={props.maxValue}
-          startValue={props.startValue}
-          class={counterClassName}
+          settings={props.settings}
           incCallback={props.incHandler}
           resetCallback={props.resetHandler}
           disabled={props.disabled}
+          error={props.error}
         />
         <Settings
-          maxValue={props.maxValue}
-          startValue={props.startValue}
+          settings={props.settings}
           setValuesHandler={props.setValuesHandler}
           onChangeMaxValueHandler={props.onChangeMaxValueHandler}
           onChangeStartValueHandler={props.onChangeStartValueHandler}

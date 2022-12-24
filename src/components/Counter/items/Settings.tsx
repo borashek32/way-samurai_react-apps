@@ -2,16 +2,15 @@ import css from '../Counter.module.css'
 import {Button} from "../../utils/Button";
 import React, {ChangeEvent} from "react";
 import {Input} from '../../utils/Input';
-import {DisabledType, ErrorType} from "../../../App";
+import {DisabledType, ErrorType, SettingsType} from "../../../App";
 
 type PropsType = {
-  maxValue: number
-  startValue: number
+  settings: SettingsType
   setValuesHandler: (newValue: { maxValue: number, startValue: number }) => void
   onChangeMaxValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
   onChangeStartValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
   error?: ErrorType
-  disabled: DisabledType
+  disabled?: DisabledType
 }
 
 export const Settings = (props: PropsType) => {
@@ -20,7 +19,8 @@ export const Settings = (props: PropsType) => {
   const onChangeStartValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeStartValueHandler(e)
 
   const buttonClassName = css.button
-    + (props.disabled.setButton || props.error?.maxStartValues ? ' ' + css.disabledButton : '')
+    + (props.error?.startValue || props.error?.maxStartValues || props.error?.maxValue || props.disabled?.setButton
+      ? ' ' + css.disabledButton : '')
 
   const inputMaxClassName = css.input
     + (props.error?.maxValue || props.error?.maxStartValues ? ' ' + css.erroredInput : '')
@@ -35,7 +35,7 @@ export const Settings = (props: PropsType) => {
           <Input
             class={inputMaxClassName}
             type="number"
-            value={props.maxValue}
+            value={props.settings?.maxValue}
             onChangeCallback={onChangeMaxValueCallback}
           />
         </div>
@@ -44,18 +44,16 @@ export const Settings = (props: PropsType) => {
           <Input
             class={inputStartClassName}
             type="number"
-            value={props.startValue}
+            value={props.settings?.startValue}
             onChangeCallback={onChangeStartValueCallback}
           />
         </div>
       </div>
       <div className={css.counterSubWrapper}>
         <Button
-          type={"submit"}
           name={'set'}
           class={buttonClassName}
-          callback={() => props.setValuesHandler({maxValue: props.maxValue, startValue: props.startValue})}
-          // disabled={props.disabled}
+          callback={() => props.setValuesHandler({maxValue: props.settings.maxValue, startValue: props.settings.startValue})}
         />
       </div>
     </div>
