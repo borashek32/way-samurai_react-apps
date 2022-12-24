@@ -30,7 +30,6 @@ export const Counter = (props: CounterType) => {
           resetCallback={props.resetHandler}
           disabled={props.disabled}
           error={props.error}
-          disableInc={props.disableInc}
         />
         <Settings
           settings={props.settings}
