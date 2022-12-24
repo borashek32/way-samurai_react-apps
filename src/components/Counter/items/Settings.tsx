@@ -2,6 +2,7 @@ import css from '../Counter.module.css'
 import {Button} from "../../utils/Button";
 import React, {ChangeEvent} from "react";
 import {Input} from '../../utils/Input';
+import {DisabledType, ErrorType} from "../../../App";
 
 type PropsType = {
   maxValue: number
@@ -9,10 +10,8 @@ type PropsType = {
   setValuesHandler: (newValue: { maxValue: number, startValue: number }) => void
   onChangeMaxValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
   onChangeStartValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
-  erroredStartValueInput?: boolean
-  erroredMaxValueInput?: boolean
-  disabledButton: boolean
-  erroredMaxStart?: boolean
+  error?: ErrorType
+  disabled?: DisabledType
 }
 
 export const Settings = (props: PropsType) => {
@@ -21,12 +20,13 @@ export const Settings = (props: PropsType) => {
   const onChangeStartValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeStartValueHandler(e)
 
   const buttonClassName = css.button
-    + (props.disabledButton ? ' ' + css.disabledButton : '')
+    + (props.disabled?.setButton || props.error?.maxStartValues ? ' ' + css.disabledButton : '')
 
-  const maxValueInputClassName = css.input
-    + ((props.erroredMaxValueInput || props.erroredMaxStart) ? ' ' + css.erroredInput : '')
-  const startValueInputClassName = css.input
-    + ((props.erroredStartValueInput || props.erroredMaxStart) ? ' ' + css.erroredInput : '')
+  const inputMaxClassName = css.input
+    + (props.error?.maxValue || props.error?.maxStartValues ? ' ' + css.erroredInput : '')
+  const inputStartClassName = css.input
+    + (props.error?.startValue || props.error?.maxStartValues ? ' ' + css.erroredInput : '')
+
 
   return (
     <div className={css.counterWrapper}>
@@ -34,7 +34,7 @@ export const Settings = (props: PropsType) => {
         <div className={css.inputWrapper}>
           <label className={css.label}>max value</label>
           <Input
-            class={maxValueInputClassName}
+            class={inputMaxClassName}
             type="number"
             value={props.maxValue}
             onChangeCallback={onChangeMaxValueCallback}
@@ -43,7 +43,7 @@ export const Settings = (props: PropsType) => {
         <div className={css.inputWrapper}>
           <label className={css.label}>start value</label>
           <Input
-            class={startValueInputClassName}
+            class={inputStartClassName}
             type="number"
             value={props.startValue}
             onChangeCallback={onChangeStartValueCallback}
@@ -56,6 +56,7 @@ export const Settings = (props: PropsType) => {
           name={'set'}
           class={buttonClassName}
           callback={() => props.setValuesHandler({maxValue: props.maxValue, startValue: props.startValue})}
+          disabled={props.disabled}
         />
       </div>
     </div>
