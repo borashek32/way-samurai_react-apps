@@ -1,12 +1,8 @@
-import css from "../../components/Counter/Counter.module.css";
-import {DisabledType} from "../../App";
-
 type ButtonType = {
   name: string
   class: string
-  callback: (value?: number) => void
-  disabled?: DisabledType
-  value?: number
+  callback: (value?: number | string) => void
+  value?: number | string
   type: ButtonPropsType
 }
 type ButtonPropsType = "button" | "submit" | "reset"
@@ -19,7 +15,7 @@ export const Button = (props: ButtonType) => {
   return (
     <button
       onClick={onClickHandler}
-      className={props.disabled?.incButton ? props.class + ' ' + css.disabledButton : props.class}
+      className={props.class}
       type={props.type}
     >
       {props.name}

@@ -11,7 +11,7 @@ type PropsType = {
   onChangeMaxValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
   onChangeStartValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
   error?: ErrorType
-  disabled?: DisabledType
+  disabled: DisabledType
 }
 
 export const Settings = (props: PropsType) => {
@@ -20,7 +20,7 @@ export const Settings = (props: PropsType) => {
   const onChangeStartValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeStartValueHandler(e)
 
   const buttonClassName = css.button
-    + (props.disabled?.setButton || props.error?.maxStartValues ? ' ' + css.disabledButton : '')
+    + (props.disabled.setButton || props.error?.maxStartValues ? ' ' + css.disabledButton : '')
 
   const inputMaxClassName = css.input
     + (props.error?.maxValue || props.error?.maxStartValues ? ' ' + css.erroredInput : '')
@@ -56,7 +56,7 @@ export const Settings = (props: PropsType) => {
           name={'set'}
           class={buttonClassName}
           callback={() => props.setValuesHandler({maxValue: props.maxValue, startValue: props.startValue})}
-          disabled={props.disabled}
+          // disabled={props.disabled}
         />
       </div>
     </div>

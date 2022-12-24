@@ -4,19 +4,21 @@ import React from "react";
 import {DisabledType} from "../../../App";
 
 type ChangeCounterType = {
-  value?: number
+  value?: number | string
   class: string
   maxValue?: number
   startValue?: number
   incCallback: () => void
-  resetCallback: (value?: number) => void
-  disabled?: DisabledType
+  resetCallback: (value?: number | string) => void
+  disabled: DisabledType
 }
 
 export const ChangeCounter = (props: ChangeCounterType) => {
 
-  const buttonsClassName = css.button
-    + (props.disabled?.incButton || props.disabled?.resButton ? ' ' + css.disabledButton : '')
+  const buttonIncClassName = css.button
+    + (props.disabled.incButton ? ' ' + css.disabledButton : '')
+  const buttonResClassName = css.button
+    + (props.disabled.resButton ? ' ' + css.disabledButton : '')
 
   return (
     <div className={css.counterWrapper}>
@@ -27,19 +29,17 @@ export const ChangeCounter = (props: ChangeCounterType) => {
         <div className={css.buttonsWrapper}>
           <Button
             name={"inc"}
-            class={buttonsClassName}
+            class={buttonIncClassName}
             callback={props.incCallback}
             value={props.value}
             type={"button"}
-            disabled={props.disabled}
           />
           <Button
             type={"button"}
             name={"res"}
-            class={buttonsClassName}
+            class={buttonResClassName}
             callback={(value) => {props.resetCallback(value)}}
             value={props.value}
-            disabled={props.disabled}
           />
         </div>
       </div>

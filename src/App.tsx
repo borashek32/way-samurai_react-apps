@@ -33,6 +33,7 @@ function App() {
   const incHandler = () => {
     if (value < settings.maxValue) {
       setValue(prevState => +prevState + 1);
+      setDisabled({...disabled, resButton: false})
     }
   }
   const resetHandler = () => {
@@ -87,32 +88,34 @@ function App() {
     if (newValues.maxValue > 0 && newValues.startValue >= 0) {
       setSettings(newValues)
       setValue(newValues.startValue)
+      setDisabled({...disabled, setButton: true})
     }
   }
 
-  // useEffect(() => {
-  //   !firstRendering && localStorage.setItem('inc-value', JSON.stringify(value))
-  // }, [value])
-  // useEffect(() => {
-  //   let prevValue = localStorage.getItem('inc-value')
-  //   if (prevValue) {
-  //     let newValue = JSON.parse(prevValue)
-  //     setValue(newValue)
-  //   }
-  //   setFirstRendering(false)
-  // }, [])
-  // useEffect(() => {
-  //   !firstRendering && localStorage.setItem('settings-values', JSON.stringify(settings))
-  // }, [settings])
-  // useEffect(() => {
-  //   let prevSettings = localStorage.getItem('settings-values')
-  //   if (prevSettings) {
-  //     let newSettings = JSON.parse(prevSettings)
-  //     setSettings(newSettings)
-  //     setStartValue(newSettings.startValue)
-  //   }
-  //   setFirstRendering(false)
-  // }, [])
+  useEffect(() => {
+    !firstRendering && localStorage.setItem('inc-value', JSON.stringify(value))
+  }, [value])
+  useEffect(() => {
+    let prevValue = localStorage.getItem('inc-value')
+    if (prevValue) {
+      let newValue = JSON.parse(prevValue)
+      setValue(newValue)
+    }
+    setFirstRendering(false)
+  }, [])
+
+  useEffect(() => {
+    !firstRendering && localStorage.setItem('settings-values', JSON.stringify(settings))
+  }, [settings])
+  useEffect(() => {
+    let prevSettings = localStorage.getItem('settings-values')
+    if (prevSettings) {
+      let newSettings = JSON.parse(prevSettings)
+      setSettings(newSettings)
+      setStartValue(newSettings.startValue)
+    }
+    setFirstRendering(false)
+  }, [])
 
   return (
     <div className="App">
