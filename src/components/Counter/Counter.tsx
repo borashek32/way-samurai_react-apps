@@ -14,6 +14,7 @@ export type CounterType = {
   setValuesHandler: (newValue: {maxValue: number, startValue: number}) => void
   error: ErrorType
   disabled: DisabledType
+  disableInc?: boolean
 }
 
 export const Counter = (props: CounterType) => {
@@ -29,6 +30,7 @@ export const Counter = (props: CounterType) => {
           resetCallback={props.resetHandler}
           disabled={props.disabled}
           error={props.error}
+          disableInc={props.disableInc}
         />
         <Settings
           settings={props.settings}

@@ -27,9 +27,12 @@ function App() {
   const incHandler = () => {
     if (value < settings.maxValue) {
       setValue(+value + 1);
-      setDisabled({...disabled, resButton: false, setButton: true, incButton: false})
+      // setDisabled({...disabled, resButton: false, setButton: true, incButton: false})
     }
   }
+
+  const disableInc = (value === settings.maxValue)
+
   const resetHandler = () => {
     setValue(settings.startValue);
     setDisabled({...disabled, resButton: true})
@@ -58,7 +61,7 @@ function App() {
       setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
       setSettings({...settings, maxValue: newMaxValue})
       setError({...error, maxStartValues: false, maxValue: false, startValue: false})
-      setValue("enter values and press set")
+      setValue("enter values and press 'set'")
     }
   }
   const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -85,7 +88,7 @@ function App() {
       setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
       setError({...error, maxStartValues: false, maxValue: false, startValue: false})
       setSettings({...settings, startValue: newStartValue})
-      setValue("enter values and press set")
+      setValue("enter values and press 'set'")
     }
   }
 
@@ -134,6 +137,7 @@ function App() {
           onChangeStartValueHandler={onChangeStartValueHandler}
           disabled={disabled}
           error={error}
+          disableInc={disableInc}
         />
       </header>
     </div>
