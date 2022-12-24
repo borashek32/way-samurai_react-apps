@@ -5,11 +5,11 @@ import {ChangeEvent} from "react";
 import {DisabledType, ErrorType} from "../../App";
 
 export type CounterType = {
-  value: number
+  value: number | string
   maxValue: number
   startValue: number
   incHandler: () => void
-  resetHandler: (value: number) => void
+  resetHandler: () => void
   onChangeMaxValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
   onChangeStartValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
   setValuesHandler: (newValue: {maxValue: number, startValue: number}) => void
@@ -32,7 +32,7 @@ export const Counter = (props: CounterType) => {
           startValue={props.startValue}
           class={counterClassName}
           incCallback={props.incHandler}
-          resetCallback={() => props.resetHandler(props.value)}
+          resetCallback={props.resetHandler}
           disabled={props.disabled}
         />
         <Settings

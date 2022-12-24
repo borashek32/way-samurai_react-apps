@@ -9,7 +9,8 @@ type ButtonPropsType = "button" | "submit" | "reset"
 
 export const Button = (props: ButtonType) => {
   const onClickHandler = () => {
-    (props.value) ? props.callback(props.value) : props.callback()
+    props.callback()
+    // (props.value) ? props.callback(props.value) : props.callback()
   }
 
   return (

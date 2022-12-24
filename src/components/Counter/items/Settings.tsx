@@ -27,7 +27,6 @@ export const Settings = (props: PropsType) => {
   const inputStartClassName = css.input
     + (props.error?.startValue || props.error?.maxStartValues ? ' ' + css.erroredInput : '')
 
-
   return (
     <div className={css.counterWrapper}>
       <div className={css.counterSubWrapper}>

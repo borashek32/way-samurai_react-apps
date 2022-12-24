@@ -9,7 +9,7 @@ type ChangeCounterType = {
   maxValue?: number
   startValue?: number
   incCallback: () => void
-  resetCallback: (value?: number | string) => void
+  resetCallback: () => void
   disabled: DisabledType
 }
 
@@ -38,7 +38,7 @@ export const ChangeCounter = (props: ChangeCounterType) => {
             type={"button"}
             name={"res"}
             class={buttonResClassName}
-            callback={(value) => {props.resetCallback(value)}}
+            callback={props.resetCallback}
             value={props.value}
           />
         </div>

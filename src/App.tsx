@@ -15,8 +15,6 @@ export type DisabledType = {
 
 function App() {
   const [value, setValue] = useState<number | string>(0)
-  const [maxValue, setMaxValue] = useState<number>(5)
-  const [startValue, setStartValue] = useState<number>(0)
   const [settings, setSettings] = useState<{ maxValue: number; startValue: number }>({maxValue: 5, startValue: 0})
   const [firstRendering, setFirstRendering] = useState(true) // это для localStorage
   const [error, setError] = useState<ErrorType>({
@@ -32,7 +30,7 @@ function App() {
 
   const incHandler = () => {
     if (value < settings.maxValue) {
-      setValue(prevState => +prevState + 1);
+      setValue(+value + 1);
       setDisabled({...disabled, resButton: false})
     }
   }
@@ -45,18 +43,18 @@ function App() {
     if (newMaxValue < 0) {
       setError({...error, maxValue: true})
       setValue("max value should be positive")
-      setMaxValue(newMaxValue)
-    } else if (newMaxValue === 5 && startValue === 0) {
-      setMaxValue(newMaxValue)
+      setSettings({...settings, maxValue: newMaxValue})
+    } else if (newMaxValue === 5 && settings.startValue === 0) {
+      setSettings({...settings, maxValue: newMaxValue})
       setValue(value)
       setDisabled({...disabled, setButton: true})
-    } else if (newMaxValue <= startValue) {
+    } else if (newMaxValue <= settings.startValue) {
       setError({...error, maxStartValues: true})
       setValue("max value should be greater than start value")
-      setMaxValue(newMaxValue)
+      setSettings({...settings, maxValue: newMaxValue})
     } else {
       setDisabled({...disabled, setButton: false})
-      setMaxValue(newMaxValue)
+      setSettings({...settings, maxValue: newMaxValue})
       setError({...error, maxStartValues: false, maxValue: false, startValue: false})
       setValue("enter values and press set")
     }
@@ -64,22 +62,23 @@ function App() {
   const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newStartValue = e.currentTarget.valueAsNumber;
     if (newStartValue < 0) {
-      setStartValue(newStartValue)
+      setSettings({...settings, startValue: newStartValue})
       setError({...error, startValue: true})
       setValue("start value should be positive")
-    } else if (newStartValue === 0 && maxValue === 5) {
-      setStartValue(newStartValue)
-      setValue(value)
+    } else if (newStartValue === 0 && settings.maxValue === 5) {
+      setSettings({...settings, startValue: newStartValue})
+      setValue(newStartValue)
+      setError({...error, startValue: false})
       setDisabled({...disabled, setButton: true})
-    } else if (newStartValue >= maxValue) {
+    } else if (newStartValue >= settings.maxValue) {
       setError({...error, maxStartValues: true})
       setValue("max value should be greater than start value")
-      setStartValue(newStartValue)
+      setSettings({...settings, startValue: newStartValue})
       setDisabled({...disabled, setButton: true})
     } else {
       setDisabled({...disabled, setButton: false})
       setError({...error, maxStartValues: false, maxValue: false, startValue: false})
-      setStartValue(newStartValue)
+      setSettings({...settings, startValue: newStartValue})
       setValue("enter values and press set")
     }
   }
@@ -112,7 +111,7 @@ function App() {
     if (prevSettings) {
       let newSettings = JSON.parse(prevSettings)
       setSettings(newSettings)
-      setStartValue(newSettings.startValue)
+      setSettings({...settings, startValue: newSettings.startValue})
     }
     setFirstRendering(false)
   }, [])
@@ -122,8 +121,8 @@ function App() {
       <header className="App-header">
         <Counter
           value={value as number}
-          startValue={startValue}
-          maxValue={maxValue}
+          startValue={settings.startValue}
+          maxValue={settings.maxValue}
           incHandler={incHandler}
           resetHandler={resetHandler}
           setValuesHandler={setValuesHandler}
