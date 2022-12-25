@@ -3,7 +3,6 @@ import './App.css'
 import {Counter} from "./components/Counter/Counter"
 
 export type ErrorType = {
-  maxValue: boolean
   startValue: boolean
   maxStartValues: boolean
 }
@@ -20,7 +19,7 @@ export type SettingsType = {
 function App() {
   const [value, setValue] = useState<number | string>(0)
   const [settings, setSettings] = useState<SettingsType>({maxValue: 5, startValue: 0})
-  const [error, setError] = useState<ErrorType>({maxValue: false, startValue: false, maxStartValues: false})
+  const [error, setError] = useState<ErrorType>({startValue: false, maxStartValues: false})
   const [disabled, setDisabled] = useState<DisabledType>({incButton: false, resButton: true, setButton: true})
 
   const incHandler = () => {
@@ -83,7 +82,7 @@ function App() {
     } else {
       setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
       setSettings({...settings, maxValue: newMaxValue})
-      setError({...error, maxStartValues: false, maxValue: false, startValue: false})
+      setError({...error, maxStartValues: false, startValue: false})
       setValue("enter values and press 'set'")
     }
   }
@@ -98,7 +97,7 @@ function App() {
     } else if (newStartValue < 0) {
       setSettings({...settings, startValue: newStartValue})
       setError({...error, startValue: true})
-      setValue("start value should be positive")
+      setValue("start value should be equal 0 or positive")
       setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
 
     } else if (newStartValue === 0 && settings.maxValue === 5) {
@@ -121,7 +120,7 @@ function App() {
 
     } else {
       setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
-      setError({...error, maxStartValues: false, maxValue: false, startValue: false})
+      setError({...error, maxStartValues: false, startValue: false})
       setSettings({...settings, startValue: newStartValue})
       setValue("enter values and press 'set'")
     }

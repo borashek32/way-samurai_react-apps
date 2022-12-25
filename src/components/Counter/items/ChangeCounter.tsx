@@ -16,8 +16,10 @@ type ChangeCounterType = {
 export const ChangeCounter = (props: ChangeCounterType) => {
   console.log(props)
   const counterClassName = css.counter
-    + (props.value === props.settings?.maxValue || props.error?.maxStartValues || props.error?.startValue || props.error?.maxValue
-      ? ' ' + css.disabledCounter : '')
+    + (props.value === props.settings?.maxValue
+      || props.error?.maxStartValues
+      || props.error?.startValue
+        ? ' ' + css.disabledCounter : '')
 
   const buttonIncClassName = css.button
     + (props.disabled.incButton || props.value === props.settings?.maxValue ? ' ' + css.disabledButton : '')
