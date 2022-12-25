@@ -4,6 +4,7 @@ type ButtonType = {
   callback: (value?: number | string) => void
   value?: number | string
   disabled?: boolean
+  variant?: string
 }
 
 export const Button = (props: ButtonType) => {

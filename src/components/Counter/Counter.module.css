@@ -4,14 +4,14 @@
 }
 
 .counterWrapper {
-    border: 2px solid #61dafb;
+    border: 1px solid #33eaff;
     padding: 5px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     width: 300px;
-    height: 200px;
+    height: 210px;
 }
 
 .buttonsWrapper {
@@ -22,7 +22,7 @@
 }
 
 .counterSubWrapper {
-    border: 2px solid #61dafb;
+    border: 1px solid #33eaff;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -38,13 +38,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #282c34;
+    color: #33eaff;
     font-weight: 600;
     font-size: 20px;
-    background-color: #61dafb;
-    border: none;
+    background-color: rgb(10, 25, 41);
+    border: 1px solid #33eaff;
     border-radius: 6px;
     cursor: pointer;
+    transition: all .3s ease;
+}
+
+.button:hover {
+    color: #00e3ff;
+    background-color: rgb(2, 16, 30);
+}
+
+.button:active {
+    color: #01a5b9;
+    background-color: rgb(0, 25, 45);
 }
 
 .counter {
@@ -53,8 +64,17 @@
 }
 
 .disabledButton {
-    background-color: grey;
+    background-color: #ffffff;
+    color: rgb(10, 25, 41);
     opacity: .5;
+    border: none;
+    transition: all .3s ease;
+}
+
+.disabledButton:hover {
+    background-color: #ffffff;
+    color: rgb(10, 25, 41);
+    opacity: .3;
 }
 
 .erroredInput {
@@ -96,6 +116,6 @@
 }
 
 .message {
-    color: #61dafb;
+    color: #33eaff;
     font-size: 16px;
 }

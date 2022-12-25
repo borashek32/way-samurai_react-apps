@@ -20,7 +20,6 @@ export type SettingsType = {
 function App() {
   const [value, setValue] = useState<number | string>(0)
   const [settings, setSettings] = useState<SettingsType>({maxValue: 5, startValue: 0})
-  const [firstRendering, setFirstRendering] = useState(true)
   const [error, setError] = useState<ErrorType>({maxValue: false, startValue: false, maxStartValues: false})
   const [disabled, setDisabled] = useState<DisabledType>({incButton: false, resButton: true, setButton: true})
 
@@ -28,7 +27,6 @@ function App() {
     if (value < settings.maxValue) {
       setValue(+value + 1);
     }
-    debugger
     if (+value + 1 > settings.startValue) {
       setDisabled({...disabled, resButton: false})
     }
@@ -104,31 +102,25 @@ function App() {
       setSettings(newValues)
       setValue(newValues.startValue)
       setDisabled({...disabled, resButton: true, setButton: true, incButton: false})
+      localStorage.setItem('settings-values', JSON.stringify(newValues))
+      localStorage.setItem('inc-value', JSON.stringify(newValues.startValue))
     }
   }
 
-  useEffect(() => {
-    !firstRendering && localStorage.setItem('inc-value', JSON.stringify(value))
-  }, [value])
   useEffect(() => {
     let prevValue = localStorage.getItem('inc-value')
     if (prevValue) {
       let newValue = JSON.parse(prevValue)
       setValue(newValue)
     }
-    setFirstRendering(false)
   }, [])
 
-  useEffect(() => {
-    !firstRendering && localStorage.setItem('settings-values', JSON.stringify(settings))
-  }, [settings])
   useEffect(() => {
     let prevSettings = localStorage.getItem('settings-values')
     if (prevSettings) {
       let newSettings = JSON.parse(prevSettings)
       setSettings(newSettings)
     }
-    setFirstRendering(false)
   }, [])
 
   return (

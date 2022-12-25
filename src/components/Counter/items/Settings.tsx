@@ -3,6 +3,7 @@ import {Button} from "../../utils/Button";
 import React, {ChangeEvent} from "react";
 import {Input} from '../../utils/Input';
 import {DisabledType, ErrorType, SettingsType} from "../../../App";
+import Card from "@mui/material/Card";
 
 type PropsType = {
   settings: SettingsType
@@ -28,7 +29,17 @@ export const Settings = (props: PropsType) => {
     + (props.error?.startValue || props.error?.maxStartValues ? ' ' + css.erroredInput : '')
 
   return (
-    <div className={css.counterWrapper}>
+    <Card sx={{
+      backgroundColor: '#0A1929',
+      border: '2px solid #61dafb',
+      padding: 0.5,
+      borderRadius: 2,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 0.1,
+      width: 300,
+      height: 200
+    }}>
       <div className={css.counterSubWrapper}>
         <div className={css.inputWrapper}>
           <label className={css.label}>max value</label>
@@ -53,9 +64,10 @@ export const Settings = (props: PropsType) => {
         <Button
           name={'set'}
           class={buttonClassName}
-          callback={() => props.setValuesHandler({maxValue: props.settings.maxValue, startValue: props.settings.startValue})}
+          callback={() =>
+            props.setValuesHandler({maxValue: props.settings.maxValue, startValue: props.settings.startValue})}
         />
       </div>
-    </div>
+    </Card>
   )
 }
