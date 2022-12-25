@@ -52,7 +52,13 @@ function App() {
       setValue(value)
       setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
 
-    } else if (newMaxValue <= settings.startValue || (newMaxValue < 0 && settings.startValue < 0) || (newMaxValue >= 0 && settings.startValue < 0)) {
+    } else if (newMaxValue >= 0 && settings.startValue < 0) {
+      setError({...error, startValue: true, maxStartValues: false})
+      setValue("incorrect value")
+      setSettings({...settings, maxValue: newMaxValue})
+      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+
+    } else if (newMaxValue <= settings.startValue || (newMaxValue < 0 && settings.startValue < 0)) {
       setError({...error, maxStartValues: true})
       setValue("incorrect value")
       setSettings({...settings, maxValue: newMaxValue})
