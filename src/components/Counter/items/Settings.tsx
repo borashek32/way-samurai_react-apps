@@ -20,8 +20,11 @@ export const Settings = (props: PropsType) => {
   const onChangeStartValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeStartValueHandler(e)
 
   const buttonClassName = css.button
-    + (props.error?.startValue || props.error?.maxStartValues || props.error?.maxValue || props.disabled?.setButton
-      ? ' ' + css.disabledButton : '')
+    + (props.error?.startValue
+      || props.error?.maxStartValues
+      || props.error?.maxValue
+      || props.disabled?.setButton
+        ? ' ' + css.disabledButton : '')
 
   const inputMaxClassName = css.input
     + (props.error?.maxValue || props.error?.maxStartValues ? ' ' + css.erroredInput : '')

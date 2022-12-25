@@ -39,9 +39,9 @@ function App() {
 
   const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newMaxValue = e.currentTarget.valueAsNumber
-    if (newMaxValue <= 0 && settings.startValue > 0) {
+    if (newMaxValue < 0 && settings.startValue > 0) {
       setError({...error, maxStartValues: true})
-      setValue("incorrect value")
+      setValue("max value should be positive")
       setSettings({...settings, maxValue: newMaxValue})
       setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
 
@@ -50,15 +50,33 @@ function App() {
       setValue(value)
       setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
 
-    } else if (newMaxValue >= 0 && settings.startValue < 0) {
-      setError({...error, startValue: true, maxStartValues: false})
-      setValue("incorrect value")
+    } else if (newMaxValue > 0 && settings.startValue < 0) {
+      setError({...error, startValue: true})
+      setValue("start values should be positive")
+      setSettings({...settings, maxValue: newMaxValue})
+      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+
+    } else if (newMaxValue > 0 && settings.startValue < 0) {
+      setError({...error, startValue: true})
+      setValue("start value should be positive")
+      setSettings({...settings, maxValue: newMaxValue})
+      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+// common case
+    } else if (newMaxValue === 0 && settings.startValue < 0 || newMaxValue === 0 && settings.startValue > 0) {
+      setError({...error, startValue: true})
+      setValue("max value can't be equal 0")
+      setSettings({...settings, maxValue: newMaxValue})
+      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+
+    } else if (newMaxValue < 0 && settings.startValue < 0) {
+      setError({...error, startValue: true, maxStartValues: true})
+      setValue("max and start values should be positive")
       setSettings({...settings, maxValue: newMaxValue})
       setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
 
     } else if (newMaxValue <= settings.startValue || (newMaxValue < 0 && settings.startValue < 0)) {
       setError({...error, maxStartValues: true})
-      setValue("incorrect value")
+      setValue("max value should be greater than start value")
       setSettings({...settings, maxValue: newMaxValue})
       setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
 
@@ -71,10 +89,16 @@ function App() {
   }
   const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newStartValue = e.currentTarget.valueAsNumber;
-    if (newStartValue < 0) {
+    if (newStartValue < 0 && settings.maxValue < 0) {
+      setSettings({...settings, startValue: newStartValue})
+      setError({...error, maxStartValues: true})
+      setValue("max and start values should be positive")
+      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+
+    } else if (newStartValue < 0) {
       setSettings({...settings, startValue: newStartValue})
       setError({...error, startValue: true})
-      setValue("incorrect value")
+      setValue("start value should be positive")
       setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
 
     } else if (newStartValue === 0 && settings.maxValue === 5) {
@@ -83,9 +107,15 @@ function App() {
       setError({...error, startValue: false})
       setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
 
-    } else if (newStartValue >= settings.maxValue) {
+    } else if (newStartValue > settings.maxValue) {
       setError({...error, maxStartValues: true})
-      setValue("incorrect value")
+      setValue("start value shouldn't be greater than max value")
+      setSettings({...settings, startValue: newStartValue})
+      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+
+    } else if (newStartValue === settings.maxValue) {
+      setError({...error, maxStartValues: true})
+      setValue("start value shouldn't be equal max value")
       setSettings({...settings, startValue: newStartValue})
       setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
 
