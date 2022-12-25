@@ -15,6 +15,7 @@ export const Input = (props: InputType) => {
 
   return (
     <input
+      required
       className={props.class}
       onChange={onChangeCallback}
       value={props.value}

@@ -21,12 +21,13 @@ export const Settings = (props: PropsType) => {
 
   const buttonClassName = css.button
     + (props.error?.startValue
+      || props.error?.maxValue
       || props.error?.maxStartValues
       || props.disabled?.setButton
         ? ' ' + css.disabledButton : '')
 
   const inputMaxClassName = css.input
-    + (props.error?.maxStartValues ? ' ' + css.erroredInput : '')
+    + (props.error?.maxStartValues || props.error?.maxValue ? ' ' + css.erroredInput : '')
   const inputStartClassName = css.input
     + (props.error?.startValue || props.error?.maxStartValues ? ' ' + css.erroredInput : '')
 

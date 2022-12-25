@@ -3,6 +3,7 @@ import './App.css'
 import {Counter} from "./components/Counter/Counter"
 
 export type ErrorType = {
+  maxValue: boolean
   startValue: boolean
   maxStartValues: boolean
 }
@@ -19,7 +20,7 @@ export type SettingsType = {
 function App() {
   const [value, setValue] = useState<number | string>(0)
   const [settings, setSettings] = useState<SettingsType>({maxValue: 5, startValue: 0})
-  const [error, setError] = useState<ErrorType>({startValue: false, maxStartValues: false})
+  const [error, setError] = useState<ErrorType>({startValue: false, maxStartValues: false, maxValue: false})
   const [disabled, setDisabled] = useState<DisabledType>({incButton: false, resButton: true, setButton: true})
 
   const incHandler = () => {
@@ -38,91 +39,107 @@ function App() {
 
   const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newMaxValue = e.currentTarget.valueAsNumber
-    if (newMaxValue < 0 && settings.startValue > 0) {
-      setError({...error, maxStartValues: true})
-      setValue("max value should be positive")
-      setSettings({...settings, maxValue: newMaxValue})
-      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
 
-    } else if (newMaxValue === 5 && settings.startValue === 0) {
-      setSettings({...settings, maxValue: newMaxValue})
-      setValue(value)
-      setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
+    if (!isNaN(newMaxValue) && settings.startValue > 0 || !isNaN(newMaxValue) && !isNaN(settings.startValue)) {
+      if (newMaxValue < 0 && settings.startValue > 0) {
+        setError({...error, maxStartValues: true})
+        setValue("max value should be positive")
+        setSettings({...settings, maxValue: newMaxValue})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
 
-    } else if (newMaxValue > 0 && settings.startValue < 0) {
-      setError({...error, startValue: true})
-      setValue("start values should be positive")
-      setSettings({...settings, maxValue: newMaxValue})
-      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+      } else if (newMaxValue === 5 && settings.startValue === 0) {
+        setSettings({...settings, maxValue: newMaxValue})
+        setValue(value)
+        setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
 
-    } else if (newMaxValue > 0 && settings.startValue < 0) {
-      setError({...error, startValue: true})
-      setValue("start value should be positive")
-      setSettings({...settings, maxValue: newMaxValue})
-      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+      } else if (newMaxValue > 0 && settings.startValue < 0) {
+        setError({...error, startValue: true})
+        setValue("start values should be positive")
+        setSettings({...settings, maxValue: newMaxValue})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+
+      } else if (newMaxValue > 0 && settings.startValue < 0) {
+        setError({...error, startValue: true})
+        setValue("start value should be positive")
+        setSettings({...settings, maxValue: newMaxValue})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
 // common case
-    } else if (newMaxValue === 0 && settings.startValue < 0 || newMaxValue === 0 && settings.startValue > 0) {
-      setError({...error, startValue: true})
-      setValue("max value can't be equal 0")
-      setSettings({...settings, maxValue: newMaxValue})
-      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+      } else if (newMaxValue === 0 && settings.startValue < 0 || newMaxValue === 0 && settings.startValue > 0) {
+        setError({...error, startValue: true})
+        setValue("max value can't be equal 0")
+        setSettings({...settings, maxValue: newMaxValue})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
 
-    } else if (newMaxValue < 0 && settings.startValue < 0) {
-      setError({...error, startValue: true, maxStartValues: true})
-      setValue("max and start values should be positive")
-      setSettings({...settings, maxValue: newMaxValue})
-      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+      } else if (newMaxValue < 0 && settings.startValue < 0) {
+        setError({...error, startValue: true, maxStartValues: true})
+        setValue("max and start values should be positive")
+        setSettings({...settings, maxValue: newMaxValue})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
 
-    } else if (newMaxValue <= settings.startValue || (newMaxValue < 0 && settings.startValue < 0)) {
-      setError({...error, maxStartValues: true})
-      setValue("max value should be greater than start value")
-      setSettings({...settings, maxValue: newMaxValue})
-      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+      } else if (newMaxValue <= settings.startValue || (newMaxValue < 0 && settings.startValue < 0)) {
+        setError({...error, maxStartValues: true})
+        setValue("max value should be greater than start value")
+        setSettings({...settings, maxValue: newMaxValue})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
 
+      } else {
+        setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
+        setSettings({...settings, maxValue: newMaxValue})
+        setError({...error, maxStartValues: false, startValue: false, maxValue: false})
+        setValue("enter values and press 'set'")
+      }
     } else {
-      setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
+      setError({...error, maxValue: true})
+      setValue("max value should be of type 'number'")
       setSettings({...settings, maxValue: newMaxValue})
-      setError({...error, maxStartValues: false, startValue: false})
-      setValue("enter values and press 'set'")
+      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
     }
   }
   const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newStartValue = e.currentTarget.valueAsNumber;
-    if (newStartValue < 0 && settings.maxValue < 0) {
-      setSettings({...settings, startValue: newStartValue})
-      setError({...error, maxStartValues: true})
-      setValue("max and start values should be positive")
-      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
 
-    } else if (newStartValue < 0) {
-      setSettings({...settings, startValue: newStartValue})
-      setError({...error, startValue: true})
-      setValue("start value should be equal 0 or positive")
-      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+    if (!isNaN(newStartValue) && settings.maxValue || !isNaN(newStartValue) && !isNaN(settings.maxValue)) {
+      if (newStartValue < 0 && settings.maxValue < 0) {
+        setSettings({...settings, startValue: newStartValue})
+        setError({...error, maxStartValues: true})
+        setValue("max and start values should be positive")
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
 
-    } else if (newStartValue === 0 && settings.maxValue === 5) {
-      setSettings({...settings, startValue: newStartValue})
-      setValue(newStartValue)
-      setError({...error, startValue: false})
-      setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
+      } else if (newStartValue < 0) {
+        setSettings({...settings, startValue: newStartValue})
+        setError({...error, startValue: true})
+        setValue("start value should be equal 0 or positive")
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
 
-    } else if (newStartValue > settings.maxValue) {
-      setError({...error, maxStartValues: true})
-      setValue("start value shouldn't be greater than max value")
-      setSettings({...settings, startValue: newStartValue})
-      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+      } else if (newStartValue === 0 && settings.maxValue === 5) {
+        setSettings({...settings, startValue: newStartValue})
+        setValue(newStartValue)
+        setError({...error, startValue: false})
+        setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
 
-    } else if (newStartValue === settings.maxValue) {
-      setError({...error, maxStartValues: true})
-      setValue("start value shouldn't be equal max value")
-      setSettings({...settings, startValue: newStartValue})
-      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+      } else if (newStartValue > settings.maxValue) {
+        setError({...error, maxStartValues: true})
+        setValue("start value shouldn't be greater than max value")
+        setSettings({...settings, startValue: newStartValue})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
 
+      } else if (newStartValue === settings.maxValue) {
+        setError({...error, maxStartValues: true})
+        setValue("start value shouldn't be equal max value")
+        setSettings({...settings, startValue: newStartValue})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+
+      } else {
+        setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
+        setError({...error, maxStartValues: false, startValue: false, maxValue: false})
+        setSettings({...settings, startValue: newStartValue})
+        setValue("enter values and press 'set'")
+      }
     } else {
-      setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
-      setError({...error, maxStartValues: false, startValue: false})
+      setError({...error, startValue: true})
+      setValue("start value should be of type 'number'")
       setSettings({...settings, startValue: newStartValue})
-      setValue("enter values and press 'set'")
+      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
     }
   }
 
