@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useEffect, useState} from 'react'
 import './App.css'
 import {Counter} from "./components/Counter/Counter"
+import {start} from "repl";
 
 export type ErrorType = {
   maxValue: boolean
@@ -23,7 +24,8 @@ function App() {
   const [settings, setSettings] = useState<SettingsType>({maxValue: 5, startValue: 0})
   const [error, setError] = useState<ErrorType>({startValue: false, maxStartValues: false, maxValue: false})
   const [disabled, setDisabled] = useState<DisabledType>
-  ({incButton: false, resButton: true, setButton: true, timerButton: false})
+    ({incButton: false, resButton: true, setButton: true, timerButton: false})
+  const [counting, setCounting] = useState(false)
 
   const incHandler = () => {
     if (value < settings.maxValue) setValue(+value + 1)
@@ -167,20 +169,22 @@ function App() {
     }
   }, [])
 
-// timer
-  const timerHandler = (settings: { maxValue: number, startValue: number }) => {
-    setDisabled({...disabled, resButton: true, setButton: false, incButton: true, timerButton: false})
-    console.log("function loop value", value, 'settings', settings)
-    console.log(typeof (+value < settings.maxValue))
-    console.log (+value < settings.maxValue)
+  useEffect(() => {
+    if (counting) {
+      let timer = setInterval(() => {
+        incHandler()
+      }, 1000)
 
-    // while (+value < settings.maxValue) {
-    //   setTimeout(() => {
-    //     setValue(+value + 1)
-    //     console.log("loop", value)
-    //   }, 1000)
-    // }
-    // setDisabled({...disabled, resButton: false, setButton: true, incButton: true, timerButton: false})
+      setTimeout(() => {
+        clearInterval(timer)
+        setCounting(false)
+      }, (settings.maxValue - settings.startValue) * 1000);
+    }
+  })
+
+  const timerHandler = (settings: { maxValue: number, startValue: number }) => {
+    setDisabled({...disabled, resButton: true, setButton: false, incButton: false, timerButton: false})
+    setCounting(true)
   }
 
   return (
