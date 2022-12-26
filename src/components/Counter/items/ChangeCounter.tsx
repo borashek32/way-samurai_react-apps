@@ -9,7 +9,7 @@ type ChangeCounterType = {
   settings: SettingsType
   incCallback: () => void
   resetCallback: () => void
-  timerCallback: (settings: { maxValue: number, startValue: number }) => void
+  timerCallback: () => void
   disabled: DisabledType
   error?: ErrorType
 }
@@ -17,22 +17,19 @@ type ChangeCounterType = {
 export const ChangeCounter = (props: ChangeCounterType) => {
 
   const counterClassName = css.counter
-    + (props.value === props.settings?.maxValue
-      || props.error?.maxStartValues
+    + (props.error?.maxStartValues
       || props.error?.maxValue
       || props.error?.startValue
         ? ' ' + css.disabledCounter : '')
     + ' ' + (typeof props.value  === 'number' ? css.counterBold : '')
 
   const buttonIncClassName = css.button
-    + (props.disabled.incButton
-      || props.value === props.settings?.maxValue
-        ? ' ' + css.disabledButton : '')
+    + (props.disabled.incButton ? ' ' + css.disabledButton : '')
 
   const buttonResClassName = css.button
     + (props.disabled.resButton ? ' ' + css.disabledButton : '')
 
-  const timerCallback = () => props.timerCallback(props.settings)
+  const timerCallback = () => props.timerCallback()
 
   return (
     <Card sx={{
@@ -63,7 +60,7 @@ export const ChangeCounter = (props: ChangeCounterType) => {
               class={buttonResClassName}
               callback={props.resetCallback}
               value={props.value}
-              disabled={props.settings?.startValue === props.value}
+              disabled={props.disabled.resButton}
             />
             <Button
               name={"timer"}

@@ -19,12 +19,7 @@ export const Settings = (props: PropsType) => {
   const onChangeMaxValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeMaxValueHandler(e)
   const onChangeStartValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeStartValueHandler(e)
 
-  const buttonClassName = css.button
-    + (props.error?.startValue
-      || props.error?.maxValue
-      || props.error?.maxStartValues
-      || props.disabled?.setButton
-        ? ' ' + css.disabledButton : '')
+  const buttonClassName = css.button + (props.disabled?.setButton ? ' ' + css.disabledButton : '')
 
   const inputMaxClassName = css.input
     + (props.error?.maxStartValues || props.error?.maxValue ? ' ' + css.erroredInput : '')
@@ -65,6 +60,7 @@ export const Settings = (props: PropsType) => {
       </div>
       <div className={css.counterSubWrapper}>
         <Button
+          disabled={props.disabled?.setButton}
           name={'set'}
           class={buttonClassName}
           callback={() =>

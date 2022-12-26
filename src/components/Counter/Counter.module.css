@@ -110,6 +110,8 @@
     width: 80px;
     height: 20px;
     text-align: center;
+    font-size: 22px;
+    font-weight: 700;
 }
 
 .buttonsWrapper {

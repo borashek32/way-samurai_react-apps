@@ -153,7 +153,7 @@ function App() {
     }
   }
 
-  const timerHandler = (settings: { maxValue: number, startValue: number }) => {
+  const timerHandler = () => {
     setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
     setCounting(true)
   }
@@ -176,11 +176,11 @@ function App() {
 
   useEffect(() => {
     if (counting) {
-      setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
       let timer = setTimeout(() => {
         incHandler()
         localStorage.setItem('count-value', JSON.stringify(+value + 1))
       }, 1000)
+      setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
 
       setTimeout(() => {
         clearInterval(timer)

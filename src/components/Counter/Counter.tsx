@@ -11,7 +11,7 @@ export type CounterType = {
   resetHandler: () => void
   onChangeMaxValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
   onChangeStartValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
-  timerHandler: (settings: { maxValue: number, startValue: number }) => void
+  timerHandler: () => void
   setValuesHandler: (newValue: {maxValue: number, startValue: number}) => void
   error: ErrorType
   disabled: DisabledType
