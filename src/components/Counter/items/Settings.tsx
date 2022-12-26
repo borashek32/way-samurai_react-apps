@@ -41,7 +41,7 @@ export const Settings = (props: PropsType) => {
       flexDirection: 'column',
       gap: 0.1,
       width: 300,
-      height: 200
+      height: 220
     }}>
       <div className={css.counterSubWrapper}>
         <div className={css.inputWrapper}>

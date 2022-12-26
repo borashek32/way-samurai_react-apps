@@ -11,6 +11,7 @@ export type CounterType = {
   resetHandler: () => void
   onChangeMaxValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
   onChangeStartValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
+  timerHandler: (settings: { maxValue: number, startValue: number }) => void
   setValuesHandler: (newValue: {maxValue: number, startValue: number}) => void
   error: ErrorType
   disabled: DisabledType
@@ -28,6 +29,7 @@ export const Counter = (props: CounterType) => {
           settings={props.settings}
           incCallback={props.incHandler}
           resetCallback={props.resetHandler}
+          timerCallback={props.timerHandler}
           disabled={props.disabled}
           error={props.error}
         />

@@ -6,9 +6,10 @@ import Card from '@mui/material/Card';
 
 type ChangeCounterType = {
   value?: number | string
-  settings?: SettingsType
+  settings: SettingsType
   incCallback: () => void
   resetCallback: () => void
+  timerCallback: (settings: { maxValue: number, startValue: number }) => void
   disabled: DisabledType
   error?: ErrorType
 }
@@ -23,9 +24,14 @@ export const ChangeCounter = (props: ChangeCounterType) => {
         ? ' ' + css.disabledCounter : '')
 
   const buttonIncClassName = css.button
-    + (props.disabled.incButton || props.value === props.settings?.maxValue ? ' ' + css.disabledButton : '')
+    + (props.disabled.incButton
+      || props.value === props.settings?.maxValue
+        ? ' ' + css.disabledButton : '')
+
   const buttonResClassName = css.button
     + (props.disabled.resButton ? ' ' + css.disabledButton : '')
+
+  const timerCallback = () => props.timerCallback(props.settings)
 
   return (
     <Card sx={{
@@ -37,7 +43,7 @@ export const ChangeCounter = (props: ChangeCounterType) => {
       flexDirection: 'column',
       gap: 0.1,
       width: 300,
-      height: 200
+      height: 220
     }}>
       <div className={css.counterSubWrapper}>
         <p className={counterClassName}>{props.value}</p>
@@ -57,6 +63,13 @@ export const ChangeCounter = (props: ChangeCounterType) => {
               callback={props.resetCallback}
               value={props.value}
               disabled={props.settings?.startValue === props.value}
+            />
+            <Button
+              name={"timer"}
+              class={buttonIncClassName}
+              callback={timerCallback}
+              value={props.value}
+              disabled={props.disabled.timerButton}
             />
           </div>
         </div>

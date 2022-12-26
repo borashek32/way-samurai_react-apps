@@ -11,6 +11,7 @@ export type DisabledType = {
   incButton: boolean
   resButton: boolean
   setButton: boolean
+  timerButton: boolean
 }
 export type SettingsType = {
   maxValue: number;
@@ -21,15 +22,12 @@ function App() {
   const [value, setValue] = useState<number | string>(0)
   const [settings, setSettings] = useState<SettingsType>({maxValue: 5, startValue: 0})
   const [error, setError] = useState<ErrorType>({startValue: false, maxStartValues: false, maxValue: false})
-  const [disabled, setDisabled] = useState<DisabledType>({incButton: false, resButton: true, setButton: true})
+  const [disabled, setDisabled] = useState<DisabledType>
+  ({incButton: false, resButton: true, setButton: true, timerButton: false})
 
   const incHandler = () => {
-    if (value < settings.maxValue) {
-      setValue(+value + 1);
-    }
-    if (+value + 1 > settings.startValue) {
-      setDisabled({...disabled, resButton: false})
-    }
+    if (value < settings.maxValue) setValue(+value + 1)
+    if (+value + 1 > settings.startValue) setDisabled({...disabled, resButton: false})
   }
 
   const resetHandler = () => {
@@ -45,45 +43,45 @@ function App() {
         setError({...error, maxStartValues: true})
         setValue("max value should be positive")
         setSettings({...settings, maxValue: newMaxValue})
-        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
 
       } else if (newMaxValue === 5 && settings.startValue === 0) {
         setSettings({...settings, maxValue: newMaxValue})
         setValue(value)
-        setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
+        setDisabled({...disabled, resButton: true, setButton: false, incButton: true, timerButton: false})
 
       } else if (newMaxValue > 0 && settings.startValue < 0) {
         setError({...error, startValue: true})
         setValue("start values should be positive")
         setSettings({...settings, maxValue: newMaxValue})
-        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
 
       } else if (newMaxValue > 0 && settings.startValue < 0) {
         setError({...error, startValue: true})
         setValue("start value should be positive")
         setSettings({...settings, maxValue: newMaxValue})
-        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
 // common case
       } else if (newMaxValue === 0 && settings.startValue < 0 || newMaxValue === 0 && settings.startValue > 0) {
         setError({...error, startValue: true})
         setValue("max value can't be equal 0")
         setSettings({...settings, maxValue: newMaxValue})
-        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
 
       } else if (newMaxValue < 0 && settings.startValue < 0) {
         setError({...error, startValue: true, maxStartValues: true})
         setValue("max and start values should be positive")
         setSettings({...settings, maxValue: newMaxValue})
-        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
 
       } else if (newMaxValue <= settings.startValue || (newMaxValue < 0 && settings.startValue < 0)) {
         setError({...error, maxStartValues: true})
         setValue("max value should be greater than start value")
         setSettings({...settings, maxValue: newMaxValue})
-        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
 
       } else {
-        setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
+        setDisabled({...disabled, resButton: true, setButton: false, incButton: true, timerButton: true})
         setSettings({...settings, maxValue: newMaxValue})
         setError({...error, maxStartValues: false, startValue: false, maxValue: false})
         setValue("enter values and press 'set'")
@@ -92,7 +90,7 @@ function App() {
       setError({...error, maxValue: true})
       setValue("max value should be of type 'number'")
       setSettings({...settings, maxValue: newMaxValue})
-      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+      setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
     }
   }
   const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -103,13 +101,13 @@ function App() {
         setSettings({...settings, startValue: newStartValue})
         setError({...error, maxStartValues: true})
         setValue("max and start values should be positive")
-        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
 
       } else if (newStartValue < 0) {
         setSettings({...settings, startValue: newStartValue})
         setError({...error, startValue: true})
         setValue("start value should be equal 0 or positive")
-        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
 
       } else if (newStartValue === 0 && settings.maxValue === 5) {
         setSettings({...settings, startValue: newStartValue})
@@ -121,16 +119,16 @@ function App() {
         setError({...error, maxStartValues: true})
         setValue("start value shouldn't be greater than max value")
         setSettings({...settings, startValue: newStartValue})
-        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
 
       } else if (newStartValue === settings.maxValue) {
         setError({...error, maxStartValues: true})
         setValue("start value shouldn't be equal max value")
         setSettings({...settings, startValue: newStartValue})
-        setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
 
       } else {
-        setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
+        setDisabled({...disabled, resButton: true, setButton: false, incButton: true, timerButton: true})
         setError({...error, maxStartValues: false, startValue: false, maxValue: false})
         setSettings({...settings, startValue: newStartValue})
         setValue("enter values and press 'set'")
@@ -139,7 +137,7 @@ function App() {
       setError({...error, startValue: true})
       setValue("start value should be of type 'number'")
       setSettings({...settings, startValue: newStartValue})
-      setDisabled({...disabled, resButton: true, setButton: true, incButton: true})
+      setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
     }
   }
 
@@ -147,7 +145,7 @@ function App() {
     if (newValues.maxValue > 0 && newValues.startValue >= 0 && newValues.maxValue > newValues.startValue) {
       setSettings(newValues)
       setValue(newValues.startValue)
-      setDisabled({...disabled, resButton: true, setButton: true, incButton: false})
+      setDisabled({...disabled, resButton: true, setButton: true, incButton: false, timerButton: false})
       localStorage.setItem('settings-values', JSON.stringify(newValues))
       localStorage.setItem('inc-value', JSON.stringify(newValues.startValue))
     }
@@ -169,6 +167,22 @@ function App() {
     }
   }, [])
 
+// timer
+  const timerHandler = (settings: { maxValue: number, startValue: number }) => {
+    setDisabled({...disabled, resButton: true, setButton: false, incButton: true, timerButton: false})
+    console.log("function loop value", value, 'settings', settings)
+    console.log(typeof (+value < settings.maxValue))
+    console.log (+value < settings.maxValue)
+
+    // while (+value < settings.maxValue) {
+    //   setTimeout(() => {
+    //     setValue(+value + 1)
+    //     console.log("loop", value)
+    //   }, 1000)
+    // }
+    // setDisabled({...disabled, resButton: false, setButton: true, incButton: true, timerButton: false})
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -180,6 +194,7 @@ function App() {
           setValuesHandler={setValuesHandler}
           onChangeMaxValueHandler={onChangeMaxValueHandler}
           onChangeStartValueHandler={onChangeStartValueHandler}
+          timerHandler={timerHandler}
           disabled={disabled}
           error={error}
         />
