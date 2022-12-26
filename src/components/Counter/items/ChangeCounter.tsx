@@ -22,6 +22,7 @@ export const ChangeCounter = (props: ChangeCounterType) => {
       || props.error?.maxValue
       || props.error?.startValue
         ? ' ' + css.disabledCounter : '')
+    + ' ' + (typeof props.value  === 'number' ? css.counterBold : '')
 
   const buttonIncClassName = css.button
     + (props.disabled.incButton

@@ -44,22 +44,29 @@
     border: 1px solid #33eaff;
     border-radius: 6px;
     cursor: pointer;
-    transition: all .3s ease;
+    transition: all .1s ease;
 }
 
 .button:hover {
     color: #00e3ff;
     background-color: rgb(2, 16, 30);
+    transition: all .3s ease;
 }
 
 .button:active {
     color: #01a5b9;
     background-color: rgb(0, 25, 45);
+    transition: all .3s ease;
 }
 
 .counter {
-    font-size: 20px;
+    font-size: 22px;
     color: #fff;
+}
+
+.counterBold {
+    font-size: 50px;
+    font-weight: 900;
 }
 
 .disabledButton {
@@ -67,7 +74,7 @@
     color: rgb(10, 25, 41);
     opacity: .5;
     border: none;
-    transition: all .3s ease;
+    transition: all .1s ease;
 }
 
 .disabledButton:hover {

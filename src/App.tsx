@@ -34,7 +34,7 @@ function App() {
 
   const resetHandler = () => {
     setValue(settings.startValue);
-    setDisabled({...disabled, resButton: true, incButton: false})
+    setDisabled({...disabled, resButton: true, incButton: false, setButton: true, timerButton: false})
   }
 
   const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -153,6 +153,11 @@ function App() {
     }
   }
 
+  const timerHandler = (settings: { maxValue: number, startValue: number }) => {
+    setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
+    setCounting(true)
+  }
+
   useEffect(() => {
     let prevValue = localStorage.getItem('inc-value')
     if (prevValue) {
@@ -171,8 +176,10 @@ function App() {
 
   useEffect(() => {
     if (counting) {
-      let timer = setInterval(() => {
+      setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
+      let timer = setTimeout(() => {
         incHandler()
+        localStorage.setItem('count-value', JSON.stringify(+value + 1))
       }, 1000)
 
       setTimeout(() => {
@@ -181,11 +188,6 @@ function App() {
       }, (settings.maxValue - settings.startValue) * 1000);
     }
   })
-
-  const timerHandler = (settings: { maxValue: number, startValue: number }) => {
-    setDisabled({...disabled, resButton: true, setButton: false, incButton: false, timerButton: false})
-    setCounting(true)
-  }
 
   return (
     <div className="App">
