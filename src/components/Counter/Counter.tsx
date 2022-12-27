@@ -22,7 +22,7 @@ export const Counter = (props: CounterType) => {
 
   return (
     <>
-      <h1>Counter 1</h1>
+      <h1>Counter</h1>
       <div className={css.app}>
         <ChangeCounter
           value={props.value}

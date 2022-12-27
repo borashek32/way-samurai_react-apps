@@ -24,7 +24,7 @@ export const Counter = (props: CounterType) => {
 
   return (
     <>
-      <h1>Counter 2</h1>
+      <h1>Counter 1</h1>
       <div className={css.app}>
         <Routes>
           <Route

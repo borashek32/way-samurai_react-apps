@@ -78,7 +78,7 @@ export const ChangeCounter = (props: ChangeCounterType) => {
               padding: '0.3px 4px 0.3px 4px',
               fontSize: '20px',
               textDecoration: 'none',
-              fontWeight: '600'
+              fontWeight: '700'
             }}
             className={buttonSetClassName}
             to="/counter-settings"

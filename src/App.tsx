@@ -30,7 +30,9 @@ function App() {
 
   const incHandler = () => {
     if (value < settings.maxValue) setValue(+value + 1)
-    if (+value + 1 > settings.startValue) setDisabled({...disabled, resButton: false})
+    if (+value + 1 >= settings.startValue) setDisabled({...disabled, resButton: false, setButton: false})
+    if (+value + 1 === settings.maxValue) setDisabled
+    ({...disabled, resButton: false, setButton: false, incButton: true, timerButton: false})
   }
 
   const resetHandler = () => {

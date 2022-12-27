@@ -33,6 +33,8 @@ function App1() {
   const incHandler = () => {
     if (value < settings.maxValue) setValue(+value + 1)
     if (+value + 1 > settings.startValue) setDisabled({...disabled, resButton: false})
+    if (+value + 1 === settings.maxValue) setDisabled
+      ({...disabled, setButton: false, incButton: true, timerButton: true})
   }
 
   const resetHandler = () => {
@@ -152,8 +154,8 @@ function App1() {
       setSettings(newValues)
       setValue(newValues.startValue)
       setDisabled({...disabled, resButton: true, setButton: true, incButton: false, timerButton: false})
-      localStorage.setItem('settings-values', JSON.stringify(newValues))
-      localStorage.setItem('inc-value', JSON.stringify(newValues.startValue))
+      localStorage.setItem('settings-values-1', JSON.stringify(newValues))
+      localStorage.setItem('inc-value-1', JSON.stringify(newValues.startValue))
     }
   }
 // timer
@@ -163,7 +165,7 @@ function App1() {
   }
 
   useEffect(() => {
-    let prevValue = localStorage.getItem('inc-value')
+    let prevValue = localStorage.getItem('inc-value-1')
     if (prevValue) {
       let newValue = JSON.parse(prevValue)
       setValue(newValue)
@@ -171,7 +173,7 @@ function App1() {
   }, [])
 
   useEffect(() => {
-    let prevSettings = localStorage.getItem('settings-values')
+    let prevSettings = localStorage.getItem('settings-values-1')
     if (prevSettings) {
       let newSettings = JSON.parse(prevSettings)
       setSettings(newSettings)
@@ -182,7 +184,7 @@ function App1() {
     if (counting) {
       let timer = setTimeout(() => {
         incHandler()
-        localStorage.setItem('count-value', JSON.stringify(+value + 1))
+        localStorage.setItem('count-value-1', JSON.stringify(+value + 1))
       }, 1000)
 
       setTimeout(() => {
