@@ -20,6 +20,7 @@ export const ChangeCounter = (props: ChangeCounterType) => {
     + (props.error?.maxStartValues
       || props.error?.maxValue
       || props.error?.startValue
+      || props.settings.maxValue === props.value
         ? ' ' + css.disabledCounter : '')
     + ' ' + (typeof props.value  === 'number' ? css.counterBold : '')
 
