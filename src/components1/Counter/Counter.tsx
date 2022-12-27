@@ -28,7 +28,7 @@ export const Counter = (props: CounterType) => {
       <div className={css.app}>
         <Routes>
           <Route
-            path="/"
+            path="/way-samurai_advanced-counter/"
             element={
               <ChangeCounter
                 value={props.value}
@@ -42,7 +42,7 @@ export const Counter = (props: CounterType) => {
             }
           />
           <Route
-            path="/counter-settings"
+            path="/counter-settings/way-samurai_advanced-counter/"
             element={
               <Settings
                 settings={props.settings}
