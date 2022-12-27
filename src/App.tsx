@@ -1,7 +1,6 @@
 import React, {ChangeEvent, useEffect, useState} from 'react'
 import './App.css'
 import {Counter} from "./components/Counter/Counter"
-import {BrowserRouter} from "react-router-dom";
 import App1 from "./components1/App1";
 
 export type ErrorType = {
@@ -194,7 +193,7 @@ function App() {
 
   return (
     <div className="App">
-      <App1/>
+      <App1 />
       <header className="App-header">
         <Counter
           value={value}
