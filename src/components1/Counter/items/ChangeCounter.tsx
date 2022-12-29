@@ -81,7 +81,7 @@ export const ChangeCounter = (props: ChangeCounterType) => {
               fontWeight: '700'
             }}
             className={buttonSetClassName}
-            to="/counter-settings"
+            to="/way-samurai_advanced-counter/counter-settings"
           >
             set
           </NavLink>

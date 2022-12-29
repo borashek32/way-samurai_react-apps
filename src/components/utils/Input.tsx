@@ -6,7 +6,7 @@ type InputType = {
   onChangeCallback: (e: ChangeEvent<HTMLInputElement>) => void
   erroredInput?: boolean
   class: string
-  readonly: boolean
+  step: number
 }
 
 export const Input = (props: InputType) => {
@@ -21,7 +21,7 @@ export const Input = (props: InputType) => {
       onChange={onChangeCallback}
       value={props.value}
       type={props.type}
-      readOnly={props.readonly}
+      step={props.step}
     />
   )
 }

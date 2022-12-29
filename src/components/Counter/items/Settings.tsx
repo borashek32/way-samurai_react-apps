@@ -46,7 +46,7 @@ export const Settings = (props: PropsType) => {
             type="number"
             value={props.settings?.maxValue}
             onChangeCallback={onChangeMaxValueCallback}
-            readonly={true}
+            step={1}
           />
         </div>
         <div className={css.inputWrapper}>
@@ -56,7 +56,7 @@ export const Settings = (props: PropsType) => {
             type="number"
             value={props.settings?.startValue}
             onChangeCallback={onChangeStartValueCallback}
-            readonly={true}
+            step={1}
           />
         </div>
       </div>

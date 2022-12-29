@@ -42,7 +42,7 @@ export const Counter = (props: CounterType) => {
             }
           />
           <Route
-            path="/counter-settings/way-samurai_advanced-counter/"
+            path="/way-samurai_advanced-counter/counter-settings/"
             element={
               <Settings
                 settings={props.settings}
