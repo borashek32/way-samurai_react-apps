@@ -1,7 +1,7 @@
-import css from "../Counter.module.css";
-import {Button} from "../../utils/Button";
+import c from "../../Counter.module.css";
+import {Button} from "../utils/Button";
 import React from "react";
-import {DisabledType, ErrorType, SettingsType} from "../../../App";
+import {DisabledType, ErrorType, SettingsType} from "../SimpleCounter";
 import Card from '@mui/material/Card';
 
 type ChangeCounterType = {
@@ -16,19 +16,19 @@ type ChangeCounterType = {
 
 export const ChangeCounter = (props: ChangeCounterType) => {
 
-  const counterClassName = css.counter
+  const counterClassName = c.counter
     + (props.error?.maxStartValues
       || props.error?.maxValue
       || props.error?.startValue
       || props.settings.maxValue === props.value
-        ? ' ' + css.disabledCounter : '')
-    + ' ' + (typeof props.value  === 'number' ? css.counterBold : '')
+        ? ' ' + c.disabledCounter : '')
+    + ' ' + (typeof props.value  === 'number' ? c.counterBold : '')
 
-  const buttonIncClassName = css.button
-    + (props.disabled.incButton ? ' ' + css.disabledButton : '')
+  const buttonIncClassName = c.button
+    + (props.disabled.incButton ? ' ' + c.disabledButton : '')
 
-  const buttonResClassName = css.button
-    + (props.disabled.resButton ? ' ' + css.disabledButton : '')
+  const buttonResClassName = c.button
+    + (props.disabled.resButton ? ' ' + c.disabledButton : '')
 
   const timerCallback = () => props.timerCallback()
 
@@ -44,11 +44,11 @@ export const ChangeCounter = (props: ChangeCounterType) => {
       width: 300,
       height: 220
     }}>
-      <div className={css.counterSubWrapper}>
+      <div className={c.counterSubWrapper}>
         <p className={counterClassName}>{props.value}</p>
       </div>
-        <div className={css.counterSubWrapper}>
-          <div className={css.buttonsWrapper}>
+        <div className={c.counterSubWrapper}>
+          <div className={c.buttonsWrapper}>
             <Button
               name={"inc"}
               class={buttonIncClassName}

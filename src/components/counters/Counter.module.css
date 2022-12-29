@@ -1,8 +1,3 @@
-.app {
-    display: flex;
-    gap: 30px;
-}
-
 .counterWrapper {
     border: 1px solid #33eaff;
     padding: 5px;
@@ -11,6 +6,12 @@
     flex-direction: column;
     gap: 5px;
     width: 300px;
+}
+
+.counterWrapperColumns {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
 }
 
 .buttonsWrapper {
@@ -30,7 +31,7 @@
     flex: 1 1 auto;
     gap: 20px;
     min-height: 80px;
-    padding: 10px;
+    padding: 0 10px 10px 10px;
 }
 
 .button {
@@ -45,6 +46,7 @@
     border-radius: 6px;
     cursor: pointer;
     transition: all .1s ease;
+    text-decoration: none;
 }
 
 .button:hover {
@@ -123,7 +125,13 @@
     font-size: 16px;
 }
 
+.displayError {
+    color: red;
+    font-size: 12px;
+    line-height: .5px;
+    margin-bottom: 0;
+}
+
 .message {
     color: #33eaff;
-    font-size: 16px;
 }

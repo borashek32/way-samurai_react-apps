@@ -1,7 +1,7 @@
 export const MAX_VALUE_EVENTS = "MAX-VALUES-EVENTS" as const
 export const MIN_VALUE_EVENTS = "MIN-VALUES-EVENTS" as const
 
-import {ErrorType, SettingsType, DisabledType} from "../App";
+import {ErrorType, SettingsType, DisabledType} from "../components/counters/simpleCounter/SimpleCounter";
 
 type MaxValuesEventsTypeAT = {
   type: typeof MAX_VALUE_EVENTS

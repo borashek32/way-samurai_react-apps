@@ -1,7 +1,8 @@
-import css from "../Counter1.module.css";
-import {Button} from "../../utils/Button";
+import css from "../../../../App.module.css";
+import c from '../../Counter.module.css'
+import {Button} from "../utils/Button";
 import React from "react";
-import {DisabledType, ErrorType, SettingsType} from "../../../App";
+import {DisabledType, ErrorType, SettingsType} from "../../simpleCounter/SimpleCounter";
 import Card from '@mui/material/Card';
 import {NavLink} from "react-router-dom";
 
@@ -17,21 +18,21 @@ type ChangeCounterType = {
 
 export const ChangeCounter = (props: ChangeCounterType) => {
 
-  const counterClassName = css.counter
+  const counterClassName = c.counter
     + (props.error?.maxStartValues
     || props.error?.maxValue
     || props.error?.startValue
     || props.settings.maxValue === props.value
-      ? ' ' + css.disabledCounter : '')
-    + ' ' + (typeof props.value === 'number' ? css.counterBold : '')
+      ? ' ' + c.disabledCounter : '')
+    + ' ' + (typeof props.value === 'number' ? c.counterBold : '')
 
-  const buttonIncClassName = css.button
-    + (props.disabled.incButton ? ' ' + css.disabledButton : '')
+  const buttonIncClassName = c.button
+    + (props.disabled.incButton ? ' ' + c.disabledButton : '')
 
-  const buttonResClassName = css.button
-    + (props.disabled.resButton ? ' ' + css.disabledButton : '')
+  const buttonResClassName = c.button
+    + (props.disabled.resButton ? ' ' + c.disabledButton : '')
 
-  const buttonSetClassName = css.button + (props.disabled?.setButton ? ' ' + css.disabledButton : '')
+  const buttonSetClassName = c.button + (props.disabled?.setButton ? ' ' + c.disabledButton : '')
 
   const timerCallback = () => props.timerCallback()
 
@@ -47,11 +48,11 @@ export const ChangeCounter = (props: ChangeCounterType) => {
       width: 300,
       height: 220
     }}>
-      <div className={css.counterSubWrapper}>
+      <div className={c.counterSubWrapper}>
         <p className={counterClassName}>{props.value as number}</p>
       </div>
-      <div className={css.counterSubWrapper}>
-        <div className={css.buttonsWrapper}>
+      <div className={c.counterSubWrapper}>
+        <div className={c.buttonsWrapper}>
           <Button
             name={"inc"}
             class={buttonIncClassName}
@@ -81,7 +82,7 @@ export const ChangeCounter = (props: ChangeCounterType) => {
               fontWeight: '700'
             }}
             className={buttonSetClassName}
-            to="/way-samurai_advanced-counter/counter-settings"
+            to="/way-samurai_apps/advanced-counter/settings"
           >
             set
           </NavLink>

@@ -1,0 +1,82 @@
+.telegramWrapper {
+    display: flex;
+}
+
+.container {
+    padding: 10px;
+    border-right: 1px solid #33eaff;
+    height: 500px;
+}
+.container:last-child {
+    border-right: none;
+}
+
+.sideContainer {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
+    overflow: hidden;
+}
+
+.titleLeft {
+    font-weight: 200;
+    font-size: 22px;
+    text-align: left;
+}
+.titleRight {
+    font-weight: 200;
+    font-size: 22px;
+    text-align: right;
+}
+
+.messages {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    gap: 10px;
+    overflow: scroll;
+}
+
+.sendSection {
+    flex: 0 1 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sendInput {
+    flex-grow: 1;
+    height: 20px;
+    background-color: #F5F7FB;
+    border: none;
+    border-radius: 20px;
+    font-family: "Montserrat", sans-serif;
+    color: rgba(0, 0, 0, 0.6);
+    padding: 3px 10px;
+    resize: none;
+}
+
+
+.messageWrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.messageUser {
+    font-weight: 600;
+    font-size: 14px;
+}
+.messageText {
+    font-weight: 400;
+    font-size: 12px;
+    background-color: #c3d1f8;
+    padding: 10px;
+    color: rgb(0, 25, 45);
+    border-radius: 15px;
+}
+.messageTime {
+    font-size: 12px;
+    margin-top: -8px;
+}

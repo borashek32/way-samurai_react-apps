@@ -1,8 +1,8 @@
-import css from '../Counter.module.css'
-import {Button} from "../../utils/Button";
+import c from "../../Counter.module.css";
+import {Button} from "../utils/Button";
 import React, {ChangeEvent} from "react";
-import {Input} from '../../utils/Input';
-import {DisabledType, ErrorType, SettingsType} from "../../../App";
+import {Input} from '../utils/Input';
+import {DisabledType, ErrorType, SettingsType} from "../SimpleCounter";
 import Card from "@mui/material/Card";
 
 type PropsType = {
@@ -19,12 +19,12 @@ export const Settings = (props: PropsType) => {
   const onChangeMaxValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeMaxValueHandler(e)
   const onChangeStartValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeStartValueHandler(e)
 
-  const buttonClassName = css.button + (props.disabled?.setButton ? ' ' + css.disabledButton : '')
+  const buttonClassName = c.button + (props.disabled?.setButton ? ' ' + c.disabledButton : '')
 
-  const inputMaxClassName = css.input
-    + (props.error?.maxStartValues || props.error?.maxValue ? ' ' + css.erroredInput : '')
-  const inputStartClassName = css.input
-    + (props.error?.startValue || props.error?.maxStartValues ? ' ' + css.erroredInput : '')
+  const inputMaxClassName = c.input
+    + (props.error?.maxStartValues || props.error?.maxValue ? ' ' + c.erroredInput : '')
+  const inputStartClassName = c.input
+    + (props.error?.startValue || props.error?.maxStartValues ? ' ' + c.erroredInput : '')
 
   return (
     <Card sx={{
@@ -38,9 +38,9 @@ export const Settings = (props: PropsType) => {
       width: 300,
       height: 220
     }}>
-      <div className={css.counterSubWrapper}>
-        <div className={css.inputWrapper}>
-          <label className={css.label}>max value</label>
+      <div className={c.counterSubWrapper}>
+        <div className={c.inputWrapper}>
+          <label className={c.label}>max value</label>
           <Input
             class={inputMaxClassName}
             type="number"
@@ -49,8 +49,8 @@ export const Settings = (props: PropsType) => {
             step={1}
           />
         </div>
-        <div className={css.inputWrapper}>
-          <label className={css.label}>start value</label>
+        <div className={c.inputWrapper}>
+          <label className={c.label}>start value</label>
           <Input
             class={inputStartClassName}
             type="number"
@@ -60,7 +60,7 @@ export const Settings = (props: PropsType) => {
           />
         </div>
       </div>
-      <div className={css.counterSubWrapper}>
+      <div className={c.counterSubWrapper}>
         <Button
           disabled={props.disabled?.setButton}
           name={'set'}

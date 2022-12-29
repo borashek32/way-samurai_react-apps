@@ -1,16 +1,29 @@
-.App {
-  text-align: center;
+.container {
+  min-width: 900px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: rgb(10, 25, 41);
+}
+
+.wrapper {
   display: flex;
   flex-direction: column;
   background-color: rgb(10, 25, 41);
   min-height: 100vh;
 }
 
-.App-header {
+.app {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 100px;
 }
+
+.title {
+  margin-top: -20px;
+  font-weight: 300;
+}
+

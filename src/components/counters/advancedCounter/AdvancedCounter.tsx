@@ -1,7 +1,9 @@
 import React, {ChangeEvent, useEffect, useState} from 'react'
-import '../App.css'
-import {Counter} from "./Counter/Counter"
-import {BrowserRouter} from "react-router-dom";
+import c from '../Counter.module.css'
+import css from '../../../App.module.css'
+import {Route, Routes} from "react-router-dom";
+import {ChangeCounter} from "./items/ChangeCounter";
+import {Settings} from "./items/Settings";
 
 export type ErrorType = {
   maxValue: boolean
@@ -19,22 +21,25 @@ export type SettingsType = {
   maxValue: number;
   startValue: number
 }
+export type App1Type = {
+  name: string
+}
 
-function App1() {
+function AdvancedCounter(props: App1Type) {
   const [value, setValue] = useState<number>(0)
   const [message, setMessage] = useState<string>("enter values and press 'set'")
   const [settings, setSettings] = useState<SettingsType>({maxValue: 5, startValue: 0})
   const [error, setError] = useState<ErrorType>
-    ({startValue: false, maxStartValues: false, maxValue: false, message: true})
+  ({startValue: false, maxStartValues: false, maxValue: false, message: true})
   const [disabled, setDisabled] = useState<DisabledType>
-    ({incButton: false, resButton: true, setButton: false, timerButton: false})
+  ({incButton: false, resButton: true, setButton: false, timerButton: false})
   const [counting, setCounting] = useState(false)
 
   const incHandler = () => {
     if (value < settings.maxValue) setValue(+value + 1)
     if (+value + 1 > settings.startValue) setDisabled({...disabled, resButton: false})
     if (+value + 1 === settings.maxValue) setDisabled
-      ({...disabled, setButton: false, incButton: true, timerButton: true})
+    ({...disabled, setButton: false, incButton: true, timerButton: true})
   }
 
   const resetHandler = () => {
@@ -52,11 +57,11 @@ function App1() {
         setError({...error, maxStartValues: true})
         setDisabled({...disabled, setButton: true})
 
-      // } else if (newMaxValue === 5 && settings.startValue === 0) {
-      //   setMessage("enter values and press 'set'")
-      //   setSettings({...settings, maxValue: newMaxValue})
-      //   setError({...error, maxValue: false, startValue: false, maxStartValues: false})
-      //   setDisabled({...disabled, setButton: false})
+        // } else if (newMaxValue === 5 && settings.startValue === 0) {
+        //   setMessage("enter values and press 'set'")
+        //   setSettings({...settings, maxValue: newMaxValue})
+        //   setError({...error, maxValue: false, startValue: false, maxStartValues: false})
+        //   setDisabled({...disabled, setButton: false})
 
       } else if (newMaxValue > 0 && settings.startValue < 0) {
         setMessage("start values should be positive")
@@ -196,26 +201,45 @@ function App1() {
   })
 
   return (
-    <BrowserRouter>
-      <div className="">
-        <header className="App-header">
-          <Counter
-            value={value}
-            settings={settings}
-            incHandler={incHandler}
-            resetHandler={resetHandler}
-            setValuesHandler={setValuesHandler}
-            onChangeMaxValueHandler={onChangeMaxValueHandler}
-            onChangeStartValueHandler={onChangeStartValueHandler}
-            timerHandler={timerHandler}
-            disabled={disabled}
-            error={error}
-            message={message}
-          />
-        </header>
-      </div>
-    </BrowserRouter>
+    <div className={css.wrapper}>
+      <header className={css.app}>
+        <h1 className={css.title}>{props.name}</h1>
+        <div className={c.app}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <ChangeCounter
+                  value={value}
+                  settings={settings}
+                  incCallback={incHandler}
+                  resetCallback={resetHandler}
+                  timerCallback={timerHandler}
+                  disabled={disabled}
+                  error={error}
+                />
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <Settings
+                  settings={settings}
+                  setValuesHandler={setValuesHandler}
+                  onChangeMaxValueHandler={onChangeMaxValueHandler}
+                  onChangeStartValueHandler={onChangeStartValueHandler}
+                  error={error}
+                  disabled={disabled}
+                  value={value}
+                  message={message}
+                />
+              }
+            />
+          </Routes>
+        </div>
+      </header>
+    </div>
   );
 }
 
-export default App1;
+export default AdvancedCounter;

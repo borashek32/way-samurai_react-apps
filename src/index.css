@@ -13,4 +13,12 @@ code {
 }
 a {
   text-decoration: none;
+  color: #76ecfa;
+  transition: all .2s ease;
+}
+a:hover {
+  color: #24d1e5;
+}
+a:active {
+  color: #01e8ff;
 }
