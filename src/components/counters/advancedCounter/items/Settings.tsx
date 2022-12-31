@@ -21,6 +21,10 @@ export const Settings = (props: PropsType) => {
 
   const onChangeMaxValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeMaxValueHandler(e)
   const onChangeStartValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeStartValueHandler(e)
+  const setValueCallback = () => props.setValuesHandler({
+      maxValue: props.settings.maxValue,
+      startValue: props.settings.startValue
+    })
 
   const buttonClassName = c.button + (props.disabled?.setButton ? ' ' + c.disabledButton : '')
 
@@ -29,7 +33,7 @@ export const Settings = (props: PropsType) => {
   const inputStartClassName = c.input
     + (props.error?.startValue || props.error?.maxStartValues ? ' ' + c.erroredInput : '')
 
-  const message = props.message
+  const message = ((props.error.startValue || props.error.startValue || props.error.maxStartValues) ? c.error : c.message)
 
   return (
     <Card sx={{
@@ -44,9 +48,8 @@ export const Settings = (props: PropsType) => {
       height: 220
     }}>
       <div className={c.counterSubWrapper}>
-        <p className={c.displayError + ' '
-          + (props.message === "enter values and press 'set'" ? c.message : '')}>
-          {message}
+        <p className={message}>
+          {props.message}
         </p>
         <div className={c.inputWrapper}>
           <label className={c.label}>max value</label>
@@ -73,8 +76,7 @@ export const Settings = (props: PropsType) => {
             disabled={props.disabled?.setButton}
             name={'set'}
             class={buttonClassName}
-            callback={() =>
-              props.setValuesHandler({maxValue: props.settings.maxValue, startValue: props.settings.startValue})}
+            callback={setValueCallback}
           />
         </NavLink>
       </div>

@@ -88,7 +88,19 @@ function SimpleCounter(props: App0Type) {
         setSettings({...settings, maxValue: newMaxValue})
         setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
 
-      } else {
+      } else if (newMaxValue >= 255 && settings.startValue === 255) {
+        setError({...error, maxStartValues: true})
+        setValue("max and start values shouldn't be greater or equal 255")
+        setSettings({...settings, maxValue: newMaxValue})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
+
+      } else if (newMaxValue >= 255 && settings.startValue < 255) {
+        setError({...error, maxValue: true})
+        setValue("max value shouldn't be greater or equal 255")
+        setSettings({...settings, maxValue: newMaxValue})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
+
+      } else if (Number.isInteger(newMaxValue)) {
         setDisabled({...disabled, resButton: true, setButton: false, incButton: true, timerButton: true})
         setSettings({...settings, maxValue: newMaxValue})
         setError({...error, maxStartValues: false, startValue: false, maxValue: false})
@@ -135,7 +147,13 @@ function SimpleCounter(props: App0Type) {
         setSettings({...settings, startValue: newStartValue})
         setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
 
-      } else {
+      } else if (newStartValue >= 255 && settings.maxValue === 255) {
+        setError({...error, maxStartValues: true})
+        setValue("max and start values shouldn't be greater or equal 255")
+        setSettings({...settings, maxValue: newStartValue})
+        setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
+
+      } else if (Number.isInteger(newStartValue)) {
         setDisabled({...disabled, resButton: true, setButton: false, incButton: true, timerButton: true})
         setError({...error, maxStartValues: false, startValue: false, maxValue: false})
         setSettings({...settings, startValue: newStartValue})

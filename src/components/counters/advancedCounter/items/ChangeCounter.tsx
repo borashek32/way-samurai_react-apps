@@ -1,4 +1,3 @@
-import css from "../../../../App.module.css";
 import c from '../../Counter.module.css'
 import {Button} from "../utils/Button";
 import React from "react";
@@ -12,7 +11,9 @@ type ChangeCounterType = {
   incCallback: () => void
   resetCallback: () => void
   timerCallback: () => void
+  onOpenSetCallback: () => void
   disabled: DisabledType
+  message: string
   error?: ErrorType
 }
 
@@ -36,6 +37,8 @@ export const ChangeCounter = (props: ChangeCounterType) => {
 
   const timerCallback = () => props.timerCallback()
 
+  const onOpenSetCallback = () => props.onOpenSetCallback
+
   return (
     <Card sx={{
       backgroundColor: '#0A1929',
@@ -48,8 +51,13 @@ export const ChangeCounter = (props: ChangeCounterType) => {
       width: 300,
       height: 220
     }}>
-      <div className={c.counterSubWrapper}>
-        <p className={counterClassName}>{props.value as number}</p>
+      <div className={c.counterSubWrapper} style={{padding: '10px'}}>
+        {props.message &&
+          <p className={c.displayError + ' ' + c.message} style={{marginTop: '0'}}>
+            {props.message}
+          </p>
+        }
+        <p className={counterClassName}>{props.value}</p>
       </div>
       <div className={c.counterSubWrapper}>
         <div className={c.buttonsWrapper}>
@@ -74,17 +82,12 @@ export const ChangeCounter = (props: ChangeCounterType) => {
             value={props.value}
             disabled={props.disabled.timerButton}
           />
-          <NavLink
-            style={{
-              padding: '0.3px 4px 0.3px 4px',
-              fontSize: '20px',
-              textDecoration: 'none',
-              fontWeight: '700'
-            }}
-            className={buttonSetClassName}
-            to="/way-samurai_apps/advanced-counter/settings"
-          >
-            set
+          <NavLink to="/way-samurai_apps/advanced-counter/settings" >
+            <Button
+              name={'set'}
+              class={buttonSetClassName}
+              callback={() => props.onOpenSetCallback()}
+            />
           </NavLink>
         </div>
       </div>
