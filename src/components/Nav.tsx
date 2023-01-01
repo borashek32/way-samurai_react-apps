@@ -11,8 +11,9 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import {Avatar} from "@mui/material";
+import { pink, deepOrange } from '@mui/material/colors';
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -26,14 +27,20 @@ export const Nav = () => {
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  function HomeIcon(props: SvgIconProps) {
+    return (
+      <SvgIcon {...props}>
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+      </SvgIcon>
+    );
+  }
 
   return (
     <AppBar
@@ -44,7 +51,7 @@ export const Nav = () => {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/*<img src="/logo100px.png" alt="logo"/>*/}
+          {/*<HomeIcon sx={{ color: pink[500] }} />*/}
           <Typography
             variant="h6"
             noWrap
@@ -52,7 +59,7 @@ export const Nav = () => {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
+              display: {xs: 'none', md: 'flex'},
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
@@ -60,10 +67,10 @@ export const Nav = () => {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            APPS
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -72,11 +79,50 @@ export const Nav = () => {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <MenuIcon />
+              <MenuIcon/>
             </IconButton>
-
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: {xs: 'block', md: 'none'},
+              }}
+            >
+              <Button
+                sx={{my: 2, color: pink[500], display: 'block', width: '100%'}}
+              >
+                <NavLink to="/way-samurai_apps/telegram">
+                  Telegram
+                </NavLink>
+              </Button>
+              <Button
+                sx={{my: 2, color: pink[500], display: 'block', width: '100%'}}
+              >
+                <NavLink to="/way-samurai_apps/simple-counter">
+                  Simple Counter
+                </NavLink>
+              </Button>
+              <Button
+                sx={{my: 2, color: pink[500], display: 'block', width: '100%'}}
+              >
+                <NavLink to="/way-samurai_apps/advanced-counter">
+                  Advanced Counter
+                </NavLink>
+              </Button>
+            </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <HomeIcon sx={{ color: pink[500], marginRight: '10px' }} />
           <Typography
             variant="h5"
             noWrap
@@ -84,7 +130,7 @@ export const Nav = () => {
             href=""
             sx={{
               mr: 2,
-              display: { xs: 'flex', md: 'none' },
+              display: {xs: 'flex', md: 'none'},
               flexGrow: 1,
               fontFamily: 'monospace',
               fontWeight: 700,
@@ -95,38 +141,43 @@ export const Nav = () => {
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Button
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                <NavLink to="/way-samurai_apps/like-telegram">
-                  Like Telegram
-                </NavLink>
-              </Button>
+          <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
             <Button
-              sx={{ my: 2, color: 'white', display: 'block' }}
+              sx={{my: 2, color: 'white', display: 'block'}}
+            >
+              <NavLink to="/way-samurai_apps/telegram">
+                Telegram
+              </NavLink>
+            </Button>
+            <Button
+              sx={{my: 2, color: 'white', display: 'block'}}
             >
               <NavLink to="/way-samurai_apps/simple-counter">
                 Simple Counter
               </NavLink>
             </Button>
             <Button
-              sx={{ my: 2, color: 'white', display: 'block' }}
+              sx={{my: 2, color: 'white', display: 'block'}}
             >
               <NavLink to="/way-samurai_apps/advanced-counter">
                 Advanced Counter
               </NavLink>
             </Button>
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{flexGrow: 0}}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                {/*<img src="/me.jpg" alt="thi is me"/>*/}
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
+                <Avatar
+                  sx={{ bgcolor: pink[500] }}
+                  alt="Remy Sharp"
+                  src="/broken-image.jpg"
+                >
+                  NB
+                </Avatar>
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{mt: '45px'}}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{

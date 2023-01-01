@@ -4,7 +4,7 @@ import {ChangeEvent, useState, FocusEvent} from "react";
 import {Avatar, Button, createTheme, TextField, ThemeProvider} from "@mui/material";
 import * as React from "react";
 import {green, pink} from "@mui/material/colors";
-import SendIcon from "@mui/icons-material/Send";
+import SendIcon from '@mui/icons-material/Send';
 
 
 export type RightSideType = {
@@ -14,11 +14,11 @@ export type RightSideType = {
   userName: string
 }
 
-export const RightSide: React.FC<RightSideType> = ({
-                                                     messages,
-                                                     addMessage,
-                                                     userName,
-                                                   }) => {
+export const LeftSide: React.FC<RightSideType> = ({
+                                                    messages,
+                                                    addMessage,
+                                                    userName,
+                                                  }) => {
   const [value, setValue] = useState('')
   const [error, setError] = useState('')
 
@@ -26,22 +26,22 @@ export const RightSide: React.FC<RightSideType> = ({
     return (
       <div key={m._id}>
         <div className={s.messageWrapper + ' '
-          + (m.userName === 'Igor' ? s.messageWrapperEnd : '')}>
+          + (m.userName === 'Nataly' ? s.messageWrapperEnd : '')}>
           <div className={s.messageUser}>
-            {m.userName === 'Igor' ?
-              <Avatar
-                sx={{bgcolor: green[500]}}
-                alt="Remy Sharp"
-                src="/broken-image.jpg"
-              >
-                IZ
-              </Avatar> :
+            {m.userName === 'Nataly' ?
               <Avatar
                 sx={{bgcolor: pink[500]}}
                 alt="Remy Sharp"
                 src="/broken-image.jpg"
               >
                 NB
+              </Avatar> :
+              <Avatar
+                sx={{bgcolor: green[500]}}
+                alt="Remy Sharp"
+                src="/broken-image.jpg"
+              >
+                IZ
               </Avatar>
             }
           </div>
@@ -50,7 +50,7 @@ export const RightSide: React.FC<RightSideType> = ({
           </div>
         </div>
         <p className={s.messageTime + ' '
-          + (m.userName === 'Igor' ? s.messageTimeEnd : '')}>
+          + (m.userName === 'Nataly' ? s.messageTimeEnd : '')}>
           {m.time}
         </p>
       </div>
@@ -94,7 +94,7 @@ export const RightSide: React.FC<RightSideType> = ({
             }
           },
         },
-      }
+      },
     },
   })
 
@@ -102,17 +102,17 @@ export const RightSide: React.FC<RightSideType> = ({
     <ThemeProvider theme={theme}>
       <div className={s.container}>
         <div className={s.sideContainer}>
-          <p className={s.titleRight}>{userName}</p>
+          <p className={s.titleLeft}>{userName}</p>
           <div className={s.messages}>
             {m}
           </div>
           <div className={s.sendSection}>
             <Avatar
-              sx={{bgcolor: green[500]}}
+              sx={{bgcolor: pink[500]}}
               alt="Remy Sharp"
               src="/broken-image.jpg"
             >
-              IZ
+              NB
             </Avatar>
             <TextField
               size="small"

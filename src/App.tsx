@@ -13,9 +13,9 @@ function App() {
         <Nav />
         <Routes>
           <Route
-            path="/way-samurai_apps/like-telegram"
+            path="/way-samurai_apps/telegram"
             element={
-              <Telegram name={"Like telegram"}/>
+              <Telegram name={"Telegram"}/>
             }
           />
           <Route

@@ -3,8 +3,8 @@
 }
 
 .container {
-    padding: 10px;
-    border-right: 1px solid #33eaff;
+    padding: 0 10px;
+    border-right: 1px solid #1565c0;
     height: 500px;
 }
 .container:last-child {
@@ -17,17 +17,20 @@
     flex-direction: column;
     min-width: 400px;
     overflow: hidden;
+    padding: 0px 20px;
 }
 
 .titleLeft {
     font-weight: 200;
     font-size: 22px;
     text-align: left;
+    color: #e91e63;
 }
 .titleRight {
     font-weight: 200;
     font-size: 22px;
     text-align: right;
+    color: #4caf50
 }
 
 .messages {
@@ -43,7 +46,9 @@
     flex: 0 1 auto;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
+    margin-top: 20px;
 }
 
 .sendInput {
@@ -63,6 +68,11 @@
     display: flex;
     gap: 10px;
     align-items: center;
+    justify-content: start;
+}
+.messageWrapperEnd {
+    flex-direction: row-reverse;
+    justify-content: end;
 }
 .messageUser {
     font-weight: 600;
@@ -77,6 +87,24 @@
     border-radius: 15px;
 }
 .messageTime {
+    font-size: 10px;
+    margin-top: 2px;
+    margin-left: 5px;
+}
+.messageTimeEnd {
+    display: flex;
+    margin-right: 5px;
+    flex-direction: row-reverse;
+    justify-content: end;
+}
+
+/*errors*/
+.errorTelegramEmptyInput {
     font-size: 12px;
-    margin-top: -8px;
+    color: #e91e63;
+    margin-left: 50px;
+    margin-top: 5px;
+}
+.errorTelegramInput {
+    border: #e91e63;
 }

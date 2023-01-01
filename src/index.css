@@ -22,3 +22,12 @@ a:hover {
 a:active {
   color: #01e8ff;
 }
+
+ul {
+  background-color: #0A1929FF
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
