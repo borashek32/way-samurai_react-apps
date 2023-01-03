@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, {useReducer} from "react";
 import s from "./Telegram.module.css";
 import css from "../../App.module.css";
 import {RightSide} from "./items/RightSide";
 import { v1 } from "uuid";
 import {LeftSide} from "./items/LeftSide";
+import {telegramReducer} from "../../store/telegram-reducer";
 
 export type TelegramType = {
   name: string
@@ -18,14 +19,22 @@ export type MessageType = {
 export const Telegram: React.FC<TelegramType> = ({
                                                    name,
                                                  }) => {
-  const [messages, setMessages] = useState<MessageType[]>([
+  const [messages, dispatch] = useReducer(telegramReducer,[
     {_id: v1(), userName: "Nataly", time: "10:30", text: "Hello:)"},
     {_id: v1(), userName: "Igor", time: "10:30", text: "Hi!!"},
     {_id: v1(), userName: "Nataly", time: "10:30", text: "How are you?"}
   ])
 
   const addMessage = (value: string, userName: string) => {
-    setMessages([...messages, {_id: v1(), userName: userName, time: "10:30", text: value}])
+    dispatch({
+      type: "ADD-MESSAGE",
+      message: {
+        _id: v1(),
+        userName: userName,
+        time: "10:30",
+        text: value
+      }
+    })
   }
 
   const onChangeTextArea = (value: string, userName: string) => {
