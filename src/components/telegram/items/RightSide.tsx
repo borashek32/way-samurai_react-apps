@@ -1,6 +1,6 @@
 import s from "../Telegram.module.css";
 import {MessageType} from "../Telegram";
-import {ChangeEvent, useState, FocusEvent} from "react";
+import {ChangeEvent, useState, FocusEvent, MouseEventHandler} from "react";
 import {Avatar, Button, createTheme, TextField, ThemeProvider} from "@mui/material";
 import * as React from "react";
 import {green, pink} from "@mui/material/colors";
@@ -11,16 +11,20 @@ export type RightSideType = {
   messages: MessageType[]
   addMessage: (value: string, userName: string) => void
   onChangeTextArea: (value: string, userName: string) => void
+  deleteMessage: (m: MessageType, userName: string) => void
   userName: string
 }
 
 export const RightSide: React.FC<RightSideType> = ({
                                                      messages,
                                                      addMessage,
+                                                     deleteMessage,
                                                      userName,
                                                    }) => {
   const [value, setValue] = useState('')
   const [error, setError] = useState('')
+
+  const deleteMessageCallback = (m: MessageType, userName: string) => deleteMessage(m, userName)
 
   const m = messages.map(m => {
     return (
@@ -48,6 +52,7 @@ export const RightSide: React.FC<RightSideType> = ({
           <div className={s.messageText}>
             {m.text}
           </div>
+          <button onClick={() => deleteMessageCallback(m, userName)}>x</button>
         </div>
         <p className={s.messageTime + ' '
           + (m.userName === 'Igor' ? s.messageTimeEnd : '')}>

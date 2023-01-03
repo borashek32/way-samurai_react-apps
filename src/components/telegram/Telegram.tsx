@@ -25,6 +25,9 @@ export const Telegram: React.FC<TelegramType> = ({
     {_id: v1(), userName: "Nataly", time: "10:30", text: "How are you?"}
   ])
 
+  const onChangeTextArea = (value: string, userName: string) => {
+    addMessage(value.trim(), userName)
+  }
   const addMessage = (value: string, userName: string) => {
     dispatch({
       type: "ADD-MESSAGE",
@@ -36,9 +39,15 @@ export const Telegram: React.FC<TelegramType> = ({
       }
     })
   }
+  const deleteMessage = (m: MessageType, userName: string) => {
+    if (userName === m.userName) {
+      dispatch({
+        type: "DELETE-MESSAGE",
+        message: m
+      })
+    } else {
 
-  const onChangeTextArea = (value: string, userName: string) => {
-    addMessage(value.trim(), userName)
+    }
   }
 
   return (
@@ -56,6 +65,7 @@ export const Telegram: React.FC<TelegramType> = ({
             userName={"Igor"}
             messages={messages}
             addMessage={addMessage}
+            deleteMessage={deleteMessage}
             onChangeTextArea={onChangeTextArea}
           />
         </div>
