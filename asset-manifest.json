@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/way-samurai_react-apps/static/css/main.aacbc814.css",
-    "main.js": "/way-samurai_react-apps/static/js/main.2bc076d4.js",
+    "main.js": "/way-samurai_react-apps/static/js/main.9810ec4b.js",
     "static/js/787.b5aa3df0.chunk.js": "/way-samurai_react-apps/static/js/787.b5aa3df0.chunk.js",
     "index.html": "/way-samurai_react-apps/index.html",
     "main.aacbc814.css.map": "/way-samurai_react-apps/static/css/main.aacbc814.css.map",
-    "main.2bc076d4.js.map": "/way-samurai_react-apps/static/js/main.2bc076d4.js.map",
+    "main.9810ec4b.js.map": "/way-samurai_react-apps/static/js/main.9810ec4b.js.map",
     "787.b5aa3df0.chunk.js.map": "/way-samurai_react-apps/static/js/787.b5aa3df0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.aacbc814.css",
-    "static/js/main.2bc076d4.js"
+    "static/js/main.9810ec4b.js"
   ]
 }
