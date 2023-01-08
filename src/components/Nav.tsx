@@ -95,20 +95,16 @@ export const Nav = () => {
             <HomeIcon sx={{color: pink[500], marginRight: '10px'}}/>
           </NavLink>
           <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-            <NavLink to="#aboutMe">
-              <Button
-                sx={{my: 2, color: '#0A1929FF', display: 'block'}}
-              >
-                About
-              </Button>
-            </NavLink>
-            <NavLink to="#mySkills">
-              <Button
-                sx={{my: 2, color: '#0A1929FF', display: 'block'}}
-              >
-                My Skills
-              </Button>
-            </NavLink>
+            <Button
+              sx={{my: 2, color: '#0A1929FF', display: 'block'}}
+            >
+              About
+            </Button>
+            <Button
+              sx={{my: 2, color: '#0A1929FF', display: 'block'}}
+            >
+              My Skills
+            </Button>
             <Button
               sx={{my: 2, color: '#0A1929FF', display: 'block'}}
             >
