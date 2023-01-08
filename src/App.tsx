@@ -12,19 +12,19 @@ function App() {
       <Nav/>
       <Routes>
         <Route
-          path="/telegram"
+          path="/way-samurai_react-apps/telegram"
           element={
             <Telegram name={"Telegram"}/>
           }
         />
         <Route
-          path="/counters"
+          path="/way-samurai_react-apps/counters"
           element={
             <SimpleCounter name={"Simple counter"}/>
           }
         />
         <Route
-          path="/"
+          path="/way-samurai_react-apps/"
           element={
             <Main name={"React-developer portfolio"}/>
           }
