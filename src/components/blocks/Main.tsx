@@ -5,6 +5,7 @@ import {MySkills} from './MySkills/MySkills'
 import {MyApps} from './MyApps/MyApps'
 import {HireMe} from "./HireMe/HireMe";
 import {Contact} from "./Contact/Contact";
+import {Footer} from "../Footer";
 
 type MainType = {
   name: string
@@ -25,11 +26,7 @@ export const Main: React.FC<MainType> = ({
       <div className={styles.mainContainer}>
         <Contact name={"Contact Me"} />
       </div>
-      <footer className={styles.footer}>
-        <div>Baranova Natalya</div>
-        <div>&#169; All rights reserved 2023</div>
-        <a style={{color: "#0A1929FF"}} href="mailto:">mail_me@gmail.com</a>
-      </footer>
+      <Footer />
     </div>
   )
 }

@@ -12,7 +12,7 @@ export const MyApps: React.FC<MyAppsType> = ({
     <div className={s.block}>
       <h1 className={s.blockTitle}>{name}</h1>
       <div className={s.blockFlex}>
-        <NavLink to={"/way-samurai_react-apps/telegram"}>
+        <NavLink to={"/way-samurai_react-apps/telegram"} target={"_blank"}>
           <div className={s.blockApp}>
             <h4 className={s.blockAppText}>Telegram clone</h4>
             <img src={require("./tl.jpg")} alt="telegram" className={s.blockSkillPicture}/>
@@ -21,7 +21,7 @@ export const MyApps: React.FC<MyAppsType> = ({
               maxime numquam quo repellendus soluta ullam voluptate.</p>
           </div>
         </NavLink>
-        <NavLink to={"/way-samurai_react-apps/counters"}>
+        <NavLink to={"/way-samurai_react-apps/counters"} target={"_blank"}>
           <div className={s.blockApp}>
             <h4 className={s.blockAppText}>Counters</h4>
             <img src={require("./counters.jpg")} alt="counters" className={s.blockSkillPicture}/>

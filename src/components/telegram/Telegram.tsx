@@ -5,6 +5,7 @@ import {RightSide} from "./items/RightSide";
 import { v1 } from "uuid";
 import {LeftSide} from "./items/LeftSide";
 import {telegramReducer} from "../../store/telegram-reducer";
+import {Footer} from "../Footer";
 
 export type TelegramType = {
   name: string
@@ -73,7 +74,7 @@ export const Telegram: React.FC<TelegramType> = ({
 
   return (
     <div className={css.wrapper}>
-      <header className={css.app}>
+      <div className={css.app}>
         <h1 className={css.title}>{name}</h1>
         <div className={s.telegramWrapper}>
           <LeftSide
@@ -93,7 +94,8 @@ export const Telegram: React.FC<TelegramType> = ({
             deleteMessage={deleteMessage}
           />
         </div>
-      </header>
+      </div>
+      <Footer />
     </div>
   )
 }

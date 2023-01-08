@@ -4,6 +4,7 @@ import c from '../Counter.module.css'
 import {ChangeCounter} from "./items/ChangeCounter";
 import {Settings} from "./items/Settings";
 import AdvancedCounter from "../advancedCounter/AdvancedCounter";
+import {Footer} from "../../Footer";
 
 export type ErrorType = {
   maxValue: boolean
@@ -239,6 +240,7 @@ function SimpleCounter(props: App0Type) {
         </div>
         <AdvancedCounter name={"Advanced counter"} />
       </div>
+      <Footer />
     </div>
   );
 }
