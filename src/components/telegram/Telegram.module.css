@@ -85,6 +85,9 @@
     padding: 10px;
     color: rgb(0, 25, 45);
     border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px
 }
 .messageTime {
     font-size: 10px;

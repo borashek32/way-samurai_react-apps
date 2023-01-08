@@ -4,40 +4,29 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import {Avatar} from "@mui/material";
-import { pink, deepOrange } from '@mui/material/colors';
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
+import {pink} from '@mui/material/colors';
+import SvgIcon, {SvgIconProps} from '@mui/material/SvgIcon';
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export const Nav = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   function HomeIcon(props: SvgIconProps) {
     return (
       <SvgIcon {...props}>
-        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
       </SvgIcon>
     );
   }
@@ -46,30 +35,11 @@ export const Nav = () => {
     <AppBar
       position="fixed"
       sx={{
-        backgroundColor: '#0A1929FF'
+        backgroundColor: '#76ecfa'
       }}
     >
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          {/*<HomeIcon sx={{ color: pink[500] }} />*/}
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: {xs: 'none', md: 'flex'},
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            APPS
-          </Typography>
-
+        <Toolbar disableGutters sx={{display: "flex", justifyContent: 'space-between'}}>
           <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
             <IconButton
               size="large"
@@ -77,7 +47,7 @@ export const Nav = () => {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              sx={{color: '#0A1929FF'}}
             >
               <MenuIcon/>
             </IconButton>
@@ -100,105 +70,57 @@ export const Nav = () => {
               }}
             >
               <Button
-                sx={{my: 2, color: pink[500], display: 'block', width: '100%'}}
+                sx={{my: 2, color: '#0A1929FF', display: 'block'}}
               >
-                <NavLink to="/way-samurai_apps/telegram">
-                  Telegram
-                </NavLink>
+                About
               </Button>
               <Button
-                sx={{my: 2, color: pink[500], display: 'block', width: '100%'}}
+                sx={{my: 2, color: '#0A1929FF', display: 'block'}}
               >
-                <NavLink to="/way-samurai_apps/simple-counter">
-                  Simple Counter
-                </NavLink>
+                My Skills
               </Button>
               <Button
-                sx={{my: 2, color: pink[500], display: 'block', width: '100%'}}
+                sx={{my: 2, color: '#0A1929FF', display: 'block'}}
               >
-                <NavLink to="/way-samurai_apps/advanced-counter">
-                  Advanced Counter
-                </NavLink>
+                My Apps
+              </Button>
+              <Button
+                sx={{my: 2, color: '#0A1929FF', display: 'block'}}
+              >
+                Hire Me
               </Button>
             </Menu>
           </Box>
-          <HomeIcon sx={{ color: pink[500], marginRight: '10px' }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: {xs: 'flex', md: 'none'},
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
+          <NavLink to="/">
+            <HomeIcon sx={{color: pink[500], marginRight: '10px'}}/>
+          </NavLink>
           <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
+            <NavLink to="#aboutMe">
+              <Button
+                sx={{my: 2, color: '#0A1929FF', display: 'block'}}
+              >
+                About
+              </Button>
+            </NavLink>
+            <NavLink to="#mySkills">
+              <Button
+                sx={{my: 2, color: '#0A1929FF', display: 'block'}}
+              >
+                My Skills
+              </Button>
+            </NavLink>
             <Button
-              sx={{my: 2, color: 'white', display: 'block'}}
+              sx={{my: 2, color: '#0A1929FF', display: 'block'}}
             >
-              <NavLink to="/way-samurai_apps/telegram">
-                Telegram
-              </NavLink>
+              My Apps
             </Button>
             <Button
-              sx={{my: 2, color: 'white', display: 'block'}}
+              sx={{my: 2, color: '#0A1929FF', display: 'block'}}
             >
-              <NavLink to="/way-samurai_apps/simple-counter">
-                Simple Counter
-              </NavLink>
-            </Button>
-            <Button
-              sx={{my: 2, color: 'white', display: 'block'}}
-            >
-              <NavLink to="/way-samurai_apps/advanced-counter">
-                Advanced Counter
-              </NavLink>
+              Hire Me
             </Button>
           </Box>
-          <Box sx={{flexGrow: 0}}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                <Avatar
-                  sx={{ bgcolor: pink[500] }}
-                  alt="Remy Sharp"
-                  src="/broken-image.jpg"
-                >
-                  NB
-                </Avatar>
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{mt: '45px'}}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+
         </Toolbar>
       </Container>
     </AppBar>

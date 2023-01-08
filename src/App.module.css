@@ -1,15 +1,16 @@
 .container {
-  min-width: 900px;
+  width: 100%;
   min-height: 100vh;
   margin: 0 auto;
-  background-color: rgb(10, 25, 41);
+  background-color: #0A1929FF;
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
-  background-color: rgb(10, 25, 41);
   min-height: 100vh;
+  padding: 40px 0;
+
 }
 
 .app {
@@ -19,11 +20,13 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  padding: 100px;
+  padding: 50px;
+  gap: 20px;
 }
 
 .title {
-  margin-top: -20px;
   font-weight: 300;
+  font-size: 26px;
+  text-align: center;
 }
 

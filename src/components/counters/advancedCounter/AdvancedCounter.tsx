@@ -236,8 +236,7 @@ function AdvancedCounter(props: App1Type) {
   })
 
   return (
-    <div className={css.wrapper}>
-      <header className={css.app}>
+      <>
         <h1 className={css.title}>{props.name}</h1>
         <div className={c.app}>
           <Routes>
@@ -274,8 +273,7 @@ function AdvancedCounter(props: App1Type) {
             />
           </Routes>
         </div>
-      </header>
-    </div>
+      </>
   );
 }
 

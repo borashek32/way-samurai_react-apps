@@ -3,6 +3,7 @@ import css from '../../../App.module.css'
 import c from '../Counter.module.css'
 import {ChangeCounter} from "./items/ChangeCounter";
 import {Settings} from "./items/Settings";
+import AdvancedCounter from "../advancedCounter/AdvancedCounter";
 
 export type ErrorType = {
   maxValue: boolean
@@ -215,7 +216,7 @@ function SimpleCounter(props: App0Type) {
 
   return (
     <div className={css.wrapper}>
-      <header className={css.app}>
+      <div className={css.app}>
         <h1 className={css.title}>{props.name}</h1>
         <div className={c.counterWrapperColumns}>
           <ChangeCounter
@@ -236,7 +237,8 @@ function SimpleCounter(props: App0Type) {
             disabled={disabled}
           />
         </div>
-      </header>
+        <AdvancedCounter name={"Advanced counter"} />
+      </div>
     </div>
   );
 }

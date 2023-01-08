@@ -1,4 +1,4 @@
-import React, {useReducer} from "react";
+import React, {useReducer, useState} from "react";
 import s from "./Telegram.module.css";
 import css from "../../App.module.css";
 import {RightSide} from "./items/RightSide";
@@ -24,10 +24,29 @@ export const Telegram: React.FC<TelegramType> = ({
     {_id: v1(), userName: "Igor", time: "10:30", text: "Hi!!"},
     {_id: v1(), userName: "Nataly", time: "10:30", text: "How are you?"}
   ])
+  const [value, setValue] = useState('')
+  const [error, setError] = useState('')
+
+  const onChangeHandler = (value: string) => {
+    setValue(value)
+    setError('')
+  }
+
+  const onFocusHandler = () => setError('')
 
   const onChangeTextArea = (value: string, userName: string) => {
     addMessage(value.trim(), userName)
   }
+
+  const addMessageHandler = (value: string, userName: string) => {
+    if (value.trim() === '') {
+      setError("Text field is empty")
+    } else {
+      addMessage(value.trim(), userName)
+    }
+    setValue("")
+  }
+
   const addMessage = (value: string, userName: string) => {
     dispatch({
       type: "ADD-MESSAGE",
@@ -39,14 +58,16 @@ export const Telegram: React.FC<TelegramType> = ({
       }
     })
   }
+
   const deleteMessage = (m: MessageType, userName: string) => {
     if (userName === m.userName) {
+      setError('')
       dispatch({
         type: "DELETE-MESSAGE",
         message: m
       })
     } else {
-
+      setError('You can delete only your own messages')
     }
   }
 
@@ -62,11 +83,14 @@ export const Telegram: React.FC<TelegramType> = ({
             onChangeTextArea={onChangeTextArea}
           />
           <RightSide
+            value={value}
+            error={error}
             userName={"Igor"}
             messages={messages}
-            addMessage={addMessage}
+            onChangeHandler={onChangeHandler}
+            onFocusHandler={onFocusHandler}
+            addMessageHandler={addMessageHandler}
             deleteMessage={deleteMessage}
-            onChangeTextArea={onChangeTextArea}
           />
         </div>
       </header>

@@ -1,30 +1,52 @@
 import s from "../Telegram.module.css";
 import {MessageType} from "../Telegram";
-import {ChangeEvent, useState, FocusEvent, MouseEventHandler} from "react";
+import {ChangeEvent, FocusEvent} from "react";
 import {Avatar, Button, createTheme, TextField, ThemeProvider} from "@mui/material";
+import DeleteRoundedIcon from '@mui/icons-material/DeleteOutlined';
 import * as React from "react";
 import {green, pink} from "@mui/material/colors";
 import SendIcon from "@mui/icons-material/Send";
 
 
 export type RightSideType = {
+  error: string
+  value: string
   messages: MessageType[]
-  addMessage: (value: string, userName: string) => void
-  onChangeTextArea: (value: string, userName: string) => void
+  onChangeHandler: (value: string) => void
+  onFocusHandler: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+  addMessageHandler: (value: string, userName: string, time: Date) => void
   deleteMessage: (m: MessageType, userName: string) => void
   userName: string
 }
 
 export const RightSide: React.FC<RightSideType> = ({
+                                                     value,
+                                                     error,
                                                      messages,
-                                                     addMessage,
+                                                     onChangeHandler,
+                                                     onFocusHandler,
+                                                     addMessageHandler,
                                                      deleteMessage,
                                                      userName,
                                                    }) => {
-  const [value, setValue] = useState('')
-  const [error, setError] = useState('')
+
+
+  const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => onChangeHandler(e.currentTarget.value)
+
+  const onFocusCallback = (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => onFocusHandler(e)
 
   const deleteMessageCallback = (m: MessageType, userName: string) => deleteMessage(m, userName)
+
+  const addMessageCallback = (value: string, userName: string) => {
+    let date = new Date
+    addMessageHandler(value, userName, date)
+  }
+
+  const onEnterAddItem = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      addMessageCallback(value, userName)
+    }
+  }
 
   const m = messages.map(m => {
     return (
@@ -51,8 +73,11 @@ export const RightSide: React.FC<RightSideType> = ({
           </div>
           <div className={s.messageText}>
             {m.text}
+            <DeleteRoundedIcon
+              sx={{ color: green[700], fontSize: 14, cursor: 'pointer' }}
+              onClick={() => deleteMessageCallback(m, userName)}
+            />
           </div>
-          <button onClick={() => deleteMessageCallback(m, userName)}>x</button>
         </div>
         <p className={s.messageTime + ' '
           + (m.userName === 'Igor' ? s.messageTimeEnd : '')}>
@@ -61,25 +86,6 @@ export const RightSide: React.FC<RightSideType> = ({
       </div>
     )
   })
-
-  const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.currentTarget.value)
-    setError('')
-  }
-  const onEnterAddItem = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      addMessageCallback()
-    }
-  }
-  const onFocusCallback = (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => setError('')
-  const addMessageCallback = () => {
-    if (value.trim() === '') {
-      setError("Text field is empty")
-    } else {
-      addMessage(value.trim(), userName)
-    }
-    setValue("")
-  }
 
   const theme = createTheme({
     components: {
@@ -141,7 +147,7 @@ export const RightSide: React.FC<RightSideType> = ({
             />
             <Button
               variant="outlined"
-              onClick={addMessageCallback}
+              onClick={() => addMessageCallback(value, userName)}
               value={value}
               sx={{
                 minWidth: '40px',

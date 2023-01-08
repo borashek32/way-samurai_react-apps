@@ -20,11 +20,11 @@ export const telegramReducer = (messages: MessageType[], action: ActionType): Me
       return [...messages, {
         _id: v1(),
         userName: action.message.userName,
-        time: "10:30",
+        time: action.message.time,
         text: action.message.text
       }]
     case DELETE_MESSAGE:
-      return messages.filter(m => m._id === action.message._id)
+      return messages.filter(m => m._id !== action.message._id)
     default:
       return messages
   }

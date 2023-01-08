@@ -1,0 +1,192 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 20px 20px 20px;
+    margin: 0 auto;
+    width: 70%
+}
+
+.title {
+    color: #76ecfa;
+    font-family: monospace;
+    font-weight: 700;
+    letter-spacing: .3rem;
+    text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 70px;
+}
+
+.block {
+    margin-bottom: 100px;
+}
+.blockBorder {
+    border-top: 1px solid #76ecfa;
+    border-bottom: 1px solid #76ecfa;
+    padding: 40px;
+}
+
+.blockTitle {
+    color: #fff;
+    font-family: monospace;
+    font-weight: 800;
+    letter-spacing: .3rem;
+    text-decoration: none;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.blockWrapper {
+    padding: 20px;
+    background-color: #0A1929FF;
+    border-radius: 20px;
+    color: #fff;
+    border: 2px solid #76ecfa;
+}
+.blockWrapperContact {
+    padding: 0;
+    background-color: #76ecfa;
+    border-radius: 20px;
+    color: #fff;
+}
+
+.blockFlex {
+    display: flex;
+    gap: 20px;
+    align-items: start;
+    justify-content: center;
+    color: #fff;
+    padding: 20px;
+}
+@media (max-width: 900px) {
+    .blockFlex {
+        flex-wrap: wrap;
+    }
+}
+
+.blockSkill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+    color: #fff;
+    border: 2px solid #76ecfa;
+    padding: 20px;
+    flex: 0 1 auto;
+    min-height: 300px;
+    min-width: 220px;
+}
+.blockSkillPicture {
+    width: 100%;
+    height: 150px;
+}
+
+.blockSkillsSections {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.blockSkillsSectionsHeader {
+    margin-top: 20px;
+}
+
+.blockApp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #76ecfa;
+    padding: 20px;
+    flex: 0 1 auto;
+    height: 350px;
+    min-width: 220px;
+}
+
+.blockAppText {
+    color: #0A1929FF;
+}
+
+.footer {
+    background-color: #76ecfa;
+    padding: 30px;
+    text-align: center;
+}
+.footer:last-child {
+    line-height: 1.5em;
+}
+
+/*react logo*/
+.blockLogoReact {
+    width: 170px;
+    height: 170px;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .blockLogoReact {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.blockLogoRedux {
+    width: 170px;
+    height: 170px;
+    pointer-events: none;
+}
+
+.blockWebSkillsRow {
+    display: flex;
+    gap: 20px;
+}
+.blockWebSkillsRow:first-child {
+    margin-bottom: 30px;
+}
+
+.blockHireMe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formSize {
+    width: 600px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+@media (max-width: 730px) {
+    .formSize {
+        width: 500px;
+    }
+}
+@media (max-width: 630px) {
+    .formSize {
+        width: 400px;
+    }
+}
+@media (max-width: 530px) {
+    .formSize {
+        width: 300px;
+    }
+}
+@media (max-width: 430px) {
+    .formSize {
+        width: 200px;
+    }
+}
