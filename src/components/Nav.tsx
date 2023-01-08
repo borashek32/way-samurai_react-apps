@@ -91,7 +91,7 @@ export const Nav = () => {
               </Button>
             </Menu>
           </Box>
-          <NavLink to="/">
+          <NavLink to="/way-samurai_react-apps">
             <HomeIcon sx={{color: pink[500], marginRight: '10px'}}/>
           </NavLink>
           <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
