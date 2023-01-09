@@ -105,6 +105,7 @@
     flex: 0 1 auto;
     height: 350px;
     min-width: 220px;
+    box-shadow: 3px 3px 10px #060f18;
 }
 
 .blockAppText {
@@ -169,6 +170,7 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    box-shadow: 3px 3px 10px #060f18;
 }
 @media (max-width: 730px) {
     .formSize {

@@ -1,3 +1,10 @@
+.mainContainer {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    background-image: url("https://abrakadabra.fun/uploads/posts/2022-03/1647518143_23-abrakadabra-fun-p-telegram-oboi-dlya-pk-37.jpg");
+}
+
 .telegramWrapper {
     display: flex;
 }

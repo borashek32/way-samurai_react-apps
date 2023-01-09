@@ -8,8 +8,6 @@ import {Main} from "./components/blocks/Main";
 
 function App() {
   return (
-    <div className={css.container}>
-      <Nav/>
       <Routes>
         <Route
           path="/way-samurai_react-apps/telegram"
@@ -30,7 +28,6 @@ function App() {
           }
         />
       </Routes>
-    </div>
   );
 }
 

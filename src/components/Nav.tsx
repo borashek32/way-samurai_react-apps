@@ -11,7 +11,6 @@ import Button from '@mui/material/Button';
 import {pink} from '@mui/material/colors';
 import SvgIcon, {SvgIconProps} from '@mui/material/SvgIcon';
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export const Nav = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);

@@ -5,6 +5,7 @@ import {ChangeCounter} from "./items/ChangeCounter";
 import {Settings} from "./items/Settings";
 import AdvancedCounter from "../advancedCounter/AdvancedCounter";
 import {Footer} from "../../Footer";
+import {Nav} from "../../Nav";
 
 export type ErrorType = {
   maxValue: boolean
@@ -216,31 +217,35 @@ function SimpleCounter(props: App0Type) {
   })
 
   return (
-    <div className={css.wrapper}>
-      <div className={css.app}>
-        <h1 className={css.title}>{props.name}</h1>
-        <div className={c.counterWrapperColumns}>
-          <ChangeCounter
-            value={value}
-            settings={settings}
-            incCallback={incHandler}
-            resetCallback={resetHandler}
-            timerCallback={timerHandler}
-            disabled={disabled}
-            error={error}
-          />
-          <Settings
-            settings={settings}
-            setValuesHandler={setValuesHandler}
-            onChangeMaxValueHandler={onChangeMaxValueHandler}
-            onChangeStartValueHandler={onChangeStartValueHandler}
-            error={error}
-            disabled={disabled}
-          />
+
+    <div className={css.container}>
+      <Nav/>
+      <div className={css.wrapper}>
+        <div className={css.app}>
+          <h1 className={css.title}>{props.name}</h1>
+          <div className={c.counterWrapperColumns}>
+            <ChangeCounter
+              value={value}
+              settings={settings}
+              incCallback={incHandler}
+              resetCallback={resetHandler}
+              timerCallback={timerHandler}
+              disabled={disabled}
+              error={error}
+            />
+            <Settings
+              settings={settings}
+              setValuesHandler={setValuesHandler}
+              onChangeMaxValueHandler={onChangeMaxValueHandler}
+              onChangeStartValueHandler={onChangeStartValueHandler}
+              error={error}
+              disabled={disabled}
+            />
+          </div>
+          <AdvancedCounter name={"Advanced counter"}/>
         </div>
-        <AdvancedCounter name={"Advanced counter"} />
+        <Footer/>
       </div>
-      <Footer />
     </div>
   );
 }
