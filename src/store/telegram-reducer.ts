@@ -17,6 +17,8 @@ type ActionType = AddMessageAT | DeleteMessageAT
 export const telegramReducer = (messages: MessageType[], action: ActionType): MessageType[] => {
   switch (action.type) {
     case ADD_MESSAGE:
+      // debugger
+      console.log("add")
       return [...messages, {
         _id: v1(),
         userName: action.message.userName,
@@ -24,6 +26,8 @@ export const telegramReducer = (messages: MessageType[], action: ActionType): Me
         text: action.message.text
       }]
     case DELETE_MESSAGE:
+      // debugger
+      console.log("delete")
       return messages.filter(m => m._id !== action.message._id)
     default:
       return messages

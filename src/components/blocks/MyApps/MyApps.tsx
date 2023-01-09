@@ -30,7 +30,7 @@ export const MyApps: React.FC<MyAppsType> = ({
               maxime numquam quo repellendus soluta ullam voluptate.</p>
           </div>
         </NavLink>
-        <a href={"/way-samurai_react-apps/counters"} target={"_blank"}>
+        <a href={"/way-samurai_react-apps/counters"}>
           <div className={s.blockApp}>
             <h4 className={s.blockAppText}>Counters</h4>
             <img src={require("./counters.jpg")} alt="counters" className={s.blockSkillPicture}/>
