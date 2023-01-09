@@ -5,8 +5,6 @@ import {RightSide} from "./items/RightSide";
 import {v1} from "uuid";
 import {LeftSide} from "./items/LeftSide";
 import {telegramReducer} from "../../store/telegram-reducer";
-import {Footer} from "../Footer";
-import {Nav} from "../Nav";
 
 export type TelegramType = {
   name: string
