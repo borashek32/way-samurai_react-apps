@@ -21,7 +21,16 @@ export const MyApps: React.FC<MyAppsType> = ({
               maxime numquam quo repellendus soluta ullam voluptate.</p>
           </div>
         </NavLink>
-        <NavLink to={"/way-samurai_react-apps/counters"} target={"_blank"}>
+        <NavLink to={"https://borashek32.github.io/way-samurai_todolist-thursday/"} target={"_blank"}>
+          <div className={s.blockApp}>
+            <h4 className={s.blockAppText}>Todolist</h4>
+            <img src={require("./todolist.jpg")} alt="todolist" className={s.blockSkillPicture}/>
+            <p className={s.blockAppText}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus autem
+              expedita explicabo labore
+              maxime numquam quo repellendus soluta ullam voluptate.</p>
+          </div>
+        </NavLink>
+        <a href={"/way-samurai_react-apps/counters"} target={"_blank"}>
           <div className={s.blockApp}>
             <h4 className={s.blockAppText}>Counters</h4>
             <img src={require("./counters.jpg")} alt="counters" className={s.blockSkillPicture}/>
@@ -29,7 +38,7 @@ export const MyApps: React.FC<MyAppsType> = ({
               expedita explicabo labore
               maxime numquam quo repellendus soluta ullam voluptate.</p>
           </div>
-        </NavLink>
+        </a>
         <a href="https://borashek32.github.io/way-samurai_social-network_ts_old/" target={"_blank"}>
           <div className={s.blockApp}>
             <h4 className={s.blockAppText}>Social Network</h4>
