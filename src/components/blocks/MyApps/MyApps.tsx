@@ -12,42 +12,50 @@ export const MyApps: React.FC<MyAppsType> = ({
     <div className={s.block}>
       <h1 className={s.blockTitle}>{name}</h1>
       <div className={s.blockFlex}>
-        <NavLink to={"/way-samurai_react-apps/telegram"}>
-          <div className={s.blockApp}>
-            <h4 className={s.blockAppText}>Telegram clone</h4>
-            <img src={require("./tl.jpg")} alt="telegram" className={s.blockSkillPicture}/>
-            <p className={s.blockAppText}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus autem
-              expedita explicabo labore
-              maxime numquam quo repellendus soluta ullam voluptate.</p>
+        <div className={s.blockCard}>
+          <div className={s.blockCardsSections}>
+            <NavLink to={"/way-samurai_react-apps/telegram"}>
+              <h4 className={s.blockCardsSectionsHeader}>Telegram clone</h4>
+              <img src={require("./tl.jpg")} alt="telegram" className={s.blockCardPicture}/>
+            </NavLink>
           </div>
-        </NavLink>
-        <NavLink to={"https://borashek32.github.io/way-samurai_todolist-thursday/"}>
-          <div className={s.blockApp}>
-            <h4 className={s.blockAppText}>Todolist</h4>
-            <img src={require("./todolist.jpg")} alt="todolist" className={s.blockSkillPicture}/>
-            <p className={s.blockAppText}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus autem
-              expedita explicabo labore
-              maxime numquam quo repellendus soluta ullam voluptate.</p>
+          <div className={s.blockCardsSections}>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius error et ex facere id illo, nulla quo recusandae sit voluptatem?</p>
           </div>
-        </NavLink>
-        <a href={"/way-samurai_react-apps/counters"}>
-          <div className={s.blockApp}>
-            <h4 className={s.blockAppText}>Counters</h4>
-            <img src={require("./counters.jpg")} alt="counters" className={s.blockSkillPicture}/>
-            <p className={s.blockAppText}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus autem
-              expedita explicabo labore
-              maxime numquam quo repellendus soluta ullam voluptate.</p>
+        </div>
+        <div className={s.blockCard}>
+          <div className={s.blockCardsSections}>
+            <NavLink to={"https://borashek32.github.io/way-samurai_todolist-thursday/"}>
+              <h4 className={s.blockCardsSectionsHeader}>Todolist</h4>
+              <img src={require("./todolist.jpg")} alt="todolist" className={s.blockCardPicture}/>
+            </NavLink>
           </div>
-        </a>
-        <a href="https://borashek32.github.io/way-samurai_social-network_ts_old/">
-          <div className={s.blockApp}>
-            <h4 className={s.blockAppText}>Social Network</h4>
-            <img src={require("./social-network.jpg")} alt="social-network" className={s.blockSkillPicture}/>
-            <p className={s.blockAppText}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus autem
-              expedita explicabo labore
-              maxime numquam quo repellendus soluta ullam voluptate.</p>
+          <div className={s.blockCardsSections}>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius error et ex facere id illo, nulla quo recusandae sit voluptatem?</p>
           </div>
-        </a>
+        </div>
+        <div className={s.blockCard}>
+          <div className={s.blockCardsSections}>
+            <a href={"/way-samurai_react-apps/counters"}>
+              <h4 className={s.blockCardsSectionsHeader}>Counters</h4>
+              <img src={require("./counters.jpg")} alt="counters" className={s.blockCardPicture}/>
+            </a>
+          </div>
+          <div className={s.blockCardsSections}>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius error et ex facere id illo, nulla quo recusandae sit voluptatem?</p>
+          </div>
+        </div>
+        <div className={s.blockCard}>
+          <div className={s.blockCardsSections}>
+            <a href="https://borashek32.github.io/way-samurai_social-network_ts_old/">
+              <h4 className={s.blockCardsSectionsHeader}>Social Network</h4>
+              <img src={require("./social-network.jpg")} alt="social-network" className={s.blockCardPicture}/>
+            </a>
+          </div>
+          <div className={s.blockCardsSections}>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius error et ex facere id illo, nulla quo recusandae sit voluptatem?</p>
+          </div>
+        </div>
       </div>
     </div>
   )

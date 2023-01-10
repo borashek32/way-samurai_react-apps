@@ -4,8 +4,7 @@ import c from '../Counter.module.css'
 import {ChangeCounter} from "./items/ChangeCounter";
 import {Settings} from "./items/Settings";
 import AdvancedCounter from "../advancedCounter/AdvancedCounter";
-import {Footer} from "../../Footer";
-import {Nav} from "../../Nav";
+import {blue, pink} from "@mui/material/colors";
 
 export type ErrorType = {
   maxValue: boolean
@@ -218,11 +217,10 @@ function SimpleCounter(props: App0Type) {
 
   return (
 
-    <div className={css.container}>
-      <Nav/>
+    <div className={css.container} style={{backgroundColor: blue[100]}}>
       <div className={css.wrapper}>
         <div className={css.app}>
-          <h1 className={css.title}>{props.name}</h1>
+          <h1 className={c.title}>{props.name}</h1>
           <div className={c.counterWrapperColumns}>
             <ChangeCounter
               value={value}
@@ -244,7 +242,6 @@ function SimpleCounter(props: App0Type) {
           </div>
           <AdvancedCounter name={"Advanced counter"}/>
         </div>
-        <Footer/>
       </div>
     </div>
   );

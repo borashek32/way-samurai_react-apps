@@ -1,10 +1,10 @@
 import s from "../Main.module.css";
 
-type MySkillsType = {
+type MyCardsType = {
   name: string
 }
 
-export const MySkills: React.FC<MySkillsType> = ({
+export const MySkills: React.FC<MyCardsType> = ({
                                                    name
                                                  }) => {
 
@@ -12,29 +12,31 @@ export const MySkills: React.FC<MySkillsType> = ({
     <div className={s.block}>
       <h1 className={s.blockTitle}>My Skills</h1>
       <div className={s.blockFlex}>
-        <div className={s.blockSkill}>
-          <div className={s.blockSkillsSections}>
+        <div className={s.blockCard}>
+          <div className={s.blockCardsSections}>
             <a className={s.blockLink} href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
               <img src={require("./logo192.png")} className={s.blockLogoReact} alt="react"/>
             </a>
           </div>
-          <div className={s.blockSkillsSections}>
-            <p className={s.blockSkillsSectionsHeader}>React</p>
+          <div className={s.blockCardsSections}>
+            <h4 className={s.blockCardsSectionsHeader}>React</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius error et ex facere id illo, nulla quo recusandae sit voluptatem?</p>
           </div>
         </div>
-        <div className={s.blockSkill}>
-          <div className={s.blockSkillsSections}>
+        <div className={s.blockCard}>
+          <div className={s.blockCardsSections}>
             <a className={s.blockLink} href="https://redux.js.org/" target="_blank" rel="noopener noreferrer">
               <img src={require("./redux.png")} className={s.blockLogoRedux} alt="redux"/>
             </a>
           </div>
-          <div className={s.blockSkillsSections}>
-            <p className={s.blockSkillsSectionsHeader}>Redux</p>
+          <div className={s.blockCardsSections}>
+            <h4 className={s.blockCardsSectionsHeader}>Redux</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius error et ex facere id illo, nulla quo recusandae sit voluptatem?</p>
           </div>
         </div>
-        <div className={s.blockSkill}>
-          <div className={s.blockSkillsSections}>
-            <div className={s.blockWebSkillsRow}>
+        <div className={s.blockCard}>
+          <div className={s.blockCardsSections}>
+            <div className={s.blockCardsRow}>
               <a href="https://www.typescriptlang.org/" target="_blank">
                 <img
                   src="https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FtypeScript.d7616c23.svg&w=3840&q=75"
@@ -51,7 +53,7 @@ export const MySkills: React.FC<MySkillsType> = ({
                   alt="storybook"/>
               </a>
             </div>
-            <div className={s.blockWebSkillsRow}>
+            <div className={s.blockCardsRow}>
               <a href="https://html.com/">
                 <img
                   src="https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhtml.62b58041.svg&w=3840&q=75"
@@ -69,8 +71,9 @@ export const MySkills: React.FC<MySkillsType> = ({
               </a>
             </div>
           </div>
-          <div className={s.blockSkillsSections}>
-            <p className={s.blockSkillsSectionsHeader}>Others</p>
+          <div className={s.blockCardsSections}>
+            <h4 className={s.blockCardsSectionsHeader}>Others</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius error et ex facere id illo, nulla quo recusandae sit voluptatem?</p>
           </div>
         </div>
       </div>

@@ -50,7 +50,7 @@
     border-radius: 20px;
     color: #fff;
 }
-
+/*----------------------------------------------Flex-container-------------------------------------------------*/
 .blockFlex {
     display: flex;
     gap: 20px;
@@ -58,14 +58,10 @@
     justify-content: center;
     color: #fff;
     padding: 20px;
+    flex-wrap: wrap;
 }
-@media (max-width: 900px) {
-    .blockFlex {
-        flex-wrap: wrap;
-    }
-}
-
-.blockSkill {
+/*----------------------------------------------Skills-------------------------------------------------------*/
+.blockCard {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -74,64 +70,39 @@
     color: #fff;
     border: 2px solid #76ecfa;
     padding: 20px;
-    flex: 0 1 auto;
-    min-height: 300px;
-    min-width: 220px;
+    flex: 1 1 auto;
+    min-height: 100px;
+    min-width: 200px;
+    width: 220px;
 }
-.blockSkillPicture {
-    width: 100%;
-    height: 150px;
+.blockCardPicture {
+    height: 120px;
+    width: 200px;
+    max-height: 200px;
+    max-width: 300px;
 }
 
-.blockSkillsSections {
-    height: 150px;
+.blockCardsSections {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.blockSkillsSectionsHeader {
-    margin-top: 20px;
-}
-
-.blockApp {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    border-radius: 10px;
-    color: #fff;
-    background-color: #76ecfa;
-    padding: 20px;
-    flex: 0 1 auto;
-    height: 350px;
-    min-width: 220px;
-    box-shadow: 3px 3px 10px #060f18;
-}
-
-.blockAppText {
-    color: #0A1929FF;
-}
-
-.footer {
-    background-color: #76ecfa;
-    padding: 30px;
+.blockCardsSectionsHeader {
     text-align: center;
-}
-.footer:last-child {
-    line-height: 1.5em;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-family: monospace;
 }
 
+/*-----------------------------------------------Logos----------------------------------------------*/
 /*react logo*/
 .blockLogoReact {
-    width: 170px;
-    height: 170px;
+    width: 150px;
+    height: 150px;
     pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .blockLogoReact {
-        animation: App-logo-spin infinite 20s linear;
-    }
+    animation: App-logo-spin infinite 20s linear;
 }
 
 @keyframes App-logo-spin {
@@ -142,27 +113,43 @@
         transform: rotate(360deg);
     }
 }
-
+/**/
+/*redux logo*/
 .blockLogoRedux {
-    width: 170px;
-    height: 170px;
+    width: 150px;
+    height: 150px;
     pointer-events: none;
+    animation: App-logo-float infinite 3s ease-in-out;
 }
+@keyframes App-logo-float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+/**/
 
-.blockWebSkillsRow {
+.blockCardsRow {
     display: flex;
     gap: 20px;
 }
-.blockWebSkillsRow:first-child {
+.blockCardsRow:first-child {
     margin-bottom: 30px;
 }
 
+/*-----------------------------------------------Hire Me----------------------------------------------*/
 .blockHireMe {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/*-----------------------------------------------Form contact----------------------------------------------*/
 .formSize {
     width: 600px;
     padding: 30px;
@@ -191,4 +178,14 @@
     .formSize {
         width: 200px;
     }
+}
+
+/*-----------------------------------------------Footer----------------------------------------------*/
+.footer {
+    background-color: #76ecfa;
+    padding: 30px;
+    text-align: center;
+}
+.footer:last-child {
+    line-height: 1.5em;
 }

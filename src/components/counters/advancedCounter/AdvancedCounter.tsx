@@ -237,7 +237,7 @@ function AdvancedCounter(props: App1Type) {
 
   return (
       <>
-        <h1 className={css.title}>{props.name}</h1>
+        <h1 className={c.title}>{props.name}</h1>
         <div className={c.app}>
           <Routes>
             <Route
