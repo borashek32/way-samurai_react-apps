@@ -44,12 +44,6 @@
     color: #fff;
     border: 2px solid #76ecfa;
 }
-.blockWrapperContact {
-    padding: 0;
-    background-color: #76ecfa;
-    border-radius: 20px;
-    color: #fff;
-}
 /*----------------------------------------------Flex-container-------------------------------------------------*/
 .blockFlex {
     display: flex;
@@ -72,8 +66,8 @@
     padding: 20px;
     flex: 1 1 auto;
     min-height: 100px;
-    min-width: 200px;
-    width: 220px;
+    min-width: 170px;
+    width: 200px;
 }
 .blockCardPicture {
     height: 120px;
@@ -150,6 +144,13 @@
 }
 
 /*-----------------------------------------------Form contact----------------------------------------------*/
+.blockWrapperContact {
+    padding: 0;
+    border: 2px solid #76ecfa;
+    border-radius: 20px;
+    color: #fff;
+}
+
 .formSize {
     width: 600px;
     padding: 30px;
@@ -157,7 +158,6 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    box-shadow: 3px 3px 10px #060f18;
 }
 @media (max-width: 730px) {
     .formSize {

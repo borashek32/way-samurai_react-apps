@@ -14,7 +14,7 @@ export const Contact: React.FC<ContactType> = ({
   return (
       <div className={s.block}>
         <h1 className={s.blockTitle}>{name}</h1>
-        <form action="#" className={s.blockWrapperContact}>
+        <form action="#" className={s.blockWrapper}>
           <div className={s.formSize}>
             <Input
               placeholder={"Enter Your Name"}
@@ -23,13 +23,12 @@ export const Contact: React.FC<ContactType> = ({
               margin="none"
               sx={{
                 width: "100%",
-                // input: {
-                //   color: error ? '#e91e63' : '#1565c0',
-                // },
-                // label: {
-                //   color: error ? '#e91e63' : '#1565c0',
-                //   "&::focus": {color: '#76ecfa'},
-                // }
+                input: {
+                  color: "#fff",
+                  "&::placeholder": {
+                    color: "#fff"
+                  }
+                }
               }}
             />
             <Input
@@ -39,13 +38,12 @@ export const Contact: React.FC<ContactType> = ({
               margin="none"
               sx={{
                 width: "100%",
-                // input: {
-                //   color: error ? '#e91e63' : '#1565c0',
-                // },
-                // label: {
-                //   color: error ? '#e91e63' : '#1565c0',
-                //   "&::focus": {color: '#76ecfa'},
-                // }
+                input: {
+                  color: "#fff",
+                  "&::placeholder": {
+                    color: "#fff"
+                  }
+                }
               }}
             />
             <TextField
@@ -56,19 +54,18 @@ export const Contact: React.FC<ContactType> = ({
               margin="none"
               sx={{
                 width: "100%",
-                // input: {
-                //   color: error ? '#e91e63' : '#1565c0',
-                // },
-                // label: {
-                //   color: error ? '#e91e63' : '#1565c0',
-                //   "&::focus": {color: '#76ecfa'},
-                // }
+                input: {
+                  color: "#fff",
+                  "&::placeholder": {
+                    color: "#fff"
+                  }
+                }
               }}
             />
             <Button
               sx={{
-                color: "#0A1929FF",
-                border: "1px solid #0A1929FF",
+                color: "#76ecfa",
+                border: "1px solid #76ecfa",
                 "&:hover": {color: "#1769aa", border: "1px solid #1769aa"}
               }}
               variant="outlined"
