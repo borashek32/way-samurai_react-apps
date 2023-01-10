@@ -52,7 +52,11 @@
     justify-content: center;
     color: #fff;
     padding: 20px;
-    flex-wrap: wrap;
+}
+@media (max-width: 1399px) {
+    .blockFlex {
+        flex-wrap: wrap;
+    }
 }
 /*----------------------------------------------Skills-------------------------------------------------------*/
 .blockCard {
