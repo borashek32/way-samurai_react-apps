@@ -25,10 +25,10 @@ export const MyApps: React.FC<MyAppsType> = ({
         </div>
         <div className={s.blockCard}>
           <div className={s.blockCardsSections}>
-            <NavLink to={"https://borashek32.github.io/way-samurai_todolist-thursday/"}>
+            <a href={"https://borashek32.github.io/way-samurai_todolist-thursday/"}>
               <h4 className={s.blockCardsSectionsHeader}>Todolist</h4>
               <img src={require("./todolist.jpg")} alt="todolist" className={s.blockCardPicture}/>
-            </NavLink>
+            </a>
           </div>
           <div className={s.blockCardsSections}>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius error et ex facere id illo, nulla quo recusandae sit voluptatem?</p>
@@ -36,10 +36,10 @@ export const MyApps: React.FC<MyAppsType> = ({
         </div>
         <div className={s.blockCard}>
           <div className={s.blockCardsSections}>
-            <a href={"/way-samurai_react-apps/counters"}>
+            <NavLink to={"/way-samurai_react-apps/counters"}>
               <h4 className={s.blockCardsSectionsHeader}>Counters</h4>
               <img src={require("./counters.jpg")} alt="counters" className={s.blockCardPicture}/>
-            </a>
+            </NavLink>
           </div>
           <div className={s.blockCardsSections}>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius error et ex facere id illo, nulla quo recusandae sit voluptatem?</p>
