@@ -56,6 +56,17 @@ export const MyApps: React.FC<MyAppsType> = ({
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius error et ex facere id illo, nulla quo recusandae sit voluptatem?</p>
           </div>
         </div>
+        <div className={s.blockCard}>
+          <div className={s.blockCardsSections}>
+            <a href="https://borashek32.github.io/way-samurai_hw-autotests">
+              <h4 className={s.blockCardsSectionsHeader}>Separate Blocks</h4>
+              <img src={require("./separate-blocks.jpg")} alt="separate-blocks" className={s.blockCardPicture}/>
+            </a>
+          </div>
+          <div className={s.blockCardsSections}>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius error et ex facere id illo, nulla quo recusandae sit voluptatem?</p>
+          </div>
+        </div>
       </div>
     </div>
   )
