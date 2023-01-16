@@ -6,9 +6,9 @@ import DeleteRoundedIcon from '@mui/icons-material/DeleteOutlined';
 import * as React from "react";
 import {green, pink} from "@mui/material/colors";
 import SendIcon from "@mui/icons-material/Send";
-import {AddMessageAC, DeleteMessageAC} from "../../../store/telegram/messages-reducer";
+import {AddMessageAC, DeleteMessageAC} from "../../../store/telegram/telegram-reducer";
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../../store/telegram/store";
+import {AppRootStateType} from "../../../store/store";
 
 
 export type RightSideType = {
@@ -20,7 +20,7 @@ export const RightSide: React.FC<RightSideType> = ({
                                                      userName,
                                                    }) => {
 
-  const messages = useSelector<AppRootStateType, MessageType[]>(state => state.messages)
+  const messages = useSelector<AppRootStateType, MessageType[]>(state => state.telegram)
   const dispatch = useDispatch()
 
   const addMessage = (value: string, userName: string) => dispatch(AddMessageAC(value, userName))

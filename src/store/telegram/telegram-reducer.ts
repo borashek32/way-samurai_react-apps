@@ -4,16 +4,8 @@ import {v1} from "uuid";
 const ADD_MESSAGE = "ADD-MESSAGE"
 const DELETE_MESSAGE = "DELETE-MESSAGE"
 
-type AddMessageAT = {
-  type: typeof ADD_MESSAGE
-  value: string
-  userName: string
-}
-type DeleteMessageAT = {
-  type: typeof DELETE_MESSAGE
-  userName: string
-  message: MessageType
-}
+type AddMessageAT = ReturnType<typeof AddMessageAC>
+type DeleteMessageAT = ReturnType<typeof DeleteMessageAC>
 type ActionType = AddMessageAT | DeleteMessageAT
 
 
@@ -23,7 +15,7 @@ const initialState: MessageType[] = [
   {_id: v1(), userName: "Nataly", value: "How are you?"}
 ]
 
-export const messagesReducer = (state = initialState, action: ActionType): MessageType[] => {
+export const telegramReducer = (state = initialState, action: ActionType): MessageType[] => {
   switch (action.type) {
     case ADD_MESSAGE: {
       return [
@@ -38,9 +30,9 @@ export const messagesReducer = (state = initialState, action: ActionType): Messa
   }
 }
 
-export const AddMessageAC = (value: string, userName: string): AddMessageAT => {
+export const AddMessageAC = (value: string, userName: string) => {
   return {type: ADD_MESSAGE, value, userName} as const
 }
-export const DeleteMessageAC = (message: MessageType, userName: string): DeleteMessageAT => {
+export const DeleteMessageAC = (message: MessageType, userName: string) => {
   return {type: DELETE_MESSAGE, message, userName} as const
 }

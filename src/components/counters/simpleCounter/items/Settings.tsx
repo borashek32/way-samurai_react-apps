@@ -16,7 +16,10 @@ type PropsType = {
 
 export const Settings = (props: PropsType) => {
 
-  const onChangeMaxValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeMaxValueHandler(e)
+  const onChangeMaxValueCallback = (e: ChangeEvent<HTMLInputElement>) => {
+    props.onChangeMaxValueHandler(e)
+    console.log(e.currentTarget.valueAsNumber)
+  }
   const onChangeStartValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeStartValueHandler(e)
 
   const buttonClassName = c.button + (props.disabled?.setButton ? ' ' + c.disabledButton : '')
