@@ -2,7 +2,7 @@ import c from "../../Counter.module.css";
 import {Button} from "../utils/Button";
 import React, {ChangeEvent} from "react";
 import {Input} from '../utils/Input';
-import {DisabledType, ErrorType, SettingsType} from "../SimpleCounter";
+import {DisabledType, SettingsType} from "../SimpleCounter";
 import Card from "@mui/material/Card";
 
 type PropsType = {
@@ -10,7 +10,7 @@ type PropsType = {
   setValuesHandler: (newValue: { maxValue: number, startValue: number }) => void
   onChangeMaxValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
   onChangeStartValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
-  error?: ErrorType
+  error?: string
   disabled?: DisabledType
 }
 
@@ -23,11 +23,8 @@ export const Settings = (props: PropsType) => {
   const onChangeStartValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeStartValueHandler(e)
 
   const buttonClassName = c.button + (props.disabled?.setButton ? ' ' + c.disabledButton : '')
-
-  const inputMaxClassName = c.input
-    + (props.error?.maxStartValues || props.error?.maxValue ? ' ' + c.erroredInput : '')
-  const inputStartClassName = c.input
-    + (props.error?.startValue || props.error?.maxStartValues ? ' ' + c.erroredInput : '')
+  const inputMaxClassName = c.input + (props.error ? ' ' + c.erroredInput : '')
+  const inputStartClassName = c.input + (props.error ? ' ' + c.erroredInput : '')
 
   return (
     <Card sx={{

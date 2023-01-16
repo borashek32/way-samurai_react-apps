@@ -11,15 +11,13 @@ type ChangeCounterType = {
   resetCallback: () => void
   timerCallback: () => void
   disabled: DisabledType
-  error?: ErrorType
+  error?: string
 }
 
 export const ChangeCounter = (props: ChangeCounterType) => {
 
   const counterClassName = c.counter
-    + (props.error?.maxStartValues
-      || props.error?.maxValue
-      || props.error?.startValue
+    + (props.error
       || props.settings.maxValue === props.value
         ? ' ' + c.disabledCounter : '')
     + ' ' + (typeof props.value  === 'number' ? c.counterBold : '')
@@ -45,7 +43,7 @@ export const ChangeCounter = (props: ChangeCounterType) => {
       height: 220
     }}>
       <div className={c.counterSubWrapper}>
-        <p className={counterClassName}>{props.value}</p>
+        <p className={counterClassName}>{props.error ? props.error : props.value}</p>
       </div>
         <div className={c.counterSubWrapper}>
           <div className={c.buttonsWrapper}>

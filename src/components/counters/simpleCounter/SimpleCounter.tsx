@@ -4,13 +4,13 @@ import c from '../Counter.module.css'
 import {ChangeCounter} from "./items/ChangeCounter";
 import {Settings} from "./items/Settings";
 import AdvancedCounter from "../advancedCounter/AdvancedCounter";
-import {blue, pink} from "@mui/material/colors";
+import {blue} from "@mui/material/colors";
 import {useDispatch, useSelector} from "react-redux";
 import {
   IncHandlerAC,
   ResHandlerAC,
   SetDisabledAC,
-  SetErrorAC,
+  SetErrorAC, SetFinalSettingsAC,
   SetSettingsAC
 } from "../../../store/counters/simple-counter-reducer";
 import {AppRootStateType} from "../../../store/store";
@@ -27,26 +27,21 @@ export type DisabledType = {
   timerButton: boolean
 }
 export type SettingsType = {
-  maxValue: number;
+  maxValue: number
   startValue: number
 }
-export type App0Type = {
+export type SimpleCounterType = {
   name: string
 }
 
-function SimpleCounter(props: App0Type) {
-
+function SimpleCounter(props: SimpleCounterType) {
 
   const value = useSelector<AppRootStateType, number>(state => state.simpleCounter.value)
   const error = useSelector<AppRootStateType, string>(state => state.simpleCounter.error)
   const settings = useSelector<AppRootStateType, SettingsType>(state => state.simpleCounter.settings)
   const disabled = useSelector<AppRootStateType, DisabledType>(state => state.simpleCounter.disabled)
+  // const counting = useSelector<AppRootStateType, boolean>(state => state.simpleCounter.counter)
 
-  // const [value, setValue] = useState<number | string>(0)
-  // const [settings, setSettings] = useState<SettingsType>({maxValue: 5, startValue: 0})
-  // const [error, setError] = useState<ErrorType>({startValue: false, maxStartValues: false, maxValue: false})
-  // const [disabled, setDisabled] = useState<DisabledType>
-  // ({incButton: false, resButton: true, setButton: true, timerButton: false})
   const [counting, setCounting] = useState(false)
 
   const dispatch = useDispatch()
@@ -61,7 +56,6 @@ function SimpleCounter(props: App0Type) {
     dispatch(SetDisabledAC({...disabled, resButton: true, incButton: false, setButton: true, timerButton: false}))
   }
 
-
   const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newMaxValue = e.currentTarget.valueAsNumber
 
@@ -69,150 +63,122 @@ function SimpleCounter(props: App0Type) {
       if (newMaxValue < 0 && settings.startValue > 0) {
         dispatch(SetErrorAC("max value should be positive"))
         dispatch(SetSettingsAC({...settings, maxValue: newMaxValue}))
-        dispatch(SetDisabledAC({resButton: true, setButton: true, incButton: true, timerButton: true}))
+        dispatch(SetDisabledAC({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true}))
 
-//       } else if (newMaxValue === 5 && settings.startValue === 0) {
-//         setSettings({...settings, maxValue: newMaxValue})
-//         setValue(value)
-//         setDisabled({...disabled, resButton: true, setButton: false, incButton: true, timerButton: false})
-//
-//       } else if (newMaxValue > 0 && settings.startValue < 0) {
-//         setError({...error, startValue: true})
-//         setValue("start values should be positive")
-//         setSettings({...settings, maxValue: newMaxValue})
-//         setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
-//
-//       } else if (newMaxValue > 0 && settings.startValue < 0) {
-//         setError({...error, startValue: true})
-//         setValue("start value should be positive")
-//         setSettings({...settings, maxValue: newMaxValue})
-//         setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
-// // common case
-//       } else if (newMaxValue === 0 && settings.startValue < 0 || newMaxValue === 0 && settings.startValue > 0) {
-//         setError({...error, startValue: true})
-//         setValue("max value can't be equal 0")
-//         setSettings({...settings, maxValue: newMaxValue})
-//         setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
-//
-//       } else if (newMaxValue < 0 && settings.startValue < 0) {
-//         setError({...error, startValue: true, maxStartValues: true})
-//         setValue("max and start values should be positive")
-//         setSettings({...settings, maxValue: newMaxValue})
-//         setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
-//
-//       } else if (newMaxValue <= settings.startValue || (newMaxValue < 0 && settings.startValue < 0)) {
-//         setError({...error, maxStartValues: true})
-//         setValue("max value should be greater than start value")
-//         setSettings({...settings, maxValue: newMaxValue})
-//         setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
-//
-//       } else if (newMaxValue >= 255 && settings.startValue === 255) {
-//         setError({...error, maxStartValues: true})
-//         setValue("max and start values shouldn't be greater or equal 255")
-//         setSettings({...settings, maxValue: newMaxValue})
-//         setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
-//
-//       } else if (newMaxValue >= 255 && settings.startValue < 255) {
-//         setError({...error, maxValue: true})
-//         setValue("max value shouldn't be greater or equal 255")
-//         setSettings({...settings, maxValue: newMaxValue})
-//         setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
-//
-      } else if (Number.isInteger(newMaxValue)) {
-        dispatch(SetDisabledAC({resButton: true, setButton: false, incButton: true, timerButton: true}))
-
+      } else if (newMaxValue > 0 && settings.startValue < 0) {
+        dispatch(SetErrorAC("start values should be positive"))
         dispatch(SetSettingsAC({...settings, maxValue: newMaxValue}))
+        dispatch(SetDisabledAC({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true}))
+
+      } else if (newMaxValue > 0 && settings.startValue < 0) {
+        dispatch(SetErrorAC("start value should be positive"))
+        dispatch(SetSettingsAC({...settings, maxValue: newMaxValue}))
+        dispatch(SetDisabledAC({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true}))
+
+      } else if (newMaxValue === 0) {
+        dispatch(SetErrorAC("max value can't be equal 0"))
+        dispatch(SetSettingsAC({...settings, maxValue: newMaxValue}))
+        dispatch(SetDisabledAC({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true}))
+
+      } else if (newMaxValue < 0 && settings.startValue < 0) {
+        dispatch(SetErrorAC("max and start values should be positive"))
+        dispatch(SetSettingsAC({...settings, maxValue: newMaxValue}))
+        dispatch(SetDisabledAC({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true}))
+
+      } else if (newMaxValue <= settings.startValue || (newMaxValue < 0 && settings.startValue < 0)) {
+        dispatch(SetErrorAC("max value should be greater than start value"))
+        dispatch(SetSettingsAC({...settings, maxValue: newMaxValue}))
+        dispatch(SetDisabledAC({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true}))
+
+      } else if (newMaxValue >= 255 && settings.startValue === 255) {
+        dispatch(SetErrorAC("max and start values shouldn't be greater or equal 255"))
+        dispatch(SetSettingsAC({...settings, maxValue: newMaxValue}))
+        dispatch(SetDisabledAC({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true}))
+
+      } else if (newMaxValue >= 255 && settings.startValue < 255) {
+        dispatch(SetErrorAC("max value shouldn't be greater or equal 255"))
+        dispatch(SetSettingsAC({...settings, maxValue: newMaxValue}))
+        dispatch(SetDisabledAC({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true}))
+
+      } else if (Number.isInteger(newMaxValue)) {
         dispatch(SetErrorAC("enter values and press 'set'"))
+        dispatch(SetSettingsAC({...settings, maxValue: newMaxValue}))
+        dispatch(SetDisabledAC({...disabled, resButton: true, setButton: false, incButton: true, timerButton: true}))
+
+      } else {
+        dispatch(SetErrorAC("max value should be of type 'number'"))
+        dispatch(SetSettingsAC({...settings, maxValue: newMaxValue}))
+        dispatch(SetDisabledAC({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true}))
       }
-//     } else {
-//       setError({...error, maxValue: true})
-//       setValue("max value should be of type 'number'")
-//       setSettings({...settings, maxValue: newMaxValue})
-//       setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
     }
   }
   const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newStartValue = e.currentTarget.valueAsNumber;
 
-    // if (!isNaN(newStartValue) && settings.maxValue || !isNaN(newStartValue) && !isNaN(settings.maxValue)) {
-    //   if (newStartValue < 0 && settings.maxValue < 0) {
-    //     setSettings({...settings, startValue: newStartValue})
-    //     setError({...error, maxStartValues: true})
-    //     setValue("max and start values should be positive")
-    //     setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
-    //
-    //   } else if (newStartValue < 0) {
-    //     setSettings({...settings, startValue: newStartValue})
-    //     setError({...error, startValue: true})
-    //     setValue("start value should be equal 0 or positive")
-    //     setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
-    //
-    //   } else if (newStartValue === 0 && settings.maxValue === 5) {
-    //     setSettings({...settings, startValue: newStartValue})
-    //     setValue(newStartValue)
-    //     setError({...error, startValue: false})
-    //     setDisabled({...disabled, resButton: true, setButton: false, incButton: true})
-    //
-    //   } else if (newStartValue > settings.maxValue) {
-    //     setError({...error, maxStartValues: true})
-    //     setValue("start value shouldn't be greater than max value")
-    //     setSettings({...settings, startValue: newStartValue})
-    //     setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
-    //
-    //   } else if (newStartValue === settings.maxValue) {
-    //     setError({...error, maxStartValues: true})
-    //     setValue("start value shouldn't be equal max value")
-    //     setSettings({...settings, startValue: newStartValue})
-    //     setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
-    //
-    //   } else if (newStartValue >= 255 && settings.maxValue === 255) {
-    //     setError({...error, maxStartValues: true})
-    //     setValue("max and start values shouldn't be greater or equal 255")
-    //     setSettings({...settings, maxValue: newStartValue})
-    //     setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
-    //
-    //   } else if (Number.isInteger(newStartValue)) {
-    //     setDisabled({...disabled, resButton: true, setButton: false, incButton: true, timerButton: true})
-    //     setError({...error, maxStartValues: false, startValue: false, maxValue: false})
-    //     setSettings({...settings, startValue: newStartValue})
-    //     setValue("enter values and press 'set'")
-    //   }
-    // } else {
-    //   setError({...error, startValue: true})
-    //   setValue("start value should be of type 'number'")
-    //   setSettings({...settings, startValue: newStartValue})
-    //   setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
-    // }
+    if (!isNaN(newStartValue) && settings.maxValue || !isNaN(newStartValue) && !isNaN(settings.maxValue)) {
+      if (newStartValue < 0 && settings.maxValue < 0) {
+        dispatch(SetSettingsAC({...settings, startValue: newStartValue}))
+        dispatch(SetErrorAC("max and start values should be positive"))
+        dispatch(SetDisabledAC({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true}))
+
+      } else if (newStartValue < 0) {
+        dispatch(SetSettingsAC({...settings, startValue: newStartValue}))
+        dispatch(SetErrorAC("start value should be equal 0 or positive"))
+        dispatch(SetDisabledAC({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true}))
+
+      } else if (newStartValue > settings.maxValue) {
+        dispatch(SetErrorAC("start value shouldn't be greater than max value"))
+        dispatch(SetSettingsAC({...settings, startValue: newStartValue}))
+        dispatch(SetDisabledAC({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true}))
+
+      } else if (newStartValue === settings.maxValue) {
+        dispatch(SetErrorAC("start value shouldn't be equal max value"))
+        dispatch(SetSettingsAC({...settings, startValue: newStartValue}))
+        dispatch(SetDisabledAC({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true}))
+
+      } else if (newStartValue >= 255 && settings.maxValue === 255) {
+        dispatch(SetErrorAC("max and start values shouldn't be greater or equal 255"))
+        dispatch(SetSettingsAC({...settings, maxValue: newStartValue}))
+        dispatch(SetDisabledAC({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true}))
+
+      } else if (Number.isInteger(newStartValue)) {
+        dispatch(SetErrorAC("enter values and press 'set'"))
+        dispatch(SetDisabledAC({...disabled, resButton: true, setButton: false, incButton: true, timerButton: true}))
+        dispatch(SetSettingsAC({...settings, startValue: newStartValue}))
+      }
+    } else {
+      dispatch(SetErrorAC("start value should be of type 'number'"))
+      dispatch(SetSettingsAC({...settings, startValue: newStartValue}))
+      dispatch(SetDisabledAC({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true}))
+    }
   }
 
-  const setValuesHandler = (newValues: { maxValue: number, startValue: number }) => {
-    // if (newValues.maxValue > 0 && newValues.startValue >= 0 && newValues.maxValue > newValues.startValue) {
-    //   setSettings(newValues)
-    //   setValue(newValues.startValue)
-    //   setDisabled({...disabled, resButton: true, setButton: true, incButton: false, timerButton: false})
-    //   localStorage.setItem('settings-values', JSON.stringify(newValues))
-    //   localStorage.setItem('inc-value', JSON.stringify(newValues.startValue))
-    // }
+  const setFinalSettings = (newValues: { maxValue: number, startValue: number }) => {
+    if (newValues.maxValue > 0 && newValues.startValue >= 0 && newValues.maxValue > newValues.startValue) {
+      dispatch(SetFinalSettingsAC(newValues))
+      dispatch(ResHandlerAC())
+      dispatch(SetErrorAC(""))
+      dispatch(SetDisabledAC({resButton: true, setButton: true, incButton: false, timerButton: false}))
+      localStorage.setItem('settings-values', JSON.stringify(newValues))
+      localStorage.setItem('inc-value', JSON.stringify(newValues.startValue))
+    }
   }
 
   const timerHandler = () => {
-    // setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
+    dispatch(SetDisabledAC({resButton: true, setButton: true, incButton: true, timerButton: true}))
     setCounting(true)
   }
-
-  useEffect(() => {
-    let prevValue = localStorage.getItem('inc-value')
-    if (prevValue) {
-      let newValue = JSON.parse(prevValue)
-      // setValue(newValue)
-    }
-  }, [])
 
   useEffect(() => {
     let prevSettings = localStorage.getItem('settings-values')
     if (prevSettings) {
       let newSettings = JSON.parse(prevSettings)
-      // setSettings(newSettings)
+      dispatch(SetSettingsAC(newSettings))
+      dispatch(ResHandlerAC())
+    }
+    let prevValue = localStorage.getItem('inc-value')
+    if (prevValue) {
+
     }
   }, [])
 
@@ -222,7 +188,7 @@ function SimpleCounter(props: App0Type) {
         incHandler()
         localStorage.setItem('count-value', JSON.stringify(+value + 1))
       }, 1000)
-      // setDisabled({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true})
+      dispatch(SetDisabledAC({...disabled, resButton: true, setButton: true, incButton: true, timerButton: true}))
 
       setTimeout(() => {
         clearInterval(timer)
@@ -245,14 +211,14 @@ function SimpleCounter(props: App0Type) {
               resetCallback={resetHandler}
               timerCallback={timerHandler}
               disabled={disabled}
-              // error={error}
+              error={error}
             />
             <Settings
               settings={settings}
-              setValuesHandler={setValuesHandler}
+              setValuesHandler={setFinalSettings}
               onChangeMaxValueHandler={onChangeMaxValueHandler}
               onChangeStartValueHandler={onChangeStartValueHandler}
-              // error={error}
+              error={error}
               disabled={disabled}
             />
           </div>
