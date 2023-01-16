@@ -1,11 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import s from "./Telegram.module.css";
 import css from "../../App.module.css";
 import {RightSide} from "./items/RightSide";
 import {LeftSide} from "./items/LeftSide";
-import {AddMessageAC, DeleteMessageAC} from "../../store/telegram/messages-reducer";
-import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../store/telegram/store";
 
 export type TelegramType = {
   name: string
@@ -26,11 +23,9 @@ export const Telegram: React.FC<TelegramType> = ({
         <div className={css.app}>
           <h1 className={css.title}>{name}</h1>
           <div className={s.telegramWrapper}>
-            {/*<LeftSide*/}
-            {/*  userName={"Nataly"}*/}
-            {/*  messages={messages}*/}
-            {/*  addMessage={addMessage}*/}
-            {/*/>*/}
+            <LeftSide
+              userName={"Nataly"}
+            />
             <RightSide
               userName={"Igor"}
             />

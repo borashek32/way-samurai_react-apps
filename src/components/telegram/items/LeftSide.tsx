@@ -1,26 +1,56 @@
 import s from "../Telegram.module.css";
 import {MessageType} from "../Telegram";
-import {ChangeEvent, useState, FocusEvent} from "react";
+import {useState} from "react";
 import {Avatar, Button, createTheme, TextField, ThemeProvider} from "@mui/material";
+import DeleteRoundedIcon from '@mui/icons-material/DeleteOutlined';
 import * as React from "react";
 import {green, pink} from "@mui/material/colors";
-import SendIcon from '@mui/icons-material/Send';
+import SendIcon from "@mui/icons-material/Send";
+import {AddMessageAC, DeleteMessageAC} from "../../../store/telegram/messages-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../../store/telegram/store";
 
 
 export type RightSideType = {
-  messages: MessageType[]
-  addMessage: (value: string, userName: string) => void
-  onChangeTextArea: (value: string, userName: string) => void
   userName: string
 }
 
 export const LeftSide: React.FC<RightSideType> = ({
-                                                    messages,
-                                                    addMessage,
-                                                    userName,
-                                                  }) => {
+                                                     userName,
+                                                   }) => {
+
+  const messages = useSelector<AppRootStateType, MessageType[]>(state => state.messages)
+  const dispatch = useDispatch()
+
+  const addMessage = (value: string, userName: string) => dispatch(AddMessageAC(value, userName))
+  const deleteMessage = (message: MessageType, userName: string) => dispatch(DeleteMessageAC(message, userName))
+
   const [value, setValue] = useState('')
   const [error, setError] = useState('')
+
+  const onChangeHandler = (value: string) => {
+    setValue(value)
+    setError('')
+  }
+  const onFocusHandler = () => setError('')
+  const addMessageHandler = (value: string, userName: string) => {
+    if (value.trim() === '') {
+      setError("Text field is empty")
+    } else {
+      addMessage(value.trim(), userName)
+    }
+    setValue("")
+  }
+
+  const addMessageCallback = (value: string, userName: string) => {
+    addMessageHandler(value, userName)
+  }
+
+  const onEnterAddItem = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      addMessageCallback(value, userName)
+    }
+  }
 
   const m = messages.map(m => {
     return (
@@ -47,6 +77,14 @@ export const LeftSide: React.FC<RightSideType> = ({
           </div>
           <div className={s.messageText}>
             {m.value}
+            {
+              m.userName === "Nataly"
+                ? <DeleteRoundedIcon
+                  sx={{color: green[700], fontSize: 14, cursor: 'pointer'}}
+                  onClick={() => deleteMessage(m, userName)}
+                />
+                : ""
+            }
           </div>
         </div>
         <p className={s.messageTime + ' '
@@ -56,25 +94,6 @@ export const LeftSide: React.FC<RightSideType> = ({
       </div>
     )
   })
-
-  const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.currentTarget.value)
-    setError('')
-  }
-  const onEnterAddItem = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      addMessageCallback()
-    }
-  }
-  const onFocusCallback = (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => setError('')
-  const addMessageCallback = () => {
-    if (value.trim() === '') {
-      setError("Text field is empty")
-    } else {
-      addMessage(value.trim(), userName)
-    }
-    setValue("")
-  }
 
   const theme = createTheme({
     components: {
@@ -94,7 +113,7 @@ export const LeftSide: React.FC<RightSideType> = ({
             }
           },
         },
-      },
+      }
     },
   })
 
@@ -102,7 +121,7 @@ export const LeftSide: React.FC<RightSideType> = ({
     <ThemeProvider theme={theme}>
       <div className={s.container}>
         <div className={s.sideContainer}>
-          <p className={s.titleLeft}>{userName}</p>
+          <p className={s.titleRight}>{userName}</p>
           <div className={s.messages}>
             {m}
           </div>
@@ -120,8 +139,8 @@ export const LeftSide: React.FC<RightSideType> = ({
               margin="none"
               value={value}
               onKeyDown={onEnterAddItem}
-              onChange={onChangeCallback}
-              onFocus={onFocusCallback}
+              onChange={(e) => onChangeHandler(e.currentTarget.value)}
+              onFocus={onFocusHandler}
               label="Message"
               sx={{
                 width: "100%", color: "white",
@@ -136,7 +155,7 @@ export const LeftSide: React.FC<RightSideType> = ({
             />
             <Button
               variant="outlined"
-              onClick={addMessageCallback}
+              onClick={() => addMessageCallback(value, userName)}
               value={value}
               sx={{
                 minWidth: '40px',
