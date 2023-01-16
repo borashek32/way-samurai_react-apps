@@ -1,45 +1,50 @@
 import s from "../Telegram.module.css";
 import {MessageType} from "../Telegram";
-import {ChangeEvent, FocusEvent} from "react";
+import {ChangeEvent, FocusEvent, useState} from "react";
 import {Avatar, Button, createTheme, TextField, ThemeProvider} from "@mui/material";
 import DeleteRoundedIcon from '@mui/icons-material/DeleteOutlined';
 import * as React from "react";
 import {green, pink} from "@mui/material/colors";
 import SendIcon from "@mui/icons-material/Send";
+import {AddMessageAC, DeleteMessageAC} from "../../../store/telegram/messages-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../../store/telegram/store";
 
 
 export type RightSideType = {
-  error: string
-  value: string
-  messages: MessageType[]
-  onChangeHandler: (value: string) => void
-  onFocusHandler: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-  addMessageHandler: (value: string, userName: string, time: Date) => void
-  deleteMessage: (m: MessageType, userName: string) => void
+  // messages: MessageType[]
   userName: string
 }
 
 export const RightSide: React.FC<RightSideType> = ({
-                                                     value,
-                                                     error,
-                                                     messages,
-                                                     onChangeHandler,
-                                                     onFocusHandler,
-                                                     addMessageHandler,
-                                                     deleteMessage,
                                                      userName,
                                                    }) => {
 
+  const messages = useSelector<AppRootStateType, MessageType[]>(state => state.messages)
+  const dispatch = useDispatch()
 
-  const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => onChangeHandler(e.currentTarget.value)
+  const addMessage = (value: string, userName: string) => dispatch(AddMessageAC(value, userName))
+  const deleteMessage = (message: MessageType, userName: string) => dispatch(DeleteMessageAC(message, userName))
 
-  const onFocusCallback = (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => onFocusHandler(e)
+  const [value, setValue] = useState('')
+  const [error, setError] = useState('')
 
-  const deleteMessageCallback = (m: MessageType, userName: string) => deleteMessage(m, userName)
+  const onChangeHandler = (value: string) => {
+    setValue(value)
+    setError('')
+  }
+  const onFocusHandler = () => setError('')
+  const addMessageHandler = (value: string, userName: string) => {
+    if (value.trim() === '') {
+      setError("Text field is empty")
+    } else {
+      addMessage(value.trim(), userName)
+    }
+    setValue("")
+  }
 
   const addMessageCallback = (value: string, userName: string) => {
-    let date = new Date
-    addMessageHandler(value, userName, date)
+    addMessageHandler(value, userName)
   }
 
   const onEnterAddItem = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -72,16 +77,20 @@ export const RightSide: React.FC<RightSideType> = ({
             }
           </div>
           <div className={s.messageText}>
-            {m.text}
-            <DeleteRoundedIcon
-              sx={{ color: green[700], fontSize: 14, cursor: 'pointer' }}
-              onClick={() => deleteMessageCallback(m, userName)}
-            />
+            {m.value}
+            {
+              m.userName === "Igor"
+              ? <DeleteRoundedIcon
+                  sx={{color: green[700], fontSize: 14, cursor: 'pointer'}}
+                  onClick={() => deleteMessage(m, userName)}
+                />
+              : ""
+            }
           </div>
         </div>
         <p className={s.messageTime + ' '
           + (m.userName === 'Igor' ? s.messageTimeEnd : '')}>
-          {m.time}
+          10:30
         </p>
       </div>
     )
@@ -131,8 +140,8 @@ export const RightSide: React.FC<RightSideType> = ({
               margin="none"
               value={value}
               onKeyDown={onEnterAddItem}
-              onChange={onChangeCallback}
-              onFocus={onFocusCallback}
+              onChange={(e) => onChangeHandler(e.currentTarget.value)}
+              onFocus={onFocusHandler}
               label="Message"
               sx={{
                 width: "100%", color: "white",

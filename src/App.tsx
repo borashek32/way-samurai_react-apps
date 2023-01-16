@@ -1,9 +1,7 @@
 import React from 'react';
-import css from './App.module.css';
 import {Route, Routes} from "react-router-dom";
 import SimpleCounter from "./components/counters/simpleCounter/SimpleCounter";
 import {Telegram} from "./components/telegram/Telegram";
-import {Nav} from "./components/Nav";
 import {Main} from "./components/blocks/Main";
 
 function App() {

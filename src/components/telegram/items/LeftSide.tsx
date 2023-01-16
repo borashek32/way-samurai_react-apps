@@ -46,12 +46,12 @@ export const LeftSide: React.FC<RightSideType> = ({
             }
           </div>
           <div className={s.messageText}>
-            {m.text}
+            {m.value}
           </div>
         </div>
         <p className={s.messageTime + ' '
           + (m.userName === 'Nataly' ? s.messageTimeEnd : '')}>
-          {m.time}
+          10:30
         </p>
       </div>
     )
