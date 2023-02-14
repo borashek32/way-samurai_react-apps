@@ -13,7 +13,7 @@ const initialState = {
   disabled: {incButton: false, resButton: true, setButton: true, timerButton: false},
   settings: {maxValue: 5, startValue: 0},
   counting: false,
-  message: ""
+  message: "set values and press 'set'"
 }
 type InitialStateType = typeof initialState
 

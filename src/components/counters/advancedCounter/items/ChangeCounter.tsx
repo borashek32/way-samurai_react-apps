@@ -38,7 +38,7 @@ export const ChangeCounter = (props: ChangeCounterType) => {
   const timerCallback = () => props.timerCallback()
 
   const onOpenSetCallback = () => props.onOpenSetCallback
-  console.log(props.message)
+
   return (
     <Card sx={{
       backgroundColor: '#0A1929',

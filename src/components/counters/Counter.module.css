@@ -68,18 +68,6 @@
     transition: all .3s ease;
 }
 
-.counter {
-    font-size: 22px;
-    color: #fff;
-    padding: 0;
-    margin: 0;
-}
-
-.counterBold {
-    font-size: 50px;
-    font-weight: 900;
-}
-
 .disabledButton {
     background-color: #ffffff;
     color: rgb(10, 25, 41);
@@ -99,18 +87,38 @@
     border: 1px solid red;
 }
 
-.c.disabledCounterRed {
+
+
+.counter {
     font-size: 22px;
-    color: red;
-    font-weight: 400;
+    color: #fff;
+    padding: 0;
+    margin: 0;
 }
 
-.disabledCounter {
-    color: red;
-    text-align: center;
+.counterBold {
     font-size: 50px;
     font-weight: 900;
 }
+
+.disabledCounter {
+    font-size: 50px;
+    color: red;
+    font-weight: 900;
+    text-align: center;
+}
+
+.counterError {
+    font-size: 22px;
+    color: red;
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+}
+
+
+
+
 
 .counterSetValues {
     color: #000;

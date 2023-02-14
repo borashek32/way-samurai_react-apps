@@ -6,7 +6,7 @@ import Card from '@mui/material/Card';
 
 type ChangeCounterType = {
   value?: number
-  // error?: string
+  error?: string
   message?: string
   settings: SettingsType
   disabled: DisabledType
@@ -16,12 +16,12 @@ type ChangeCounterType = {
 }
 
 export const ChangeCounter = (props: ChangeCounterType) => {
-  console.log(props.message)
+
   const counterClassName = c.counter
     + ' ' + (props.message === "set values and press 'set'" ? c.counterSetMessage : '')
-    + ' ' + (props.value || props.value === 0 ? c.disabledCounter : '')
-    + ' ' + (props.message ? c.disabledCounterRed : '')
-    + ' ' + (props.value === props.settings.maxValue ? c.disabledCounterRed : '')
+    + ' ' + (props.value ? c.counterBold : '')
+    + ' ' + (props.message ? c.counterError : '')
+    + ' ' + (props.value === props.settings.maxValue ? c.disabledCounter : '')
 
   const buttonIncClassName = c.button
     + (props.disabled.incButton ? ' ' + c.disabledButton : '')
@@ -46,7 +46,7 @@ export const ChangeCounter = (props: ChangeCounterType) => {
       <div className={c.counterSubWrapper}>
         <p className={counterClassName}>
           {
-            props.message ? props.message : props.value
+            props.message || props.value === 0 ? props.message : props.value
           }
         </p>
       </div>
