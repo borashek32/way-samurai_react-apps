@@ -51,9 +51,10 @@
     align-items: start;
     justify-content: center;
     color: #fff;
-    padding: 20px;
+    padding: 10px;
+    line-height: 23px;
 }
-@media (max-width: 1399px) {
+@media (max-width: 1344px) {
     .blockFlex {
         flex-wrap: wrap;
     }
@@ -68,10 +69,28 @@
     color: #fff;
     border: 2px solid #76ecfa;
     padding: 20px;
-    flex: 1 1 auto;
-    min-height: 100px;
-    min-width: 170px;
-    width: 200px;
+    flex: 1 0 auto;
+    min-height: 410px;
+    width: 250px;
+}
+@media (max-width: 1344px) {
+    .blockCard {
+        min-height: auto;
+    }
+}
+
+.blockSkillCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+    color: #fff;
+    border: 2px solid #76ecfa;
+    padding: 20px;
+    flex: 1 0 auto;
+    height: 250px;
+    width: 250px;
 }
 .blockCardPicture {
     height: 120px;
@@ -83,8 +102,13 @@
 .blockCardsSections {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
 }
+
+.blockCardsSections p {
+    flex: 1 1 auto;
+}
+
 .blockCardsSectionsHeader {
     text-align: center;
     color: #fff;
@@ -97,8 +121,8 @@
 /*-----------------------------------------------Logos----------------------------------------------*/
 /*react logo*/
 .blockLogoReact {
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
     pointer-events: none;
     animation: App-logo-spin infinite 20s linear;
 }
@@ -114,8 +138,8 @@
 /**/
 /*redux logo*/
 .blockLogoRedux {
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
     pointer-events: none;
     animation: App-logo-float infinite 3s ease-in-out;
 }
