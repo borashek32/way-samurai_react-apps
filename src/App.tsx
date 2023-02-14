@@ -1,8 +1,8 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
-import SimpleCounter from "./components/counters/simpleCounter/SimpleCounter";
 import {Telegram} from "./components/telegram/Telegram";
 import {Main} from "./components/blocks/Main";
+import {Counters} from "./components/counters/Counters";
 
 function App() {
   return (
@@ -14,9 +14,9 @@ function App() {
           }
         />
         <Route
-          path="/way-samurai_react-apps/counters"
+          path="/way-samurai_react-apps/*"
           element={
-            <SimpleCounter name={"Simple counter"}/>
+            <Counters />
           }
         />
         <Route

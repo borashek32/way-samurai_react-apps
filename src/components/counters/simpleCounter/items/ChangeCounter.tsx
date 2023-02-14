@@ -5,22 +5,23 @@ import {DisabledType, ErrorType, SettingsType} from "../SimpleCounter";
 import Card from '@mui/material/Card';
 
 type ChangeCounterType = {
-  value?: number | string
+  value?: number
+  // error?: string
+  message?: string
   settings: SettingsType
+  disabled: DisabledType
   incCallback: () => void
   resetCallback: () => void
-  timerCallback: () => void
-  disabled: DisabledType
-  error?: string
+  // timerCallback: () => void
 }
 
 export const ChangeCounter = (props: ChangeCounterType) => {
-
+  console.log(props.message)
   const counterClassName = c.counter
-    + (props.error
-      || props.settings.maxValue === props.value
-        ? ' ' + c.disabledCounter : '')
-    + ' ' + (typeof props.value  === 'number' ? c.counterBold : '')
+    + ' ' + (props.message === "set values and press 'set'" ? c.counterSetMessage : '')
+    + ' ' + (props.value || props.value === 0 ? c.disabledCounter : '')
+    + ' ' + (props.message ? c.disabledCounterRed : '')
+    + ' ' + (props.value === props.settings.maxValue ? c.disabledCounterRed : '')
 
   const buttonIncClassName = c.button
     + (props.disabled.incButton ? ' ' + c.disabledButton : '')
@@ -28,7 +29,7 @@ export const ChangeCounter = (props: ChangeCounterType) => {
   const buttonResClassName = c.button
     + (props.disabled.resButton ? ' ' + c.disabledButton : '')
 
-  const timerCallback = () => props.timerCallback()
+  // const timerCallback = () => props.timerCallback()
 
   return (
     <Card sx={{
@@ -43,7 +44,11 @@ export const ChangeCounter = (props: ChangeCounterType) => {
       height: 220
     }}>
       <div className={c.counterSubWrapper}>
-        <p className={counterClassName}>{props.error ? props.error : props.value}</p>
+        <p className={counterClassName}>
+          {
+            props.message ? props.message : props.value
+          }
+        </p>
       </div>
         <div className={c.counterSubWrapper}>
           <div className={c.buttonsWrapper}>
@@ -61,13 +66,13 @@ export const ChangeCounter = (props: ChangeCounterType) => {
               value={props.value}
               disabled={props.disabled.resButton}
             />
-            <Button
-              name={"timer"}
-              class={buttonIncClassName}
-              callback={timerCallback}
-              value={props.value}
-              disabled={props.disabled.timerButton}
-            />
+            {/*<Button*/}
+            {/*  name={"timer"}*/}
+            {/*  class={buttonIncClassName}*/}
+            {/*  callback={timerCallback}*/}
+            {/*  value={props.value}*/}
+            {/*  disabled={props.disabled.timerButton}*/}
+            {/*/>*/}
           </div>
         </div>
     </Card>

@@ -18,6 +18,7 @@ const initialState: MessageType[] = [
 export const telegramReducer = (state = initialState, action: ActionType): MessageType[] => {
   switch (action.type) {
     case ADD_MESSAGE: {
+      console.log("telegram")
       return [
         ...state, {_id: v1(), userName: action.userName, value: action.value}
       ]

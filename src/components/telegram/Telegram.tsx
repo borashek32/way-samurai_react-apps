@@ -13,9 +13,7 @@ export type MessageType = {
   value: string
 }
 
-export const Telegram: React.FC<TelegramType> = ({
-                                                   name,
-                                                 }) => {
+export const Telegram: React.FC<TelegramType> = ({name}) => {
 
   return (
     <div className={s.mainContainer}>

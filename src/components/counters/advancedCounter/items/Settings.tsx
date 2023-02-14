@@ -71,7 +71,7 @@ export const Settings = (props: PropsType) => {
         </div>
       </div>
       <div className={c.counterSubWrapper}>
-        <NavLink to="/way-samurai_apps/advanced-counter/">
+        <NavLink to="/way-samurai_react-apps/counters">
           <Button
             disabled={props.disabled?.setButton}
             name={'set'}

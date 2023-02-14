@@ -38,7 +38,7 @@ export const ChangeCounter = (props: ChangeCounterType) => {
   const timerCallback = () => props.timerCallback()
 
   const onOpenSetCallback = () => props.onOpenSetCallback
-
+  console.log(props.message)
   return (
     <Card sx={{
       backgroundColor: '#0A1929',
@@ -75,14 +75,14 @@ export const ChangeCounter = (props: ChangeCounterType) => {
             value={props.value}
             disabled={props.disabled.resButton}
           />
-          <Button
-            name={"timer"}
-            class={buttonIncClassName}
-            callback={timerCallback}
-            value={props.value}
-            disabled={props.disabled.timerButton}
-          />
-          <NavLink to="/way-samurai_apps/advanced-counter/settings" >
+          {/*<Button*/}
+          {/*  name={"timer"}*/}
+          {/*  class={buttonIncClassName}*/}
+          {/*  callback={timerCallback}*/}
+          {/*  value={props.value}*/}
+          {/*  disabled={props.disabled.timerButton}*/}
+          {/*/>*/}
+          <NavLink to="/way-samurai_react-apps/counters/advanced-counter/settings" >
             <Button
               name={'set'}
               class={buttonSetClassName}

@@ -6,25 +6,23 @@ import {DisabledType, SettingsType} from "../SimpleCounter";
 import Card from "@mui/material/Card";
 
 type PropsType = {
+  // message?: string
+  error?: string
+  disabled?: DisabledType
   settings: SettingsType
   setValuesHandler: (newValue: { maxValue: number, startValue: number }) => void
   onChangeMaxValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
   onChangeStartValueHandler: (e: ChangeEvent<HTMLInputElement>) => void
-  error?: string
-  disabled?: DisabledType
 }
 
 export const Settings = (props: PropsType) => {
-
-  const onChangeMaxValueCallback = (e: ChangeEvent<HTMLInputElement>) => {
-    props.onChangeMaxValueHandler(e)
-    console.log(e.currentTarget.valueAsNumber)
-  }
+  console.log(props.error)
+  const onChangeMaxValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeMaxValueHandler(e)
   const onChangeStartValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeStartValueHandler(e)
 
-  const buttonClassName = c.button + (props.disabled?.setButton ? ' ' + c.disabledButton : '')
-  const inputMaxClassName = c.input + (props.error ? ' ' + c.erroredInput : '')
-  const inputStartClassName = c.input + (props.error ? ' ' + c.erroredInput : '')
+  const buttonClassName = c.button + ' ' +  (props.disabled?.setButton ? c.disabledButton : '')
+  const inputClassName = c.input + ' ' + (props.error ? c.erroredInput : '')
+    // + ' ' + (props.message ? c.counterSetValues : '')
 
   return (
     <Card sx={{
@@ -42,7 +40,7 @@ export const Settings = (props: PropsType) => {
         <div className={c.inputWrapper}>
           <label className={c.label}>max value</label>
           <Input
-            class={inputMaxClassName}
+            class={inputClassName}
             type="number"
             value={props.settings?.maxValue}
             onChangeCallback={onChangeMaxValueCallback}
@@ -52,7 +50,7 @@ export const Settings = (props: PropsType) => {
         <div className={c.inputWrapper}>
           <label className={c.label}>start value</label>
           <Input
-            class={inputStartClassName}
+            class={inputClassName}
             type="number"
             value={props.settings?.startValue}
             onChangeCallback={onChangeStartValueCallback}
