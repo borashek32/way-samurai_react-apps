@@ -15,7 +15,7 @@ export const MyApps: React.FC<MyAppsType> = ({
         <div className={s.blockCard}>
           <div className={s.blockCardsSections}>
             <NavLink to={"/way-samurai_react-apps/telegram"}>
-              <h4 className={s.blockCardsSectionsHeader}>Telegram clone</h4>
+              <h4 className={s.blockCardsSectionsHeader}>Messenger</h4>
               <img src={require("./tl.jpg")} alt="telegram" className={s.blockCardPicture}/>
             </NavLink>
           </div>
