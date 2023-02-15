@@ -26,9 +26,9 @@ export const Main: React.FC<MainType> = ({
           <AboutMe name={"About Me"}/>
           <MyApps name={"My projects"}/>
           <MySkills name={"My Skills"}/>
-        </div>
-        <HireMe name={"I consider a remote work"}/>
-        <div className={styles.mainContainer}>
+        {/*</div>*/}
+        {/*<HireMe name={"I consider a remote work"}/>*/}
+        {/*<div className={styles.mainContainer}>*/}
           <Contact name={"Contact Me"}/>
         </div>
         <Footer/>

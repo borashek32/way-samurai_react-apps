@@ -10,19 +10,19 @@ export const MyApps: React.FC<MyAppsType> = ({
                                              }) => {
   return (
     <div className={s.block}>
-      <h1 className={s.blockTitle}>{name}</h1>
+      <h2 className={s.blockTitle}>{name}</h2>
       <div className={s.blockFlex}>
-        {/*<div className={s.blockCard}>*/}
-        {/*  <div className={s.blockCardsSections}>*/}
-        {/*    <NavLink to={"/way-samurai_react-apps/telegram"}>*/}
-        {/*      <h4 className={s.blockCardsSectionsHeader}>Telegram clone</h4>*/}
-        {/*      <img src={require("./tl.jpg")} alt="telegram" className={s.blockCardPicture}/>*/}
-        {/*    </NavLink>*/}
-        {/*  </div>*/}
-        {/*  <div className={s.blockCardsSections}>*/}
-        {/*    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius error et ex facere id illo, nulla quo recusandae sit voluptatem?</p>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
+        <div className={s.blockCard}>
+          <div className={s.blockCardsSections}>
+            <NavLink to={"/way-samurai_react-apps/telegram"}>
+              <h4 className={s.blockCardsSectionsHeader}>Telegram clone</h4>
+              <img src={require("./tl.jpg")} alt="telegram" className={s.blockCardPicture}/>
+            </NavLink>
+          </div>
+          <div className={s.blockCardsSections}>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius error et ex facere id illo, nulla quo recusandae sit voluptatem?</p>
+          </div>
+        </div>
         <div className={s.blockCard}>
           <div className={s.blockCardsSections}>
             <a href={"https://borashek32.github.io/way-samurai_todolist-thursday/"}>
@@ -62,18 +62,18 @@ export const MyApps: React.FC<MyAppsType> = ({
               thoughts and ideas by writing a new post.</p>
           </div>
         </div>
-        {/*<div className={s.blockCard}>*/}
-        {/*  <div className={s.blockCardsSections}>*/}
-        {/*    <a href="https://borashek32.github.io/way-samurai_hw-autotests">*/}
-        {/*      <h4 className={s.blockCardsSectionsHeader}>Separate Blocks</h4>*/}
-        {/*      <img src={require("./separate-blocks.jpg")} alt="separate-blocks" className={s.blockCardPicture}/>*/}
-        {/*    </a>*/}
-        {/*  </div>*/}
-        {/*  <div className={s.blockCardsSections}>*/}
-        {/*    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius error et ex facere id illo, nulla quo*/}
-        {/*      recusandae sit voluptatem?</p>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
+        <div className={s.blockCard}>
+          <div className={s.blockCardsSections}>
+            <a href="https://borashek32.github.io/way-samurai_hw-autotests">
+              <h4 className={s.blockCardsSectionsHeader}>Separate Blocks</h4>
+              <img src={require("./separate-blocks.jpg")} alt="separate-blocks" className={s.blockCardPicture}/>
+            </a>
+          </div>
+          <div className={s.blockCardsSections}>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius error et ex facere id illo, nulla quo
+              recusandae sit voluptatem?</p>
+          </div>
+        </div>
       </div>
     </div>
   )

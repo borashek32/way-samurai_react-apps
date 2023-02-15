@@ -9,7 +9,6 @@
 
 .title {
     color: #76ecfa;
-    font-family: monospace;
     font-weight: 700;
     letter-spacing: .3rem;
     text-decoration: none;
@@ -21,15 +20,9 @@
 .block {
     margin-bottom: 100px;
 }
-.blockBorder {
-    border-top: 1px solid #76ecfa;
-    border-bottom: 1px solid #76ecfa;
-    padding: 40px;
-}
 
 .blockTitle {
     color: #fff;
-    font-family: monospace;
     font-weight: 800;
     letter-spacing: .3rem;
     text-decoration: none;
@@ -40,58 +33,56 @@
 .blockWrapper {
     padding: 20px;
     background-color: #0A1929FF;
-    border-radius: 20px;
     color: #fff;
-    border: 2px solid #76ecfa;
+    border: 1px solid #76ecfa;
+    max-width: 50rem;
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
+
+.blockAboutWrapper {
+    border: none;
+    justify-content: center;
+}
+
+@media (max-width: 1000px) {
+    .blockAboutWrapper {
+        flex-wrap: wrap;
+    }
+}
+
 /*----------------------------------------------Flex-container-------------------------------------------------*/
 .blockFlex {
     display: flex;
     gap: 20px;
-    align-items: start;
     justify-content: center;
     color: #fff;
     padding: 10px;
     line-height: 23px;
+    flex-wrap: wrap;
 }
-@media (max-width: 1344px) {
-    .blockFlex {
-        flex-wrap: wrap;
-    }
-}
+
 /*----------------------------------------------Skills-------------------------------------------------------*/
 .blockCard {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 20px;
-    border-radius: 10px;
     color: #fff;
-    border: 2px solid #76ecfa;
+    border: 1px solid #76ecfa;
     padding: 20px;
-    flex: 1 0 auto;
-    min-height: 410px;
+    flex: 1 1 auto;
     width: 250px;
+    min-height: 250px;
+    height: auto;
 }
+
 @media (max-width: 1344px) {
     .blockCard {
         min-height: auto;
     }
 }
 
-.blockSkillCard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    border-radius: 10px;
-    color: #fff;
-    border: 2px solid #76ecfa;
-    padding: 20px;
-    flex: 1 0 auto;
-    height: 250px;
-    width: 250px;
-}
 .blockCardPicture {
     height: 120px;
     width: 200px;
@@ -101,8 +92,9 @@
 
 .blockCardsSections {
     display: flex;
-    flex-direction: column;
-    gap: 14px;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .blockCardsSections p {
@@ -115,7 +107,6 @@
     font-weight: 600;
     margin-bottom: 15px;
     font-size: 20px;
-    font-family: monospace;
 }
 
 /*-----------------------------------------------Logos----------------------------------------------*/
@@ -123,8 +114,9 @@
 .blockLogoReact {
     width: 160px;
     height: 160px;
-    pointer-events: none;
+    /*pointer-events: none;*/
     animation: App-logo-spin infinite 20s linear;
+    transition: all .2s ease;
 }
 
 @keyframes App-logo-spin {
@@ -135,13 +127,18 @@
         transform: rotate(360deg);
     }
 }
+.blockLogoReact:hover {
+     width: 180px;
+     height: 180px;
+ }
 /**/
 /*redux logo*/
 .blockLogoRedux {
-    width: 160px;
-    height: 160px;
-    pointer-events: none;
+    width: 150px;
+    height: 150px;
+    /*pointer-events: none;*/
     animation: App-logo-float infinite 3s ease-in-out;
+    transition: all .2s ease;
 }
 @keyframes App-logo-float {
     0% {
@@ -153,6 +150,18 @@
     100% {
         transform: translateY(0px);
     }
+}
+.blockLogoRedux:hover {
+    width: 170px;
+    height: 170px;
+}
+/*-----------------------------------------------skills----------------------------------------------*/
+.blockCardsSectionsOtherSkills {
+    width: 50px;
+    transition: all .2s ease;
+}
+.blockCardsSectionsOtherSkills:hover {
+    width: 60px;
 }
 /**/
 

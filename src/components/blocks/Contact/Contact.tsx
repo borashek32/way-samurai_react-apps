@@ -13,7 +13,7 @@ export const Contact: React.FC<ContactType> = ({
 
   return (
       <div className={s.block}>
-        <h1 className={s.blockTitle}>{name}</h1>
+        <h2 className={s.blockTitle}>{name}</h2>
         <form action="#" className={s.blockWrapper}>
           <div className={s.formSize}>
             <Input

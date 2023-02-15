@@ -39,61 +39,61 @@ export const Nav = () => {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{display: "flex", justifyContent: 'space-between'}}>
-          <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              sx={{color: '#0A1929FF'}}
-            >
-              <MenuIcon/>
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: {xs: 'block', md: 'none'},
-              }}
-            >
-              <Button
-                sx={{my: 2, color: '#0A1929FF', display: 'block'}}
-              >
-                About
-              </Button>
-              <Button
-                sx={{my: 2, color: '#0A1929FF', display: 'block'}}
-              >
-                My Skills
-              </Button>
-              <Button
-                sx={{my: 2, color: '#0A1929FF', display: 'block'}}
-              >
-                My Apps
-              </Button>
-              <Button
-                sx={{my: 2, color: '#0A1929FF', display: 'block'}}
-              >
-                Hire Me
-              </Button>
-            </Menu>
-          </Box>
+          {/*<Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>*/}
+          {/*  <IconButton*/}
+          {/*    size="large"*/}
+          {/*    aria-label="account of current user"*/}
+          {/*    aria-controls="menu-appbar"*/}
+          {/*    aria-haspopup="true"*/}
+          {/*    onClick={handleOpenNavMenu}*/}
+          {/*    sx={{color: '#0A1929FF'}}*/}
+          {/*  >*/}
+          {/*    <MenuIcon/>*/}
+          {/*  </IconButton>*/}
+          {/*  <Menu*/}
+          {/*    id="menu-appbar"*/}
+          {/*    anchorEl={anchorElNav}*/}
+          {/*    anchorOrigin={{*/}
+          {/*      vertical: 'bottom',*/}
+          {/*      horizontal: 'left',*/}
+          {/*    }}*/}
+          {/*    keepMounted*/}
+          {/*    transformOrigin={{*/}
+          {/*      vertical: 'top',*/}
+          {/*      horizontal: 'left',*/}
+          {/*    }}*/}
+          {/*    open={Boolean(anchorElNav)}*/}
+          {/*    onClose={handleCloseNavMenu}*/}
+          {/*    sx={{*/}
+          {/*      display: {xs: 'block', md: 'none'},*/}
+          {/*    }}*/}
+          {/*  >*/}
+          {/*    <Button*/}
+          {/*      sx={{my: 2, color: '#0A1929FF', display: 'block'}}*/}
+          {/*    >*/}
+          {/*      About*/}
+          {/*    </Button>*/}
+          {/*    <Button*/}
+          {/*      sx={{my: 2, color: '#0A1929FF', display: 'block'}}*/}
+          {/*    >*/}
+          {/*      My Skills*/}
+          {/*    </Button>*/}
+          {/*    <Button*/}
+          {/*      sx={{my: 2, color: '#0A1929FF', display: 'block'}}*/}
+          {/*    >*/}
+          {/*      My Apps*/}
+          {/*    </Button>*/}
+          {/*    /!*<Button*!/*/}
+          {/*    /!*  sx={{my: 2, color: '#0A1929FF', display: 'block'}}*!/*/}
+          {/*    /!*>*!/*/}
+          {/*    /!*  Hire Me*!/*/}
+          {/*    /!*</Button>*!/*/}
+          {/*  </Menu>*/}
+          {/*</Box>*/}
           <NavLink to="/way-samurai_react-apps">
             <HomeIcon sx={{color: pink[500], marginRight: '10px'}}/>
           </NavLink>
-          <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
+          <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'flex'}}}>
             <Button
               sx={{my: 2, color: '#0A1929FF', display: 'block'}}
             >
@@ -109,11 +109,11 @@ export const Nav = () => {
             >
               My Apps
             </Button>
-            <Button
-              sx={{my: 2, color: '#0A1929FF', display: 'block'}}
-            >
-              Hire Me
-            </Button>
+            {/*<Button*/}
+            {/*  sx={{my: 2, color: '#0A1929FF', display: 'block'}}*/}
+            {/*>*/}
+            {/*  Hire Me*/}
+            {/*</Button>*/}
           </Box>
 
         </Toolbar>
