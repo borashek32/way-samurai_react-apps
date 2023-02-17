@@ -1,6 +1,6 @@
 import React from "react";
-import s from "./Telegram.module.css";
-import css from "../../App.module.css";
+import s from "./Telegram.module.sass";
+import css from "../../App.module.sass";
 import {RightSide} from "./items/RightSide";
 import {LeftSide} from "./items/LeftSide";
 

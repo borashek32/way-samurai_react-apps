@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useEffect, useState} from 'react'
-import css from '../../../App.module.css'
-import c from '../Counter.module.css'
+import css from '../../../App.module.sass'
+import c from '../Counter.module.sass'
 import {ChangeCounter} from "./items/ChangeCounter";
 import {Settings} from "./items/Settings";
 import {useDispatch, useSelector} from "react-redux";

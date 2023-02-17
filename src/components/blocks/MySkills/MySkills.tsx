@@ -1,80 +1,36 @@
-import s from "../Main.module.css";
+import React from 'react'
+import s from "../Main.module.sass";
+import {Title} from "../utils/Title";
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "../../../store/store";
+import {MyAppsType} from "../../../store/main/main-reducer";
+import {CardApp} from "../utils/CardApp";
 
-type MyCardsType = {
-  name: string
-}
 
-export const MySkills: React.FC<MyCardsType> = ({
-                                                   name
-                                                 }) => {
+export const MySkills = () => {
+
+  const mySkills = useSelector<AppRootStateType, MyAppsType>(state => state.main.mySkills)
+
+  const mappedMySkills = mySkills.apps.map(app => {
+    return (
+      <CardApp
+        id={app.id}
+        key={app.id}
+        link={app.link}
+        header={app.header}
+        imgPath={app.imgPath}
+        imgAlt={app.imgAlt}
+        imgStyles={app.imgStyles}
+        desc={app.desc}
+      />
+    )
+  })
 
   return (
     <div className={s.block}>
-      <h2 className={s.blockTitle}>My Skills</h2>
+      <Title name={mySkills.name}/>
       <div className={s.blockFlex}>
-        <div className={s.blockCard}>
-          <div className={s.blockCardsSections}>
-            <h4 className={s.blockCardsSectionsHeader}>React</h4>
-          </div>
-          <div className={s.blockCardsSections}>
-            <a className={s.blockLink} href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-              <img src={require("./logo192.png")} className={s.blockLogoReact} alt="react"/>
-            </a>
-          </div>
-        </div>
-        <div className={s.blockCard}>
-          <div className={s.blockCardsSections}>
-            <h4 className={s.blockCardsSectionsHeader}>Redux</h4>
-          </div>
-          <div className={s.blockCardsSections}>
-            <a className={s.blockLink} href="https://redux.js.org/" target="_blank" rel="noopener noreferrer">
-              <img src={require("./redux.png")} className={s.blockLogoRedux} alt="redux"/>
-            </a>
-          </div>
-        </div>
-        <div className={s.blockCard}>
-          <div className={s.blockCardsSections}>
-            <h4 className={s.blockCardsSectionsHeader}>Others</h4>
-          </div>
-          <div className={s.blockCardsSections}>
-              <a href="https://www.typescriptlang.org/" target="_blank">
-                <img
-                  className={s.blockCardsSectionsOtherSkills}
-                  src="https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FtypeScript.d7616c23.svg&w=3840&q=75"
-                  alt="ts"/>
-              </a>
-              <a href="https://www.javascript.com/" target="_blank">
-                <img
-                  className={s.blockCardsSectionsOtherSkills}
-                  src="https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FjavaScript.00f974bc.svg&w=3840&q=75"
-                  alt="js"/>
-              </a>
-              <a href="https://storybook.js.org/" target="_blank">
-                <img
-                  className={s.blockCardsSectionsOtherSkills}
-                  src="https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FstoryBook.0cbf5baa.svg&w=3840&q=75"
-                  alt="storybook"/>
-              </a>
-              <a href="https://html.com/">
-                <img
-                  className={s.blockCardsSectionsOtherSkills}
-                  src="https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhtml.62b58041.svg&w=3840&q=75"
-                  alt="html"/>
-              </a>
-              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">
-                <img
-                  className={s.blockCardsSectionsOtherSkills}
-                  src="https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcss.87872113.svg&w=3840&q=75"
-                  alt="css"/>
-              </a>
-              <a href="https://reactjs.org/docs/testing.html">
-                <img
-                  className={s.blockCardsSectionsOtherSkills}
-                  src="https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FunitTest.ecdada0b.svg&w=3840&q=75"
-                  alt="unit tests"/>
-              </a>
-          </div>
-        </div>
+        {mappedMySkills}
       </div>
     </div>
   )

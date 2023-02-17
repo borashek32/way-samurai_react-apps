@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect} from 'react'
-import c from '../Counter.module.css'
+import c from '../Counter.module.sass'
 import {Route, Routes} from "react-router-dom";
 import {ChangeCounter} from "./items/ChangeCounter";
 import {Settings} from "./items/Settings";
@@ -14,7 +14,7 @@ import {
   AdvSetCountingAC,
   AdvSetSettingsAC
 } from "../../../store/counters/advanced-counter-reducer";
-import css from "../../../App.module.css";
+import css from "../../../App.module.sass";
 
 export type ErrorType = {
   maxValue: boolean

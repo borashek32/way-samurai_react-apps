@@ -1,79 +1,28 @@
-import s from './../Main.module.css'
-import {createTheme, Input, TextField, ThemeProvider} from "@mui/material";
-import * as React from "react";
-import Button from "@mui/material/Button";
+import s from '../Main.module.sass'
+import * as React from "react"
+import {Title} from "../utils/Title"
+import {ButtonDefault} from "../utils/ButtonDefault"
+import {useSelector} from "react-redux"
+import {AppRootStateType} from "../../../store/store"
+import {ContactType} from "../../../store/main/main-reducer"
+import {InputDefault} from "../utils/InputDefault"
 
-type ContactType = {
-  name: string
-}
 
-export const Contact: React.FC<ContactType> = ({
-                                                 name
-                                               }) => {
+export const Contact = () => {
+
+  const contact = useSelector<AppRootStateType, ContactType>(state => state.main.contact)
 
   return (
-      <div className={s.block}>
-        <h2 className={s.blockTitle}>{name}</h2>
-        <form action="#" className={s.blockWrapper}>
-          <div className={s.formSize}>
-            <Input
-              placeholder={"Enter Your Name"}
-              size="small"
-              rows="1"
-              margin="none"
-              sx={{
-                width: "100%",
-                input: {
-                  color: "#fff",
-                  "&::placeholder": {
-                    color: "#fff"
-                  }
-                }
-              }}
-            />
-            <Input
-              placeholder={"Enter Your Email"}
-              size="small"
-              rows="1"
-              margin="none"
-              sx={{
-                width: "100%",
-                input: {
-                  color: "#fff",
-                  "&::placeholder": {
-                    color: "#fff"
-                  }
-                }
-              }}
-            />
-            <TextField
-              variant={"standard"}
-              placeholder={"Enter Your Message"}
-              size="small"
-              rows="3"
-              margin="none"
-              sx={{
-                width: "100%",
-                input: {
-                  color: "#fff",
-                  "&::placeholder": {
-                    color: "#fff"
-                  }
-                }
-              }}
-            />
-            <Button
-              sx={{
-                color: "#76ecfa",
-                border: "1px solid #76ecfa",
-                "&:hover": {color: "#1769aa", border: "1px solid #1769aa"}
-              }}
-              variant="outlined"
-            >
-              Send Message
-            </Button>
-          </div>
-        </form>
-      </div>
+    <div id={contact.id} className={s.block}>
+      <Title name={contact.name}/>
+      <form action="#" className={s.blockWrapper}>
+        <div className={s.formSize}>
+          <InputDefault placeholder={"Enter Your Name"} />
+          <InputDefault placeholder={"Enter Your Email"} />
+          <InputDefault placeholder={"Enter Your Message"} />
+          <ButtonDefault name={"Send message"} type={"submit"}/>
+        </div>
+      </form>
+    </div>
   )
 }

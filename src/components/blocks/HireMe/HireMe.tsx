@@ -1,28 +1,21 @@
-import s from "../Main.module.css";
-import Button from '@mui/material/Button';
+import s from "../Main.module.sass";
 import * as React from "react";
+import {Title} from "../utils/Title";
+import {ButtonDefault} from "../utils/ButtonDefault";
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "../../../store/store";
+import {HireMeType} from "../../../store/main/main-reducer";
 
-type HireMeType = {
-  name: string
-}
 
-export const HireMe: React.FC<HireMeType> = ({
-                                              name
-                                            }) => {
+export const HireMe = () => {
+
+  const hireMe = useSelector<AppRootStateType, HireMeType>(state => state.main.hireMe)
+
   return (
-    <div className={s.blockBorder}>
-      <h1 className={s.blockTitle}>{name}</h1>
+    <div id={hireMe.id} className={s.block}>
+      <Title name={hireMe.name} />
       <div className={s.blockHireMe}>
-        <Button
-          sx={{
-            color: "#76ecfa",
-            border: "1px solid #76ecfa",
-            "&:hover": {color: "#1769aa", border: "1px solid #1769aa"}
-          }}
-          variant="outlined"
-        >
-          Hire Me
-        </Button>
+        <ButtonDefault name={"Hire Me"} type={"button"} />
       </div>
     </div>
   )

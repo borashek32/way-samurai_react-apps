@@ -2,9 +2,11 @@ import {combineReducers, legacy_createStore} from 'redux'
 import {telegramReducer} from "./telegram/telegram-reducer";
 import {simpleCounterReducer} from "./counters/simple-counter-reducer";
 import {advancedCounterReducer} from "./counters/advanced-counter-reducer";
+import {mainReducer} from "./main/main-reducer";
 
 
 const rootReducer = combineReducers({
+  main: mainReducer,
   telegram: telegramReducer,
   simpleCounter: simpleCounterReducer,
   advancedCounter: advancedCounterReducer

@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import {pink} from '@mui/material/colors';
 import SvgIcon, {SvgIconProps} from '@mui/material/SvgIcon';
+import {Link} from "@mui/material";
 
 
 export const Nav = () => {
@@ -39,81 +40,90 @@ export const Nav = () => {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{display: "flex", justifyContent: 'space-between'}}>
-          {/*<Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>*/}
-          {/*  <IconButton*/}
-          {/*    size="large"*/}
-          {/*    aria-label="account of current user"*/}
-          {/*    aria-controls="menu-appbar"*/}
-          {/*    aria-haspopup="true"*/}
-          {/*    onClick={handleOpenNavMenu}*/}
-          {/*    sx={{color: '#0A1929FF'}}*/}
-          {/*  >*/}
-          {/*    <MenuIcon/>*/}
-          {/*  </IconButton>*/}
-          {/*  <Menu*/}
-          {/*    id="menu-appbar"*/}
-          {/*    anchorEl={anchorElNav}*/}
-          {/*    anchorOrigin={{*/}
-          {/*      vertical: 'bottom',*/}
-          {/*      horizontal: 'left',*/}
-          {/*    }}*/}
-          {/*    keepMounted*/}
-          {/*    transformOrigin={{*/}
-          {/*      vertical: 'top',*/}
-          {/*      horizontal: 'left',*/}
-          {/*    }}*/}
-          {/*    open={Boolean(anchorElNav)}*/}
-          {/*    onClose={handleCloseNavMenu}*/}
-          {/*    sx={{*/}
-          {/*      display: {xs: 'block', md: 'none'},*/}
-          {/*    }}*/}
-          {/*  >*/}
-          {/*    <Button*/}
-          {/*      sx={{my: 2, color: '#0A1929FF', display: 'block'}}*/}
-          {/*    >*/}
-          {/*      About*/}
-          {/*    </Button>*/}
-          {/*    <Button*/}
-          {/*      sx={{my: 2, color: '#0A1929FF', display: 'block'}}*/}
-          {/*    >*/}
-          {/*      My Skills*/}
-          {/*    </Button>*/}
-          {/*    <Button*/}
-          {/*      sx={{my: 2, color: '#0A1929FF', display: 'block'}}*/}
-          {/*    >*/}
-          {/*      My Apps*/}
-          {/*    </Button>*/}
-          {/*    /!*<Button*!/*/}
-          {/*    /!*  sx={{my: 2, color: '#0A1929FF', display: 'block'}}*!/*/}
-          {/*    /!*>*!/*/}
-          {/*    /!*  Hire Me*!/*/}
-          {/*    /!*</Button>*!/*/}
-          {/*  </Menu>*/}
-          {/*</Box>*/}
+          <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              sx={{color: '#0A1929FF'}}
+            >
+              <MenuIcon/>
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: {xs: 'block', md: 'none'},
+              }}
+            >
+              <Button
+                sx={{my: 2, color: '#0A1929FF', display: 'block'}}
+              >
+                About
+              </Button>
+              <Button
+                sx={{my: 2, color: '#0A1929FF', display: 'block'}}
+              >
+                My Skills
+              </Button>
+              <Button
+                sx={{my: 2, color: '#0A1929FF', display: 'block'}}
+              >
+                My Apps
+              </Button>
+              <Button
+                sx={{my: 2, color: '#0A1929FF', display: 'block'}}
+              >
+                Hire Me
+              </Button>
+            </Menu>
+          </Box>
           <NavLink to="/way-samurai_react-apps">
             <HomeIcon sx={{color: pink[500], marginRight: '10px'}}/>
           </NavLink>
           <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'flex'}}}>
-            <Button
+            <Link
+              href={"#aboutMe"}
               sx={{my: 2, color: '#0A1929FF', display: 'block'}}
             >
               About
-            </Button>
-            <Button
+            </Link>
+            <Link
               sx={{my: 2, color: '#0A1929FF', display: 'block'}}
             >
               My Skills
-            </Button>
-            <Button
+            </Link>
+            <Link
+              href={"#myApps"}
               sx={{my: 2, color: '#0A1929FF', display: 'block'}}
             >
               My Apps
-            </Button>
-            {/*<Button*/}
-            {/*  sx={{my: 2, color: '#0A1929FF', display: 'block'}}*/}
-            {/*>*/}
-            {/*  Hire Me*/}
-            {/*</Button>*/}
+            </Link>
+            <Link
+              href={"#hireMe"}
+              sx={{my: 2, color: '#0A1929FF', display: 'block'}}
+            >
+              Hire Me
+            </Link>
+            <Link
+              href={"#contact"}
+              sx={{my: 2, color: '#0A1929FF', display: 'block'}}
+            >
+              Contact
+            </Link>
           </Box>
 
         </Toolbar>

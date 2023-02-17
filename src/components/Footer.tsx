@@ -1,4 +1,4 @@
-import styles from './../components/blocks/Main.module.css'
+import styles from './blocks/Main.module.sass'
 
 export const Footer = () => {
 

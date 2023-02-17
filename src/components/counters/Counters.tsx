@@ -1,6 +1,6 @@
 import SimpleCounter from "./simpleCounter/SimpleCounter";
 import AdvancedCounter from "./advancedCounter/AdvancedCounter";
-import css from "../../App.module.css";
+import css from "../../App.module.sass";
 import {blue} from "@mui/material/colors";
 
 export const Counters = () => {

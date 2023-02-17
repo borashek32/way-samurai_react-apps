@@ -1,0 +1,254 @@
+@import '../../styles/reset.sass'
+@import '../../styles/variables.sass'
+
+.mainContainer
+    display: flex   
+    flex-direction: column   
+    align-items: center   
+    padding: 80px 20px 20px 20px   
+    margin: 0 auto   
+    width: 70%
+ 
+
+.title   
+    color: $colorBlueLight
+    font-weight: 700   
+    letter-spacing: .3rem   
+    text-decoration: none   
+    text-align: center   
+    font-size: 18px   
+    margin: 0 0 120px 0
+
+
+.block   
+    margin-bottom: 150px
+
+
+.blockTitle   
+    color: $colorWhite   
+    font-weight: 800   
+    letter-spacing: .3rem   
+    text-decoration: none   
+    text-align: center   
+    margin-bottom: 30px
+    position: relative
+
+.blockTitle::before
+    content: ""
+    z-index: 2
+    position: absolute
+    background-color: $colorBlueLight
+    width: 50px
+    height: 1px
+    top: -100%
+    left: 50%
+    transform: translate(-50%, 50%)
+ 
+
+.blockWrapper
+    background-color: $colorBackground   
+    color: $colorWhite   
+    border: 1px solid $colorBlueLight   
+    max-width: 50rem   
+    display: flex   
+    gap: 20px   
+    align-items: center
+ 
+
+.blockAboutWrapper   
+    border: none   
+    justify-content: center   
+ 
+
+@media (max-width: 1000px)   
+    .blockAboutWrapper   
+        flex-wrap: wrap   
+     
+ 
+
+/*----------------------------------------------Flex-container-------------------------------------------------*/
+.blockFlex   
+    display: flex   
+    gap: 30px
+    justify-content: center   
+    color: $colorWhite
+    line-height: 23px   
+    flex-wrap: wrap   
+ 
+
+/*----------------------------------------------Cards-------------------------------------------------------*/
+.blockCard   
+    display: flex   
+    flex-direction: column
+    align-items: center
+    gap: 20px   
+    color: $colorWhite   
+    border: 1px solid $colorBlueLight   
+    padding: 20px   
+    flex: 1 1 auto   
+    width: 250px   
+    min-height: 250px   
+    height: auto   
+ 
+
+@media (max-width: 1344px)   
+    .blockCard   
+        min-height: auto   
+
+
+
+.blockCardRound
+    margin: 40px
+    width: 100px
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+.blockCardRound img
+    width: 70px
+    height: 70px
+
+
+.blockCardPicture   
+    height: 120px
+    width: 200px
+    max-height: 200px   
+    max-width: 300px
+
+
+.blockCardSectionsHeader   
+    text-align: center   
+    color: $colorWhite   
+    font-weight: 600   
+    margin-bottom: 15px   
+    font-size: 20px   
+    line-height: 20px   
+ 
+
+.navLinkClass   
+    position: relative   
+ 
+
+.blockCardSections
+    position: relative
+
+.blockCardSectionsButtonWrapper   
+    height: 120px   
+    width: 200px   
+    max-height: 200px   
+    max-width: 300px   
+    position: absolute   
+    top: 35px   
+    background-color: rgba(2, 2, 2, 0.9)   
+    transition: all .2s ease   
+ 
+
+.blockCardSectionsButtonWrapper:hover   
+    background-color: rgba(2, 2, 2, 0.8)   
+ 
+
+/*-----------------------------------------------Logos----------------------------------------------*/
+/*react logo*/
+.blockLogo
+    animation: App-logo-spin infinite 20s linear   
+    transition: all .2s ease   
+ 
+
+@keyframes App-logo-spin   
+    from   
+        transform: rotate(0deg)   
+     
+    to   
+        transform: rotate(360deg)   
+
+  
+/**/
+/*redux logo*/
+.blockLogoRedux
+    animation: App-logo-float infinite 3s ease-in-out   
+    transition: all .2s ease   
+ 
+@keyframes App-logo-float   
+    0%   
+        transform: translateY(0)   
+     
+    50%   
+        transform: translateY(10px)   
+     
+    100%   
+        transform: translateY(0px)   
+
+ 
+/*-----------------------------------------------skills----------------------------------------------*/
+.blockLogo
+    width: 50px   
+    transition: all .2s ease
+ 
+.blockLogo:hover
+    width: 60px
+    margin: -5px -5px -7px -5px
+ 
+/**/
+
+.blockCardsRow   
+    display: flex   
+    gap: 20px   
+ 
+.blockCardsRow:first-child   
+    margin-bottom: 30px
+ 
+
+/*-----------------------------------------------Hire Me----------------------------------------------*/
+.blockHireMe   
+    display: flex   
+    align-items: center   
+    justify-content: center   
+ 
+
+/*-----------------------------------------------Form contact----------------------------------------------*/
+.blockWrapperContact   
+    padding: 0   
+    border: 2px solid $colorBlueLight   
+    border-radius: 20px   
+    color: $colorWhite   
+ 
+
+.formSize   
+    width: 600px   
+    padding: 30px   
+    display: flex   
+    flex-direction: column   
+    gap: 20px   
+    align-items: center   
+ 
+@media (max-width: 730px)   
+    .formSize   
+        width: 500px   
+     
+ 
+@media (max-width: 630px)   
+    .formSize   
+        width: 400px   
+     
+ 
+@media (max-width: 530px)   
+    .formSize   
+        width: 300px   
+     
+ 
+@media (max-width: 430px)   
+    .formSize   
+        width: 200px   
+     
+ 
+
+/*-----------------------------------------------Footer----------------------------------------------*/
+.footer   
+    background-color: $colorBlueLight   
+    padding: 30px   
+    text-align: center   
+ 
+.footer:last-child   
+    line-height: 1.5em   
+ 

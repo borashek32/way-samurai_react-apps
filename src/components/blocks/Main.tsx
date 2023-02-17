@@ -1,35 +1,34 @@
-import styles from './Main.module.css'
-import s from '../../App.module.css'
+import styles from './Main.module.sass'
+import s from '../../App.module.sass'
 import {AboutMe} from './AboutMe/AboutMe'
 import {MySkills} from './MySkills/MySkills'
 import {MyApps} from './MyApps/MyApps'
 import {HireMe} from "./HireMe/HireMe";
 import {Contact} from "./Contact/Contact";
 import {Footer} from "../Footer";
-import css from "../../App.module.css";
+import css from "../../App.module.sass";
 import {Nav} from "../Nav";
 import React from "react";
 
-type MainType = {
+type MainPropsType = {
   name: string
 }
 
-export const Main: React.FC<MainType> = ({
+export const Main: React.FC<MainPropsType> = ({
                                            name
                                          }) => {
+
   return (
     <div className={css.container}>
       <Nav/>
       <div className={s.container}>
         <div className={styles.mainContainer}>
           <h1 className={styles.title}>{name}</h1>
-          <AboutMe name={"About Me"}/>
-          <MyApps name={"My projects"}/>
-          <MySkills name={"My Skills"}/>
-        {/*</div>*/}
-        {/*<HireMe name={"I consider a remote work"}/>*/}
-        {/*<div className={styles.mainContainer}>*/}
-          <Contact name={"Contact Me"}/>
+          <AboutMe />
+          <MyApps />
+          <MySkills />
+          <HireMe />
+          <Contact />
         </div>
         <Footer/>
       </div>

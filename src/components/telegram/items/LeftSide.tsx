@@ -1,4 +1,4 @@
-import s from "../Telegram.module.css";
+import s from "../Telegram.module.sass";
 import {MessageType} from "../Telegram";
 import {useState} from "react";
 import {Avatar, Button, createTheme, TextField, ThemeProvider} from "@mui/material";

@@ -1,4 +1,4 @@
-import c from "../../Counter.module.css";
+import c from "../../Counter.module.sass";
 import {Button} from "../utils/Button";
 import React, {ChangeEvent} from "react";
 import {Input} from '../utils/Input';
