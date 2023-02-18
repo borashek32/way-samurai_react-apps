@@ -123,8 +123,10 @@
  
 
 .navLinkClass   
-    position: relative   
-
+    position: relative
+    display: flex
+    flex-direction: column
+    align-items: center
 
 .blockCardSectionsButtonWrapper
     height: 120px
@@ -242,9 +244,13 @@
  
 @media (max-width: 430px)   
     .formSize   
-        width: 200px   
-     
- 
+        width: 270px
+
+@media (max-width: 350px)
+    .formSize
+        width: 200px
+
+
 
 /*-----------------------------------------------Footer----------------------------------------------*/
 .footer   
