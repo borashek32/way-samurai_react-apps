@@ -13,8 +13,8 @@ export const AboutMe = () => {
   const aboutMe = useSelector<AppRootStateType, AboutMeType>(state => state.main.aboutMe)
 
   return (
-    <div id={aboutMe.id} className={s.block}>
-      <Title name={aboutMe.name}/>
+    <div className={s.block}>
+      <Title name={aboutMe.name} id={aboutMe.id} />
       <div className={blockAboutWrapper}>
         <div className={s.blockImg}>
           <img src={require('./me.jpg')} alt="me" width='200px'/>

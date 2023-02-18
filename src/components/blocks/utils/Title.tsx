@@ -1,13 +1,14 @@
 import React from 'react'
 import s from "../Main.module.sass";
 // @ts-ignore
-import Roll from 'react-reveal/Roll'
+import Flip from 'react-reveal/Flip'
 
 
 type TitleType = {
   name: string
+  id: string
 }
 
 export const Title = (props: TitleType) => {
-  return <Roll><h2 className={s.blockTitle}>{props.name}</h2></Roll>
+  return <Flip><h2 id={props.id} className={s.blockTitle}>{props.name}</h2></Flip>
 }

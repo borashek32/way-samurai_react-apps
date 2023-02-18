@@ -4,7 +4,7 @@ import {Title} from "../utils/Title";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../../store/store";
 import {MyAppsType} from "../../../store/main/main-reducer";
-import {CardApp} from "../utils/CardApp";
+import {NavLink} from "react-router-dom";
 
 
 export const MySkills = () => {
@@ -12,23 +12,29 @@ export const MySkills = () => {
   const mySkills = useSelector<AppRootStateType, MyAppsType>(state => state.main.mySkills)
 
   const mappedMySkills = mySkills.apps.map(app => {
+
+    const imgStyles = s.blockLogo + ' ' + (app.header === "React" ? s.blockLogoReact
+      : app.header === "Redux" ? s.blockLogoRedux : '')
+
     return (
-      <CardApp
-        id={app.id}
+      <NavLink
         key={app.id}
-        link={app.link}
-        header={app.header}
-        imgPath={app.imgPath}
-        imgAlt={app.imgAlt}
-        imgStyles={app.imgStyles}
-        desc={app.desc}
-      />
+        to={app.link}
+        className={s.navLinkClass + ' ' + s.blockCardRound}
+      >
+        <h4 className={s.blockCardSectionsHeader}>{app.header}</h4>
+        <img
+          src={app.imgPath}
+          alt={app.imgAlt}
+          className={imgStyles}
+        />
+      </NavLink>
     )
   })
 
   return (
     <div className={s.block}>
-      <Title name={mySkills.name}/>
+      <Title name={mySkills.name} id={mySkills.id}/>
       <div className={s.blockFlex}>
         {mappedMySkills}
       </div>

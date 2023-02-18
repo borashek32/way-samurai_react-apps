@@ -12,10 +12,12 @@ export const HireMe = () => {
   const hireMe = useSelector<AppRootStateType, HireMeType>(state => state.main.hireMe)
 
   return (
-    <div id={hireMe.id} className={s.block}>
-      <Title name={hireMe.name} />
+    <div className={s.block}>
+      <Title name={hireMe.name} id={hireMe.id} />
       <div className={s.blockHireMe}>
-        <ButtonDefault name={"Hire Me"} type={"button"} />
+        <a href="mailto:borashek@inbox.ru">
+          <ButtonDefault name={"Hire Me"} type={"button"} />
+        </a>
       </div>
     </div>
   )

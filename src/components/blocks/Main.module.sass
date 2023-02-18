@@ -33,6 +33,7 @@
     margin-bottom: 30px
     position: relative
 
+
 .blockTitle::before
     content: ""
     z-index: 2
@@ -105,11 +106,6 @@
     align-items: center
     justify-content: center
 
-.blockCardRound img
-    width: 70px
-    height: 70px
-
-
 .blockCardPicture   
     height: 120px
     width: 200px
@@ -123,7 +119,8 @@
     font-weight: 600   
     margin-bottom: 15px   
     font-size: 20px   
-    line-height: 20px   
+    line-height: 20px
+    white-space: nowrap
  
 
 .navLinkClass   
@@ -150,10 +147,13 @@
 
 /*-----------------------------------------------Logos----------------------------------------------*/
 /*react logo*/
-.blockLogo
+.blockLogoReact
     animation: App-logo-spin infinite 20s linear   
     transition: all .2s ease   
- 
+
+@media (max-width: 1344px)
+    .blockLogoReact
+        animation: none
 
 @keyframes App-logo-spin   
     from   
@@ -167,7 +167,11 @@
 /*redux logo*/
 .blockLogoRedux
     animation: App-logo-float infinite 3s ease-in-out   
-    transition: all .2s ease   
+    transition: all .2s ease
+
+@media (max-width: 1344px)
+    .blockLogoRedux
+        animation: none
  
 @keyframes App-logo-float   
     0%   
@@ -186,8 +190,13 @@
     transition: all .2s ease
  
 .blockLogo:hover
-    width: 60px
-    margin: -5px -5px -7px -5px
+    width: 54px
+    margin-top: -5px
+
+@media (max-width: 1344px)
+    .blockLogo:hover
+        width: 50px
+        margin-top: 0
  
 /**/
 
@@ -250,5 +259,4 @@
     text-align: center   
  
 .footer:last-child   
-    line-height: 1.5em   
- 
+    line-height: 1.5em

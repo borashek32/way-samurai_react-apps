@@ -13,8 +13,13 @@ export type MainType = {
   hireMe: HireMeType
   contact: ContactType
   mySkills: MyAppsType
+  links: LinkType[]
 }
 
+export type LinkType = {
+  name: string
+  href: string
+}
 export type AboutMeType = {
   id: "aboutMe"
   name: string
@@ -34,7 +39,6 @@ export type MyAppType = {
   header: string
   imgPath: string
   imgAlt: string
-  imgStyles: string
   desc: string
 }
 export type MyAppsType = {
@@ -45,6 +49,13 @@ export type MyAppsType = {
 
 
 export const initialState: MainType = {
+  links: [
+    {name: "About Me", href: "#aboutMe"},
+    {name: "My Projects", href: "#myProjects"},
+    {name: "My Skills", href: "#mySkills"},
+    {name: "Hire Me", href: "#hireMe"},
+    {name: "Contact", href: "#contact"}
+  ],
   aboutMe: {
     id: "aboutMe",
     name: "About Me",
@@ -60,7 +71,6 @@ export const initialState: MainType = {
         header: "Messenger",
         imgPath: tl,
         imgAlt: "messenger",
-        imgStyles: "blockCardPicture",
         desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius error et ex facere id illo, nulla quo recusandae sit voluptatem?",
       },
       {
@@ -69,7 +79,6 @@ export const initialState: MainType = {
         header: "TodoList",
         imgPath: todolist,
         imgAlt: "todolist",
-        imgStyles: "blockCardPicture",
         desc: "ToDoList is an online platform for organizing your personal or work tasks which can help you to increase the productivity, prioritise tasks, manage tasks effectively and improve time management. Made on React + Redux using all the advantages of these tools.",
       },
       {
@@ -78,7 +87,6 @@ export const initialState: MainType = {
         header: "Counters",
         imgPath: counters,
         imgAlt: "counters",
-        imgStyles: "blockCardPicture",
         desc: "Counters are test projects which (to tell the truth) don't have a lot of practical use. They allow us to do some settings which influence on the way how the counter works. Anyways they are good examples of great opportunities which libraries of React and Redux provide."
       },
       {
@@ -87,7 +95,6 @@ export const initialState: MainType = {
         header: "Social Network",
         imgPath: socialNetwork,
         imgAlt: "social-network",
-        imgStyles: "blockCardPicture",
         desc: "Social Network is an online platform that allows people to create an account and communicate with other people on the website. Users can build there virtual world on the site, make friends and share their thoughts and ideas by writing a new post."
       },
       {
@@ -96,7 +103,6 @@ export const initialState: MainType = {
         header: "Separate Blocks",
         imgPath: separateBlocks,
         imgAlt: "separate-blocks",
-        imgStyles: "blockCardPicture",
         desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius error et ex facere id illo, nulla quo recusandae sit voluptatem?"
       },
     ]
@@ -119,7 +125,6 @@ export const initialState: MainType = {
         header: "React",
         imgPath: reactLogo,
         imgAlt: "react",
-        imgStyles: "blockLogo",
         desc: ""
       },
       {
@@ -128,7 +133,6 @@ export const initialState: MainType = {
         header: "Redux",
         imgPath: reduxLogo,
         imgAlt: "redux",
-        imgStyles: "blockLogo",
         desc: ""
       },
       {
@@ -137,7 +141,6 @@ export const initialState: MainType = {
         header: "TypeScript",
         imgPath: "https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FtypeScript.d7616c23.svg&w=3840&q=75",
         imgAlt: "typescript",
-        imgStyles: "blockLogo",
         desc: ""
       },
       {
@@ -146,7 +149,6 @@ export const initialState: MainType = {
         header: "JavaScript",
         imgPath: "https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FjavaScript.00f974bc.svg&w=3840&q=75",
         imgAlt: "javascript",
-        imgStyles: "blockLogo",
         desc: ""
       },
       {
@@ -155,7 +157,6 @@ export const initialState: MainType = {
         header: "StoryBook",
         imgPath: "https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcss.87872113.svg&w=3840&q=75",
         imgAlt: "storybook",
-        imgStyles: "blockLogo",
         desc: ""
       },
       {
@@ -164,7 +165,6 @@ export const initialState: MainType = {
         header: "HTML",
         imgPath: "https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FunitTest.ecdada0b.svg&w=3840&q=75",
         imgAlt: "html",
-        imgStyles: "blockLogo",
         desc: ""
       },
       {
@@ -173,7 +173,6 @@ export const initialState: MainType = {
         header: "CSS/SASS",
         imgPath: "https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhtml.62b58041.svg&w=3840&q=75",
         imgAlt: "css/sass",
-        imgStyles: "blockLogo",
         desc: ""
       },
       {
@@ -182,7 +181,6 @@ export const initialState: MainType = {
         header: "React Testing",
         imgPath: "https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FstoryBook.0cbf5baa.svg&w=3840&q=75\"",
         imgAlt: "testing",
-        imgStyles: "blockLogo",
         desc: ""
       }
     ]

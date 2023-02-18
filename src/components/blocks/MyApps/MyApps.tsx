@@ -10,7 +10,6 @@ import {MyAppsType} from "../../../store/main/main-reducer";
 export const MyApps = () => {
 
   const myApps = useSelector<AppRootStateType, MyAppsType>(state => state.main.myApps)
-  console.log((myApps.apps[1].id).substr(0, 3))
 
   const mappedMyApps = myApps.apps.map(app => {
     return (
@@ -27,8 +26,8 @@ export const MyApps = () => {
   })
 
   return (
-    <div id={"myApps"} className={s.block}>
-      <Title name={myApps.name}/>
+    <div className={s.block}>
+      <Title name={myApps.name} id={myApps.id} />
       <div className={s.blockFlex}>
         {mappedMyApps}
       </div>

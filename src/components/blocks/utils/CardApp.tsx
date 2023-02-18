@@ -1,3 +1,4 @@
+import React from 'react'
 import s from "../Main.module.sass";
 import {NavLink} from "react-router-dom";
 import {ButtonDefault} from "./ButtonDefault";
@@ -9,7 +10,6 @@ type CardAppType = {
   header: string
   imgPath: string
   imgAlt: string
-  imgStyles?: string
   desc: string
 }
 
@@ -19,41 +19,33 @@ export const CardApp: React.FC<CardAppType> = ({
                                                  header,
                                                  imgPath,
                                                  imgAlt,
-                                                 imgStyles,
                                                  desc
-                                              }) => {
-
-  const styles = s.blockCardPicture + ' ' + imgStyles
-  const condition = id.substr(0, 3) === "app"
+                                               }) => {
 
   return (
-    <div className={condition ? s.blockCard : ''}>
-      <div className={condition ? s.blockCardSections : ' '}>
+    <div className={s.blockCard}>
+      <div className={s.blockCardSections}>
         <NavLink
           to={link}
-          className={condition ? '' : s.navLinkClass + ' ' + s.blockCardRound}
+          className={s.navLinkClass}
         >
           <h4 className={s.blockCardSectionsHeader}>{header}</h4>
           <img
             src={imgPath}
             alt={imgAlt}
-            className={styles}
+            className={s.blockCardPicture}
           />
-          {condition
-            ? <div className={s.blockCardSectionsButtonWrapper}>
-                <ButtonDefault
-                  name={"Open"}
-                  type={"button"}
-                />
-              </div>
-            : ''}
+          <div className={s.blockCardSectionsButtonWrapper}>
+            <ButtonDefault
+              name={"Open"}
+              type={"button"}
+            />
+          </div>
         </NavLink>
       </div>
-      {condition
-        ? <div className={s.blockCardSections}>
-            <p>{desc}</p>
-          </div>
-      : ''}
+      <div className={s.blockCardSections}>
+        <p>{desc}</p>
+      </div>
     </div>
   )
 }

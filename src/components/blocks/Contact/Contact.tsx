@@ -13,8 +13,8 @@ export const Contact = () => {
   const contact = useSelector<AppRootStateType, ContactType>(state => state.main.contact)
 
   return (
-    <div id={contact.id} className={s.block}>
-      <Title name={contact.name}/>
+    <div className={s.block}>
+      <Title name={contact.name} id={contact.id} />
       <form action="#" className={s.blockWrapper}>
         <div className={s.formSize}>
           <InputDefault placeholder={"Enter Your Name"} />
