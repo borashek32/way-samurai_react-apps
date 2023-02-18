@@ -61,7 +61,10 @@ export const Nav = () => {
             left: "50% !important",
             margin: "-25% 0 0 -5% !important",
             textAlign: "center",
-            overflow: "scroll"
+            overflow: "scroll",
+            '@media (max-width: 900px)': {
+              margin: "-50% 0 0 -17% !important",
+            }
           }
         }
       }
