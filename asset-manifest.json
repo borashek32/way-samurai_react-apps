@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/way-samurai_react-apps/static/css/main.247fdeac.css",
-    "main.js": "/way-samurai_react-apps/static/js/main.9a74c310.js",
+    "main.css": "/way-samurai_react-apps/static/css/main.459a5178.css",
+    "main.js": "/way-samurai_react-apps/static/js/main.c9ee7f04.js",
     "static/js/787.b5aa3df0.chunk.js": "/way-samurai_react-apps/static/js/787.b5aa3df0.chunk.js",
     "static/media/social-network.jpg": "/way-samurai_react-apps/static/media/social-network.48970595d0c36fdcf84e.jpg",
     "static/media/todolist.jpg": "/way-samurai_react-apps/static/media/todolist.eb5acd68c7ab2dde7201.jpg",
@@ -11,12 +11,12 @@
     "static/media/me.jpg": "/way-samurai_react-apps/static/media/me.2baab4bd6120d1bb99e1.jpg",
     "static/media/redux.png": "/way-samurai_react-apps/static/media/redux.b3b939c66aecf7d53967.png",
     "index.html": "/way-samurai_react-apps/index.html",
-    "main.247fdeac.css.map": "/way-samurai_react-apps/static/css/main.247fdeac.css.map",
-    "main.9a74c310.js.map": "/way-samurai_react-apps/static/js/main.9a74c310.js.map",
+    "main.459a5178.css.map": "/way-samurai_react-apps/static/css/main.459a5178.css.map",
+    "main.c9ee7f04.js.map": "/way-samurai_react-apps/static/js/main.c9ee7f04.js.map",
     "787.b5aa3df0.chunk.js.map": "/way-samurai_react-apps/static/js/787.b5aa3df0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.247fdeac.css",
-    "static/js/main.9a74c310.js"
+    "static/css/main.459a5178.css",
+    "static/js/main.c9ee7f04.js"
   ]
 }
