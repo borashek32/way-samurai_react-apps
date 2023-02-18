@@ -24,28 +24,14 @@ export const CardApp: React.FC<CardAppType> = ({
 
   return (
     <div className={s.blockCard}>
-      <div className={s.blockCardSections}>
-        <NavLink
-          to={link}
-          className={s.navLinkClass}
-        >
-          <h4 className={s.blockCardSectionsHeader}>{header}</h4>
-          <img
-            src={imgPath}
-            alt={imgAlt}
-            className={s.blockCardPicture}
-          />
-          <div className={s.blockCardSectionsButtonWrapper}>
-            <ButtonDefault
-              name={"Open"}
-              type={"button"}
-            />
-          </div>
-        </NavLink>
-      </div>
-      <div className={s.blockCardSections}>
-        <p>{desc}</p>
-      </div>
+      <NavLink to={link} className={s.navLinkClass}>
+        <h4 className={s.blockCardSectionsHeader}>{header}</h4>
+        <img src={imgPath} alt={imgAlt} className={s.blockCardPicture} />
+        <div className={s.blockCardSectionsButtonWrapper}>
+          <ButtonDefault name={"Open"} type={"button"} />
+        </div>
+      </NavLink>
+      <p>{desc}</p>
     </div>
   )
 }
