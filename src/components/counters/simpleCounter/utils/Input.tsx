@@ -10,6 +10,7 @@ type InputType = {
 }
 
 export const Input = (props: InputType) => {
+
   const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
     props.onChangeCallback(e)
   }

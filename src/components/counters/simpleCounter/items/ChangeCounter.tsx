@@ -17,6 +17,8 @@ type ChangeCounterType = {
 
 export const ChangeCounter = (props: ChangeCounterType) => {
 
+  console.log("change simple counter")
+
   const counterClassName = c.counter
     + ' ' + (props.message === "set values and press 'set'" ? c.counterSetMessage : '')
     + ' ' + (props.value ? c.counterBold : '')

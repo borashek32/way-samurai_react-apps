@@ -50,6 +50,8 @@ export const messages: Array<string> = [
 
 const SimpleCounter = (props: SimpleCounterType) => {
 
+  console.log("simple counter")
+
   const value = useSelector<AppRootStateType, number>(state => state.simpleCounter.value)
   const settings = useSelector<AppRootStateType, SettingsType>(state => state.simpleCounter.settings)
   const disabled = useSelector<AppRootStateType, DisabledType>(state => state.simpleCounter.disabled)

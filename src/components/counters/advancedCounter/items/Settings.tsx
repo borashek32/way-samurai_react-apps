@@ -19,6 +19,8 @@ type PropsType = {
 
 export const Settings = (props: PropsType) => {
 
+  console.log("set adv counter")
+
   const onChangeMaxValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeMaxValueHandler(e)
   const onChangeStartValueCallback = (e: ChangeEvent<HTMLInputElement>) => props.onChangeStartValueHandler(e)
   const setValueCallback = () => props.setValuesHandler({

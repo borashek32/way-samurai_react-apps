@@ -28,7 +28,7 @@ export const Main: React.FC<MainPropsType> = ({
           <AboutMe/>
           <MyApps/>
           <MySkills/>
-          <HireMe/>
+          {/*<HireMe/>*/}
           <Contact/>
         </div>
         <Footer/>

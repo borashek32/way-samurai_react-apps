@@ -42,13 +42,13 @@ type ActionType = AdvIncHandlerAT
 export const advancedCounterReducer = (state = initialState, action: ActionType): InitialStateType => {
   switch (action.type) {
     case ADV_INC_HANDLER:
-      console.log("inc from adv counter")
+      // console.log("inc from adv counter")
       return {
         ...state,
         valueAdv: +state.valueAdv + 1
       }
     case ADV_RES_HANDLER:
-      console.log("res from simple counter")
+      // console.log("res from simple counter")
       return {
         ...state,
         valueAdv: state.settings.startValue

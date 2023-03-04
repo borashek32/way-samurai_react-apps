@@ -19,6 +19,8 @@ type ChangeCounterType = {
 
 export const ChangeCounter = (props: ChangeCounterType) => {
 
+  console.log("change adv counter")
+
   const counterClassName = c.counter
     + (props.error?.maxStartValues
     || props.error?.maxValue

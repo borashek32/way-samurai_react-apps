@@ -18,11 +18,15 @@ export const InputDefault: React.FC<InputDefaultType> = ({
       margin="none"
       sx={{
         width: "100%",
+        '&::after': {
+          borderBottom: '2px solid #76ecfa'
+        },
         input: {
           color: "#fff",
           "&::placeholder": {
-            color: "#fff"
-          }
+            color: "#fff",
+          },
+          borderBottom: '2px solid #FFFFFF99',
         }
       }}
     />

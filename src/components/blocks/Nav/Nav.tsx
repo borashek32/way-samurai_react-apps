@@ -3,9 +3,7 @@ import s from "./Nav.module.sass"
 import {NavLink} from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import Menu from '@mui/material/Menu';
-import Container from '@mui/material/Container';
 import {pink} from '@mui/material/colors';
 import SvgIcon, {SvgIconProps} from '@mui/material/SvgIcon';
 import {NavbarLink} from "../utils/NavbarLink";
@@ -13,6 +11,7 @@ import {createTheme, ThemeProvider} from "@mui/material";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../../store/store";
 import {LinkType} from "../../../store/main/main-reducer";
+import {useState} from "react";
 
 
 export const Nav = () => {
@@ -21,12 +20,16 @@ export const Nav = () => {
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
+  const [active, setActive] = useState(false)
+
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
+    setActive(true)
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+    setActive(false)
   };
 
   const mappedLinks = links.map(link => {
@@ -81,17 +84,28 @@ export const Nav = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar position="fixed" sx={{backgroundColor: '#76ecfa'}}>
+      <AppBar position="fixed" sx={{
+        backgroundColor: '#76ecfa',
+        position: 'fixed',
+        zIndex: 1000000
+      }}>
         <div style={{display: "flex", alignItems: "center"}}>
 
-
           {/*burger*/}
-          <div className={s.burger} onClick={handleOpenNavMenu}>
+          <div
+            className={active ? (s.burger + ' ' + s.active) : s.burger}
+            onClick={active ? handleCloseNavMenu : handleOpenNavMenu}
+          >
             <span></span>
           </div>
 
           {/*small navbar*/}
-          <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}, padding: "20px", justifyContent: "space-between"}}>
+          <Box sx={{
+            flexGrow: 1,
+            display: {xs: 'flex', md: 'none'},
+            padding: "20px",
+            justifyContent: "space-between"
+          }}>
             <Menu
               anchorEl={anchorElNav}
               open={Boolean(anchorElNav)}

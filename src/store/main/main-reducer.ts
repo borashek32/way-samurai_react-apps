@@ -6,11 +6,18 @@ import socialNetwork from "../../components/blocks/MyApps/social-network.jpg";
 import separateBlocks from "../../components/blocks/MyApps/separate-blocks.jpg";
 import reactLogo from "../../components/blocks/MySkills/logo192.png";
 import reduxLogo from "../../components/blocks/MySkills/redux.png";
+import tsLogo from "../../components/blocks/MySkills/ts.png";
+import jsLogo from "../../components/blocks/MySkills/js.png";
+import sbLogo from "../../components/blocks/MySkills/sb.jpeg";
+import htmlLogo from "../../components/blocks/MySkills/html.jpeg";
+import cssLogo from "../../components/blocks/MySkills/css.webp";
+import testLogo from "../../components/blocks/MySkills/test.jpeg";
+
 
 export type MainType = {
   aboutMe: AboutMeType
   myApps: MyAppsType
-  hireMe: HireMeType
+  // hireMe: HireMeType
   contact: ContactType
   mySkills: MyAppsType
   links: LinkType[]
@@ -25,10 +32,10 @@ export type AboutMeType = {
   name: string
   desc: string
 }
-export type HireMeType = {
-  id: "hireMe"
-  name: string
-}
+// export type HireMeType = {
+//   id: "hireMe"
+//   name: string
+// }
 export type ContactType = {
   name: string
   id: "contact"
@@ -53,7 +60,7 @@ export const initialState: MainType = {
     {name: "About Me", href: "#aboutMe"},
     {name: "My Projects", href: "#myProjects"},
     {name: "My Skills", href: "#mySkills"},
-    {name: "Hire Me", href: "#hireMe"},
+    // {name: "Hire Me", href: "#hireMe"},
     {name: "Contact", href: "#contact"}
   ],
   aboutMe: {
@@ -107,10 +114,10 @@ export const initialState: MainType = {
       },
     ]
   },
-  hireMe: {
-    id: "hireMe",
-    name: "Hire Me"
-  },
+  // hireMe: {
+  //   id: "hireMe",
+  //   name: "Hire Me"
+  // },
   contact: {
     id: "contact",
     name: "Contact Me"
@@ -139,7 +146,7 @@ export const initialState: MainType = {
         id: v1(),
         link: "https://www.typescriptlang.org/",
         header: "TypeScript",
-        imgPath: "https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FtypeScript.d7616c23.svg&w=3840&q=75",
+        imgPath: tsLogo,
         imgAlt: "typescript",
         desc: ""
       },
@@ -147,7 +154,7 @@ export const initialState: MainType = {
         id: v1(),
         link: "https://www.javascript.com/",
         header: "JavaScript",
-        imgPath: "https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FjavaScript.00f974bc.svg&w=3840&q=75",
+        imgPath: jsLogo,
         imgAlt: "javascript",
         desc: ""
       },
@@ -155,15 +162,23 @@ export const initialState: MainType = {
         id: v1(),
         link: "https://storybook.js.org/",
         header: "StoryBook",
-        imgPath: "https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcss.87872113.svg&w=3840&q=75",
+        imgPath: sbLogo,
         imgAlt: "storybook",
+        desc: ""
+      },
+      {
+        id: v1(),
+        link: "https://reactjs.org/docs/testing.html",
+        header: "React Testing",
+        imgPath: testLogo,
+        imgAlt: "testing",
         desc: ""
       },
       {
         id: v1(),
         link: "https://html.com/",
         header: "HTML",
-        imgPath: "https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FunitTest.ecdada0b.svg&w=3840&q=75",
+        imgPath: htmlLogo,
         imgAlt: "html",
         desc: ""
       },
@@ -171,16 +186,8 @@ export const initialState: MainType = {
         id: v1(),
         link: "https://developer.mozilla.org/en-US/docs/Web/CSS",
         header: "CSS/SASS",
-        imgPath: "https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhtml.62b58041.svg&w=3840&q=75",
+        imgPath: cssLogo,
         imgAlt: "css/sass",
-        desc: ""
-      },
-      {
-        id: v1(),
-        link: "https://reactjs.org/docs/testing.html",
-        header: "React Testing",
-        imgPath: "https://it-incubator.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FstoryBook.0cbf5baa.svg&w=3840&q=75\"",
-        imgAlt: "testing",
         desc: ""
       }
     ]

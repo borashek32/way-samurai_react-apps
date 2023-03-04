@@ -20,7 +20,7 @@ export const MySkills = () => {
       <NavLink
         key={app.id}
         to={app.link}
-        className={s.navLinkClass + ' ' + s.blockCardRound}
+        className={s.navLinkClassSkills + ' ' + s.blockCardRound}
       >
         <h4 className={s.blockCardSectionsHeader}>{app.header}</h4>
         <img
