@@ -21,6 +21,7 @@ export const MyApps = () => {
         imgPath={app.imgPath}
         imgAlt={app.imgAlt}
         desc={app.desc}
+        target={app.target}
       />
     )
   })

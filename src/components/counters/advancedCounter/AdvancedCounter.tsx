@@ -38,8 +38,6 @@ export type AdvancedCounterType = {
 
 function AdvancedCounter(props: AdvancedCounterType) {
 
-  console.log("adv counter")
-
   const value = useSelector<AppRootStateType, number>(state => state.advancedCounter.valueAdv)
   const error = useSelector<AppRootStateType, ErrorType>(state => state.advancedCounter.error)
   const settings = useSelector<AppRootStateType, SettingsType>(state => state.advancedCounter.settings)
